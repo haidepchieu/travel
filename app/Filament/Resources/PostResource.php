@@ -74,10 +74,25 @@ class PostResource extends Resource
                                     ->imageResizeMode('cover')
                                     ->imageCropAspectRatio('16:10'),
 
-                                Forms\Components\TextInput::make('category')
-                                    ->label('Chuyên mục / Danh mục')
+                                Forms\Components\Select::make('category')
+                                    ->label('Loại bài viết')
+                                    ->options(fn (?string $state): array => self::categoryOptions($state))
                                     ->default('Travel Guide')
-                                    ->required(),
+                                    ->native(false)
+                                    ->selectablePlaceholder(false)
+                                    ->live()
+                                    ->required()
+                                    ->helperText(fn (?string $state): string => Post::CATEGORY_HINTS[$state]
+                                        ?? 'Chọn dạng bài viết. Loại này hiển thị cho khách dưới dạng nhãn trên bài viết.'),
+
+                                Forms\Components\Select::make('destination_id')
+                                    ->label('Điểm đến liên quan')
+                                    ->relationship('destination', 'name')
+                                    ->searchable()
+                                    ->preload()
+                                    ->native(false)
+                                    ->placeholder('Không gắn điểm đến')
+                                    ->helperText('Không bắt buộc. Nếu bài viết nói về một điểm đến cụ thể, hãy chọn để trang bài viết tự hiện các tour của điểm đó. Điểm đến được quản lý tại mục "Điểm đến".'),
 
                                 Forms\Components\TextInput::make('author_name')
                                     ->label('Tác giả')
@@ -120,10 +135,15 @@ class PostResource extends Resource
                     ->limit(40),
 
                 Tables\Columns\TextColumn::make('category')
-                    ->label('Chuyên mục')
+                    ->label('Loại bài viết')
                     ->badge()
                     ->color('info')
                     ->searchable(),
+
+                Tables\Columns\TextColumn::make('destination.name')
+                    ->label('Điểm đến')
+                    ->placeholder('—')
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('author_name')
                     ->label('Tác giả')
@@ -144,6 +164,12 @@ class PostResource extends Resource
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
+                Tables\Filters\SelectFilter::make('category')
+                    ->label('Loại bài viết')
+                    ->options(fn (): array => self::categoryOptions()),
+                Tables\Filters\SelectFilter::make('destination_id')
+                    ->label('Điểm đến')
+                    ->relationship('destination', 'name'),
                 Tables\Filters\TernaryFilter::make('is_published')
                     ->label('Trạng thái xuất bản'),
                 Tables\Filters\TernaryFilter::make('is_featured')
@@ -158,6 +184,24 @@ class PostResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    /**
+     * Fixed post types, plus any legacy value already stored on a post so old posts never lose their label.
+     */
+    protected static function categoryOptions(?string $current = null): array
+    {
+        $options = Post::CATEGORIES;
+
+        $legacy = Post::query()->whereNotNull('category')->distinct()->pluck('category')->all();
+        if ($current) {
+            $legacy[] = $current;
+        }
+        foreach ($legacy as $category) {
+            $options[$category] ??= $category . ' (cũ)';
+        }
+
+        return $options;
     }
 
     public static function getRelations(): array

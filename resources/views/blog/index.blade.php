@@ -53,11 +53,11 @@
             <!-- LEFT COLUMN: POSTS GRID (~68%) -->
             <div class="lg:col-span-8">
                 <!-- Search or active filter banner -->
-                @if(request()->filled('s') || request()->filled('category') || request()->filled('tag'))
+                @if(request()->filled('s') || request()->filled('category') || request()->filled('tag') || request()->filled('destination'))
                     <div class="mb-8 p-4 rounded-2xl bg-emerald-50/70 border border-emerald-100 flex items-center justify-between">
                         <span class="text-xs sm:text-sm text-gray-700">
                             Search results: 
-                            <strong>{{ request('s') ?? request('category') ?? request('tag') }}</strong> 
+                            <strong>{{ request('s') ?? request('category') ?? request('tag') ?? ($activeDestination->name ?? request('destination')) }}</strong> 
                             ({{ $posts->total() }} {{ Str::plural('article', $posts->total()) }})
                         </span>
                         <a href="{{ route('blog.index') }}" class="text-xs text-chestnut font-bold hover:underline">

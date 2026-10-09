@@ -30,6 +30,12 @@ class BlogController extends Controller
             $query->where('category', $request->category);
         }
 
+        $activeDestination = null;
+        if ($request->filled('destination')) {
+            $activeDestination = Destination::where('slug', $request->destination)->first();
+            $query->where('destination_id', $activeDestination?->id ?? 0);
+        }
+
         if ($request->filled('tag')) {
             $tag = $request->tag;
             $query->whereJsonContains('tags', $tag);
@@ -42,7 +48,7 @@ class BlogController extends Controller
         $featuredTours = Tour::where('is_active', true)->where('is_featured', true)->take(4)->get();
         $recentPosts = Post::published()->latest('published_at')->take(5)->get();
 
-        return view('blog.index', compact('posts', 'destinations', 'activities', 'featuredTours', 'recentPosts'));
+        return view('blog.index', compact('posts', 'destinations', 'activities', 'featuredTours', 'recentPosts', 'activeDestination'));
     }
 
     /**
@@ -50,15 +56,22 @@ class BlogController extends Controller
      */
     public function show($slug)
     {
-        $post = Post::published()->where('slug', $slug)->firstOrFail();
+        $post = Post::published()->with('destination')->where('slug', $slug)->firstOrFail();
 
         // Increment view count
         $post->increment('views_count');
 
-        // Related articles (matching category or recent, excluding current)
+        // Related articles: same destination first, then same type, then most recent
         $relatedPosts = Post::published()
             ->where('id', '!=', $post->id)
-            ->where('category', $post->category)
+            ->where(function ($q) use ($post) {
+                if ($post->destination_id) {
+                    $q->where('destination_id', $post->destination_id)->orWhere('category', $post->category);
+                } else {
+                    $q->where('category', $post->category);
+                }
+            })
+            ->when($post->destination_id, fn ($q) => $q->orderByRaw('destination_id = ? desc', [$post->destination_id]))
             ->latest('published_at')
             ->take(3)
             ->get();
@@ -87,7 +100,13 @@ class BlogController extends Controller
         // Sidebar data
         $destinations = Destination::where('is_active', true)->withCount('tours')->orderBy('sort_order')->get();
         $activities = Activity::where('is_active', true)->get();
-        $featuredTours = Tour::where('is_active', true)->where('is_featured', true)->take(3)->get();
+        // Trips of the destination this article is about; otherwise generic featured trips
+        $featuredTours = $post->destination_id
+            ? Tour::where('is_active', true)->where('destination_id', $post->destination_id)->orderByDesc('is_featured')->take(3)->get()
+            : collect();
+        if ($featuredTours->isEmpty()) {
+            $featuredTours = Tour::where('is_active', true)->where('is_featured', true)->take(3)->get();
+        }
         if ($featuredTours->isEmpty()) {
             $featuredTours = Tour::where('is_active', true)->take(3)->get();
         }

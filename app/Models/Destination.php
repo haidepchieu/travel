@@ -48,6 +48,11 @@ class Destination extends Model
         };
     }
 
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function tours(): HasMany
     {
         return $this->hasMany(Tour::class);

@@ -56,6 +56,13 @@
                            class="inline-block text-xs font-extrabold uppercase tracking-widest text-[#28B5A4] hover:underline">
                             {{ $post->category ?? 'Travel Guide' }}
                         </a>
+                        @if($post->destination)
+                            <a href="{{ route('blog.index', ['destination' => $post->destination->slug]) }}"
+                               class="ml-2 inline-flex items-center gap-1 text-xs font-bold text-gray-600 bg-gray-100 hover:bg-emerald-50 hover:text-chestnut px-2.5 py-1 rounded-full transition">
+                                <i class="fa-solid fa-location-dot text-[10px] text-chestnut"></i>
+                                {{ $post->destination->name }}
+                            </a>
+                        @endif
                     </div>
 
                     <!-- Article Title -->
@@ -328,7 +335,7 @@
                 @if($featuredTours->isNotEmpty())
                     <div class="bg-white rounded-3xl p-6 border border-gray-200/80 shadow-xs">
                         <h3 class="text-base font-extrabold text-gray-900 pb-3 mb-5 border-b border-gray-100 flex items-center justify-between">
-                            <span>Featured Trips</span>
+                            <span>{{ $post->destination ? 'Trips in ' . $post->destination->name : 'Featured Trips' }}</span>
                             <span class="text-xs text-amber-500 font-bold flex items-center gap-1">
                                 <i class="fa-solid fa-star"></i> Hot
                             </span>

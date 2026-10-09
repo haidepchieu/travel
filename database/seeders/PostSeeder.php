@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Destination;
 use App\Models\Post;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
@@ -158,7 +159,7 @@ HTML
             [
                 'title' => 'Planning a Trip from Hanoi to Ha Giang? Here’s Everything You Need to Know',
                 'slug' => 'from-hanoi-to-ha-giang-need-to-know',
-                'category' => 'Ha Giang Loop',
+                'category' => 'Travel Guide',
                 'excerpt' => 'From transportation options, bus tickets, motorbike rentals to must-see spots along the loop, here is the complete guide for traveling from Hanoi to Ha Giang.',
                 'featured_image' => 'posts/hanoi-to-hagiang.png',
                 'author_name' => 'admin',
@@ -173,7 +174,7 @@ HTML
             [
                 'title' => 'Discover the Heart of Hanoi: 16 Unmissable Attractions',
                 'slug' => 'discover-the-heart-of-hanoi-16-attractions',
-                'category' => 'Hanoi Discovery',
+                'category' => 'Travel Guide',
                 'excerpt' => 'Explore the vibrant capital of Vietnam with our curated list of 16 must-visit cultural, historical, and culinary spots in Hanoi.',
                 'featured_image' => 'posts/heart-of-hanoi.png',
                 'author_name' => 'admin',
@@ -187,7 +188,16 @@ HTML
             ],
         ];
 
+        // Posts that are about one specific destination (matched to the Destinations table by slug)
+        $postDestinations = [
+            'from-hanoi-to-ha-giang-need-to-know' => 'ha-giang',
+        ];
+
         foreach ($posts as $postData) {
+            if (isset($postDestinations[$postData['slug']])) {
+                $postData['destination_id'] = Destination::where('slug', $postDestinations[$postData['slug']])->value('id');
+            }
+
             Post::updateOrCreate(
                 ['slug' => $postData['slug']],
                 $postData
