@@ -120,10 +120,10 @@ HTML
                 'content' => <<<'HTML'
 <p class="wp-block-paragraph">Mu Cang Chai, nestled in the mountainous province of Yen Bai in northwest Vietnam, is a destination of stunning beauty, vibrant ethnic minority cultures, and unparalleled golden terraced landscapes.</p>
 
-<h3 class="text-xl sm:text-2xl font-bold text-gray-900 my-4"><strong>1. Raspberry Hill (Đồi Mâm Xôi)</strong></h3>
+<h3 class="text-xl sm:text-2xl font-bold text-gray-900 my-4"><strong>1. Raspberry Hill (Doi Mam Xoi)</strong></h3>
 <p class="mb-4 text-gray-700 leading-relaxed">Located in La Pan Tan village, Raspberry Hill is perhaps the most famous photography icon of Mu Cang Chai. The circular terraces form a picturesque dome that turns radiant gold every autumn between late September and mid-October.</p>
 
-<h3 class="text-xl sm:text-2xl font-bold text-gray-900 my-4"><strong>2. Horseshoe Hill (Đồi Móng Ngựa)</strong></h3>
+<h3 class="text-xl sm:text-2xl font-bold text-gray-900 my-4"><strong>2. Horseshoe Hill (Doi Mong Ngua)</strong></h3>
 <p class="mb-4 text-gray-700 leading-relaxed">Situated in Sang Nhu village, Horseshoe Hill offers dramatic crescent-shaped terraces carved into steep ridges. Sunset here is world-renowned as rays of golden sunlight drape over the glistening rice fields.</p>
 
 <h3 class="text-xl sm:text-2xl font-bold text-gray-900 my-4"><strong>3. Khau Pha Pass</strong></h3>

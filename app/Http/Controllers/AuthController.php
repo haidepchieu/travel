@@ -23,8 +23,8 @@ class AuthController extends Controller
             'email' => ['required', 'string'],
             'password' => ['required', 'string'],
         ], [
-            'email.required' => 'Vui lòng nhập email hoặc số điện thoại của bạn.',
-            'password.required' => 'Vui lòng nhập mật khẩu.',
+            'email.required' => 'Please enter your email or phone number.',
+            'password.required' => 'Please enter your password.',
         ]);
 
         $remember = $request->boolean('remember');
@@ -42,17 +42,17 @@ class AuthController extends Controller
             try {
                 if (!empty($user->email)) {
                     $ip = $request->ip() ?: '127.0.0.1';
-                    $userAgent = $request->userAgent() ?: 'Trình duyệt web';
+                    $userAgent = $request->userAgent() ?: 'Web browser';
                     Mail::to($user->email)->send(new LoginNotificationMail($user, $ip, $userAgent));
                 }
             } catch (\Throwable $e) {
-                Log::error('Lỗi gửi email thông báo đăng nhập: ' . $e->getMessage());
+                Log::error('Failed to send login notification email: ' . $e->getMessage());
             }
 
             if ($request->wantsJson() || $request->ajax()) {
                 return response()->json([
                     'success' => true,
-                    'message' => 'Đăng nhập thành công!',
+                    'message' => 'Signed in successfully!',
                     'user' => [
                         'name' => $user->name,
                         'email' => $user->email,
@@ -61,18 +61,18 @@ class AuthController extends Controller
                 ]);
             }
 
-            return redirect()->intended('/')->with('success', 'Chào mừng ' . $user->name . ' trở lại!');
+            return redirect()->intended('/')->with('success', 'Welcome back, ' . $user->name . '!');
         }
 
         if ($request->wantsJson() || $request->ajax()) {
             return response()->json([
                 'success' => false,
-                'message' => 'Email/Số điện thoại hoặc mật khẩu không chính xác.',
+                'message' => 'Incorrect email/phone number or password.',
             ], 422);
         }
 
         return back()->withErrors([
-            'email' => 'Thông tin đăng nhập không chính xác.',
+            'email' => 'Incorrect email/phone number or password.',
         ])->withInput($request->only('email'));
     }
 
@@ -87,16 +87,16 @@ class AuthController extends Controller
             'phone' => ['nullable', 'string', 'max:30'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ], [
-            'name.required' => 'Vui lòng nhập họ và tên của bạn.',
-            'name.string' => 'Họ và tên không hợp lệ.',
-            'name.max' => 'Họ và tên không được vượt quá 255 ký tự.',
-            'email.required' => 'Vui lòng nhập địa chỉ email.',
-            'email.email' => 'Địa chỉ email không đúng định dạng (VD: example@gmail.com).',
-            'email.unique' => 'Địa chỉ email này đã có tài khoản trên hệ thống. Bạn vui lòng chuyển sang tab "ĐĂNG NHẬP" hoặc dùng email khác.',
-            'phone.max' => 'Số điện thoại không được vượt quá 30 ký tự.',
-            'password.required' => 'Vui lòng nhập mật khẩu.',
-            'password.min' => 'Mật khẩu phải có tối thiểu 6 ký tự.',
-            'password.confirmed' => 'Mật khẩu xác nhận không trùng khớp với mật khẩu đã nhập.',
+            'name.required' => 'Please enter your full name.',
+            'name.string' => 'Please enter a valid name.',
+            'name.max' => 'Your name may not exceed 255 characters.',
+            'email.required' => 'Please enter your email address.',
+            'email.email' => 'Please enter a valid email address (e.g. example@gmail.com).',
+            'email.unique' => 'An account with this email already exists. Please switch to the "SIGN IN" tab or use a different email.',
+            'phone.max' => 'Your phone number may not exceed 30 characters.',
+            'password.required' => 'Please enter a password.',
+            'password.min' => 'Your password must be at least 6 characters.',
+            'password.confirmed' => 'The password confirmation does not match.',
         ]);
 
         $user = User::create([
@@ -115,13 +115,13 @@ class AuthController extends Controller
                 Mail::to($user->email)->send(new RegisterWelcomeMail($user));
             }
         } catch (\Throwable $e) {
-            Log::error('Lỗi gửi email chào mừng đăng ký tài khoản: ' . $e->getMessage());
+            Log::error('Failed to send welcome email: ' . $e->getMessage());
         }
 
         if ($request->wantsJson() || $request->ajax()) {
             return response()->json([
                 'success' => true,
-                'message' => 'Đăng ký tài khoản thành công!',
+                'message' => 'Your account has been created successfully!',
                 'user' => [
                     'name' => $user->name,
                     'email' => $user->email,
@@ -130,7 +130,7 @@ class AuthController extends Controller
             ]);
         }
 
-        return redirect('/')->with('success', 'Đăng ký tài khoản thành công! Chào mừng ' . $user->name);
+        return redirect('/')->with('success', 'Your account has been created successfully! Welcome, ' . $user->name);
     }
 
     /**
@@ -146,6 +146,6 @@ class AuthController extends Controller
             return response()->json(['success' => true]);
         }
 
-        return redirect('/')->with('info', 'Bạn đã đăng xuất.');
+        return redirect('/')->with('info', 'You have been signed out.');
     }
 }

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Blog & Travel Tips - ' . option('site_name', 'Chestnut Travel'))
-@section('meta_description', 'Khám phá cẩm nang du lịch, kinh nghiệm trekking, hướng dẫn khám phá Hà Giang, Sa Pa và miền Bắc từ Chestnut Travel.')
+@section('meta_description', 'Travel guides, trekking tips and how-tos for exploring Ha Giang, Sa Pa and Northern Vietnam from Chestnut Travel.')
 
 @section('content')
 <!-- ============================================================== -->
@@ -56,12 +56,12 @@
                 @if(request()->filled('s') || request()->filled('category') || request()->filled('tag'))
                     <div class="mb-8 p-4 rounded-2xl bg-emerald-50/70 border border-emerald-100 flex items-center justify-between">
                         <span class="text-xs sm:text-sm text-gray-700">
-                            Kết quả tìm kiếm: 
+                            Search results: 
                             <strong>{{ request('s') ?? request('category') ?? request('tag') }}</strong> 
-                            ({{ $posts->total() }} bài viết)
+                            ({{ $posts->total() }} {{ Str::plural('article', $posts->total()) }})
                         </span>
                         <a href="{{ route('blog.index') }}" class="text-xs text-chestnut font-bold hover:underline">
-                            Xóa lọc
+                            Clear filter
                         </a>
                     </div>
                 @endif
@@ -69,10 +69,10 @@
                 @if($posts->isEmpty())
                     <div class="text-center py-16 bg-gray-50 rounded-3xl border border-gray-200">
                         <i class="fa-regular fa-newspaper text-4xl text-gray-300 mb-3"></i>
-                        <h4 class="text-base font-bold text-gray-700">Không tìm thấy bài viết</h4>
-                        <p class="text-xs text-gray-500 mt-1 mb-4">Hãy thử tìm kiếm với từ khóa khác.</p>
+                        <h4 class="text-base font-bold text-gray-700">No articles found</h4>
+                        <p class="text-xs text-gray-500 mt-1 mb-4">Try searching with a different keyword.</p>
                         <a href="{{ route('blog.index') }}" class="inline-block bg-[#28B5A4] text-white text-xs font-bold px-5 py-2.5 rounded-full">
-                            Xem tất cả bài viết
+                            View all articles
                         </a>
                     </div>
                 @else

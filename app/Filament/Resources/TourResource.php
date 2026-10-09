@@ -137,7 +137,7 @@ class TourResource extends Resource
                                                 'Challenging' => 'Thử thách (Challenging)',
                                                 'Difficult' => 'Khó (Difficult)',
                                             ])
-                                            ->default('Dễ')
+                                            ->default('Easy')
                                             ->required(),
 
                                         Forms\Components\TextInput::make('transportation')

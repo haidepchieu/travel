@@ -12,182 +12,182 @@ class TourFaqSeeder extends Seeder
         $faqsData = [
             'ha-giang-loop-4-days-3-nights' => [
                 [
-                    'question' => 'Tour có phù hợp cho người chưa từng đi xe máy đường đèo không?',
-                    'answer' => 'Hoàn toàn phù hợp nếu bạn chọn gói Easy Rider (có tài xế địa phương dày dặn kinh nghiệm cầm lái và bảo vệ an toàn suốt hành trình). Nếu bạn muốn tự lái (Self-riding), bạn cần có bằng lái quốc tế hợp lệ (IDP) và đã có kinh nghiệm lái xe số/xe côn tay trên địa hình đồi dốc dốc đứng.',
+                    'question' => "Is this tour suitable if I've never ridden a motorbike on mountain passes?",
+                    'answer' => 'Absolutely, if you choose the Easy Rider package (an experienced local driver rides for you and keeps you safe throughout the journey). If you want to ride yourself (self-riding), you need a valid International Driving Permit (IDP) and experience riding a manual/semi-automatic bike on steep hilly terrain.',
                 ],
                 [
-                    'question' => 'Cần mang theo những vật dụng gì khi tham gia Ha Giang Loop?',
-                    'answer' => 'Bạn nên mang balo nhỏ gọn khoảng 5-7kg (hành lý lớn có thể gửi miễn phí và an toàn tại văn phòng Chestnut Travel ở TP Hà Giang), áo khoác ấm (nhiệt độ về đêm ở Đồng Văn và Mèo Vạc khá thấp), kem chống nắng, kính râm, đồ bơi (khi ghé tắm thác Du Già) và thuốc cá nhân cơ bản.',
+                    'question' => 'What should I bring on the Ha Giang Loop?',
+                    'answer' => 'Bring a small backpack of around 5-7kg (large luggage can be stored safely and free of charge at the Chestnut Travel office in Ha Giang City), a warm jacket (nights in Dong Van and Meo Vac are quite cold), sunscreen, sunglasses, swimwear (for the Du Gia waterfall) and basic personal medicine.',
                 ],
                 [
-                    'question' => 'Điều kiện thời tiết xấu hoặc mưa thì tour có khởi hành không?',
-                    'answer' => 'Tour vẫn diễn ra bình thường nếu chỉ có mưa rào nhẹ. Đội ngũ Chestnut Travel trang bị sẵn bộ quần áo mưa chuyên dụng cao cấp, bọc chống nước cho balo và ủng đi mưa cho từng khách. Trong trường hợp có bão lũ hoặc sạt lở nguy hiểm, chúng tôi sẽ linh hoạt đổi hướng tuyến đường hoặc bảo lưu/hoàn tiền theo chính sách an toàn.',
+                    'question' => 'Does the tour still depart in bad weather or rain?',
+                    'answer' => 'The tour runs as normal in light showers. Chestnut Travel provides premium rain suits, waterproof backpack covers and rain boots for every guest. In the event of storms, floods or dangerous landslides, we will flexibly reroute or postpone/refund according to our safety policy.',
                 ],
                 [
-                    'question' => 'Tour có bao gồm đưa đón từ Hà Nội lên Hà Giang không?',
-                    'answer' => 'Có. Tour đã bao gồm vé xe giường nằm chất lượng cao (VIP Luxury Cabin) hai chiều khứ hồi giữa Hà Nội và Hà Giang. Xe đón bạn tại các khách sạn Phố Cổ Hà Nội hoặc sân bay Nội Bài lúc 20:30 tối hôm trước và đưa về lại Hà Nội an toàn.',
+                    'question' => 'Does the tour include transfers from Hanoi to Ha Giang?',
+                    'answer' => 'Yes. The tour includes round-trip high-quality sleeper bus tickets (VIP Luxury Cabin) between Hanoi and Ha Giang. The bus picks you up from hotels in the Hanoi Old Quarter or Noi Bai Airport at 20:30 the evening before and brings you safely back to Hanoi.',
                 ],
             ],
 
             'ha-giang-loop-3-days-2-nights' => [
                 [
-                    'question' => 'Lịch trình 3N2Đ khác gì so với 4N3Đ?',
-                    'answer' => 'Lịch trình 3N2Đ tập trung vào các điểm tinh hoa nhất của Cao nguyên đá: Cổng trời Quản Bạ, Dốc Thẩm Mã, Nhà của Pao, Cột cờ Lũng Cú và Đèo Mã Pí Lèng - Chèo thuyền Sông Nho Quế. Bạn sẽ không ghé sâu vào làng thác Du Già như tour 4 ngày, rất phù hợp cho người có quỹ thời gian hạn chế cuối tuần.',
+                    'question' => 'How is the 3D2N itinerary different from the 4D3N one?',
+                    'answer' => "The 3D2N itinerary focuses on the very best of the karst plateau: Quan Ba Heaven Gate, Tham Ma Slope, Pao's House, Lung Cu Flag Tower and Ma Pi Leng Pass with a boat trip on the Nho Que River. You won't go as deep as Du Gia waterfall village like the 4-day tour, making it ideal for travelers with limited weekend time.",
                 ],
                 [
-                    'question' => 'Chỗ ở trong suốt chuyến đi 3N2Đ như thế nào?',
-                    'answer' => 'Bạn sẽ nghỉ 1 đêm tại khách sạn tiện nghi ở Phố cổ Đồng Văn (phòng riêng khép kín, nước nóng, điều hòa) và 1 đêm tại homestay bản địa mộc mạc nhìn ra thung lũng tại Làng văn hóa du lịch Pả Vi (Mèo Vạc) để trải nghiệm ẩm thực và âm nhạc người Mông.',
+                    'question' => 'What is the accommodation like on the 3D2N trip?',
+                    'answer' => "You will spend 1 night in a comfortable hotel in Dong Van Old Quarter (private en-suite room, hot water, air conditioning) and 1 night in a rustic local homestay overlooking the valley in Pa Vi cultural village (Meo Vac) to experience H'Mong food and music.",
                 ],
                 [
-                    'question' => 'Tôi có thể ăn chay hoặc kiêng khem món ăn theo yêu cầu không?',
-                    'answer' => 'Có, các bữa ăn trên tour đều được nấu nóng hổi với nguyên liệu tươi sạch của vùng cao. Bạn chỉ cần thông báo trước cho chúng tôi về chế độ ăn chay, kiêng thịt heo, thịt bò hoặc dị ứng hải sản để nhà bếp phục vụ thực đơn riêng biệt.',
+                    'question' => 'Can I have vegetarian meals or special dietary requirements?',
+                    'answer' => 'Yes, all meals on the tour are freshly cooked with clean highland ingredients. Just let us know in advance if you are vegetarian, avoid pork or beef, or have seafood allergies, and the kitchen will prepare a separate menu for you.',
                 ],
                 [
-                    'question' => 'Tôi có được đổi xe máy hoặc tài xế nếu cảm thấy chưa thoải mái không?',
-                    'answer' => 'Chắc chắn được. Toàn bộ xe máy của Chestnut Travel đều được bảo dưỡng mỗi ngày sau mỗi chuyến đi. Nếu bạn cảm thấy tài xế lái quá nhanh hoặc không hợp, vui lòng báo ngay cho tour leader để chúng tôi điều chỉnh hoặc đổi tài xế ngay lập tức.',
+                    'question' => "Can I change my motorbike or driver if I don't feel comfortable?",
+                    'answer' => 'Of course. All Chestnut Travel motorbikes are serviced daily after every trip. If you feel your driver is going too fast or is not a good fit, tell your tour leader right away and we will adjust or change the driver immediately.',
                 ],
             ],
 
             'sapa-trekking-muong-hoa-valley-3d2n' => [
                 [
-                    'question' => 'Trekking thung lũng Mường Hoa có khó không, cần chuẩn bị thể lực như thế nào?',
-                    'answer' => 'Cung đường trekking ở mức độ Vừa phải (Medium), mỗi ngày đi bộ từ 9 - 14km qua các thửa ruộng bậc thang, lối mòn đất và các bản làng mộc mạc. Bạn chỉ cần có sức khỏe bình thường, yêu thích vận động ngoài trời và chuẩn bị một đôi giày leo núi/thể thao có độ bám gai tốt.',
+                    'question' => 'How hard is trekking in the Muong Hoa Valley, and how fit do I need to be?',
+                    'answer' => 'The trek is of Medium difficulty, with 9 - 14km of walking per day through rice terraces, dirt trails and rustic villages. You only need average health, a love of the outdoors and a pair of hiking/sports shoes with good grip.',
                 ],
                 [
-                    'question' => 'Nghỉ đêm tại Homestay người bản địa có những tiện ích gì?',
-                    'answer' => 'Homestay tại Tả Van và Bản Hồ là nhà sàn gỗ truyền thống của người Giáy và người Tày nhưng đã được trang bị tiện nghi sạch sẽ: đệm êm ấm áp, màn chống muỗi, phòng tắm nóng lạnh, wifi và nhà vệ sinh riêng biệt hiện đại.',
+                    'question' => 'What facilities do the local homestays have?',
+                    'answer' => 'The homestays in Ta Van and Ban Ho are traditional wooden stilt houses of the Giay and Tay people, but they are clean and well equipped: warm comfortable mattresses, mosquito nets, hot showers, wifi and modern private toilets.',
                 ],
                 [
-                    'question' => 'Thời điểm nào trong năm trekking Sapa đẹp nhất?',
-                    'answer' => 'Mùa thu (tháng 8 - tháng 10) là mùa lúa chín vàng rực rỡ nhất trên các thửa ruộng bậc thang. Mùa xuân (tháng 2 - tháng 4) là mùa hoa đào, hoa mận nở rộ và khí hậu khô ráo, trong lành rất thích hợp cho trekking săn mây.',
+                    'question' => 'What is the best time of year for trekking in Sapa?',
+                    'answer' => 'Autumn (August - October) is when the rice terraces are at their most brilliant golden color. Spring (February - April) brings peach and plum blossoms and dry, fresh weather that is perfect for trekking and cloud hunting.',
                 ],
                 [
-                    'question' => 'Hành lý nặng có phải tự mang theo khi trekking không?',
-                    'answer' => 'Không cần. Bạn chỉ cần mang balo nhỏ đựng nước uống, điện thoại, máy ảnh và đồ dùng cần thiết trong ngày. Vali lớn và hành lý cồng kềnh sẽ được xe trung chuyển chở thẳng đến điểm nghỉ homestay đón sẵn bạn.',
+                    'question' => 'Do I have to carry my heavy luggage while trekking?',
+                    'answer' => 'No. You only need a small backpack with water, your phone, camera and essentials for the day. Large suitcases and bulky luggage are taken by our transfer vehicle straight to the homestay, ready for your arrival.',
                 ],
             ],
 
             'ninh-binh-trang-an-mua-cave-1-day' => [
                 [
-                    'question' => 'Leo Đỉnh Rồng Hang Múa có dốc và nguy hiểm không?',
-                    'answer' => 'Đỉnh Ngọa Long - Hang Múa có gần 500 bậc thang đá uốn lượn được xây dựng kiên cố. Đoạn đỉnh mỏm đá tự nhiên cần bước cẩn thận và mang giày thể thao chống trơn. Tầm nhìn toàn cảnh 360 độ ngắm trọn thung lũng Tam Cốc và sông Ngô Đồng từ trên đỉnh rất ngoạn mục, hoàn toàn xứng đáng với công sức chinh phục!',
+                    'question' => 'Is the climb to the Dragon Peak at Mua Cave steep or dangerous?',
+                    'answer' => 'The Ngoa Long Peak at Mua Cave has nearly 500 sturdy, winding stone steps. The natural rocky summit requires careful footing and non-slip sports shoes. The 360-degree panorama over the Tam Coc valley and the Ngo Dong River from the top is spectacular and well worth the effort!',
                 ],
                 [
-                    'question' => 'Đi thuyền Tràng An ngồi trong bao lâu và có phải tự chèo không?',
-                    'answer' => 'Chuyến thuyền nan Tràng An kéo dài khoảng 2.5 - 3 tiếng len lỏi qua 4 hang động kỳ ảo và 3 ngôi đền cổ linh thiêng giữa làn nước trong vắt. Người chèo đò bản địa dày dặn kinh nghiệm sẽ chèo suốt hành trình, bạn có thể xin chèo phụ trải nghiệm nếu thích.',
+                    'question' => 'How long is the Trang An boat ride, and do I have to row myself?',
+                    'answer' => 'The Trang An sampan ride lasts about 2.5 - 3 hours, winding through 4 magical caves and 3 sacred ancient temples on crystal-clear water. An experienced local rower paddles the whole way, though you are welcome to try rowing if you like.',
                 ],
                 [
-                    'question' => 'Tour có đón và trả khách tại khách sạn ở Hà Nội không?',
-                    'answer' => 'Có, xe limousine Dcar cao cấp đưa đón tận nơi tại sảnh các khách sạn trong khu vực Phố Cổ Hà Nội từ 7:30 - 8:00 sáng và đưa bạn về lại khách sạn an toàn vào khoảng 18:30 cùng ngày.',
+                    'question' => 'Does the tour include hotel pickup and drop-off in Hanoi?',
+                    'answer' => 'Yes, a premium Dcar limousine picks you up from hotel lobbies in the Hanoi Old Quarter between 7:30 - 8:00 am and brings you safely back to your hotel at around 18:30 the same day.',
                 ],
                 [
-                    'question' => 'Bữa trưa trong tour gồm những món gì?',
-                    'answer' => 'Bữa trưa là buffet thịnh soạn hoặc set menu đặc sản Ninh Bình tại nhà hàng sinh thái, với các món nổi tiếng như dê núi nướng tảng, cơm cháy sốt dê, gà đồi và các món chay thanh đạm.',
+                    'question' => 'What is included in the lunch on this tour?',
+                    'answer' => 'Lunch is a generous buffet or a set menu of Ninh Binh specialties at an eco restaurant, with famous dishes such as grilled mountain goat, crispy rice with goat sauce, free-range chicken and light vegetarian options.',
                 ],
             ],
 
             'ta-xua-cloud-hunting-dinosaur-spine-2d1n' => [
                 [
-                    'question' => 'Tỉ lệ săn được biển mây tại Tà Xùa có cao không và mùa nào đẹp nhất?',
-                    'answer' => 'Mùa săn mây đẹp nhất kéo dài từ tháng 10 đến tháng 4 năm sau, với tỉ lệ mây đạt trên 75-85% khi trời se lạnh, độ ẩm cao và có nắng ấm vào ban ngày. Đội ngũ dẫn tour luôn theo dõi dự báo khí tượng và thức dậy sớm để đưa bạn đến điểm đón bình minh ngắm mây trọn vẹn nhất.',
+                    'question' => 'How likely am I to see the sea of clouds in Ta Xua, and when is the best season?',
+                    'answer' => 'The best cloud-hunting season runs from October to April, with over a 75-85% chance of clouds when the weather is cool, humid and sunny during the day. Our guides monitor the weather forecast and get up early to take you to the best sunrise spots for the clouds.',
                 ],
                 [
-                    'question' => 'Đi bộ trên Sống lưng Khủng Long Háng Đồng có an toàn không?',
-                    'answer' => 'Đoạn đường mòn sống lưng khủng long có dốc thoai thoải và gió khá mạnh. Bạn nên mang giày có gai bám, đi chậm và tuân thủ chỉ dẫn của hướng dẫn viên. Với những ai ngại đi bộ, tại đầu dốc có dịch vụ xe ôm bản địa chở xuống tận chòi vọng cảnh.',
+                    'question' => 'Is it safe to walk on the Hang Dong Dinosaur Spine?',
+                    'answer' => "The Dinosaur Spine trail has gentle slopes and can be quite windy. Wear shoes with good grip, walk slowly and follow your guide's instructions. If you prefer not to walk, local motorbike taxis at the top of the slope can take you down to the viewpoint hut.",
                 ],
                 [
-                    'question' => 'Homestay tại Tà Xùa view có đẹp không?',
-                    'answer' => 'Rất đẹp! Chúng tôi chọn các homestay gỗ view panorama hướng thẳng thung lũng mây (như May Home, Tà Xùa Lu Tre hoặc Pơ Mu). Bạn có thể săn mây và thưởng thức cà phê nóng ngay từ ban công phòng ngủ.',
+                    'question' => 'Do the homestays in Ta Xua have good views?',
+                    'answer' => 'Absolutely! We choose wooden homestays with panoramic views straight over the valley of clouds (such as May Home, Ta Xua Lu Tre or Po Mu). You can watch the clouds and enjoy a hot coffee right from your bedroom balcony.',
                 ],
             ],
 
             'northern-vietnam-package-combo-6-days' => [
                 [
-                    'question' => 'Tour combo 6 ngày có bị quá gấp hoặc mệt không?',
-                    'answer' => 'Lịch trình combo 6 ngày được thiết kế tối ưu với sự kết hợp thông minh giữa các chuyến xe đêm giường nằm VIP riêng tư và các chặng nghỉ ngơi hợp lý. Bạn sẽ khám phá trọn vẹn 3 điểm đến hàng đầu miền Bắc (Sapa, Hà Giang, Ninh Bình) mà không tốn thời gian quay lại Hà Nội trung gian nhiều lần.',
+                    'question' => 'Is the 6-day combo tour too rushed or tiring?',
+                    'answer' => "The 6-day combo itinerary is carefully designed, cleverly combining private VIP overnight sleeper buses with well-placed rest stops. You will fully explore Northern Vietnam's top 3 destinations (Sapa, Ha Giang, Ninh Binh) without wasting time going back and forth to Hanoi.",
                 ],
                 [
-                    'question' => 'Nếu tôi muốn nâng cấp lên phòng khách sạn 4 sao hoặc 5 sao được không?',
-                    'answer' => 'Có, bạn hoàn toàn có thể yêu cầu nâng cấp hạng phòng (tại Sapa và Ninh Bình). Hãy liên hệ với tư vấn viên trước khi thanh toán để nhận báo giá chênh lệch ưu đãi nhất theo yêu cầu gia đình hoặc cặp đôi.',
+                    'question' => 'Can I upgrade to a 4-star or 5-star hotel?',
+                    'answer' => 'Yes, you can request a room upgrade (in Sapa and Ninh Binh). Contact our consultants before paying to receive the best quote for the price difference, tailored to your family or couple.',
                 ],
                 [
-                    'question' => 'Chính sách hoàn hủy và dời ngày của gói combo này như thế nào?',
-                    'answer' => 'Bạn có thể đổi ngày khởi hành miễn phí trước 7 ngày. Hủy tour trước 10 ngày được hoàn 100% tiền cọc, từ 5-9 ngày hoàn 50%, và dưới 5 ngày sẽ áp dụng mức phí giữ phòng của hệ thống khách sạn đối tác.',
+                    'question' => 'What is the cancellation and rescheduling policy for this combo?',
+                    'answer' => 'You can change your departure date free of charge up to 7 days before departure. Cancellations more than 10 days before receive a 100% deposit refund, 5-9 days before receive 50%, and within 5 days the partner hotels\' booking fees apply.',
                 ],
             ],
 
             'ha-giang-loop-5-days-deep-frontier' => [
                 [
-                    'question' => 'Tour 5 ngày có đi sâu vào những bản làng ít người biết không?',
-                    'answer' => 'Có, cung đường 5 ngày mở rộng tới Thượng Phùng, Xín Mần, Làng dệt lanh Lùng Tám và đi sâu vào hẻm Tu Sản thượng nguồn sông Nho Quế – nơi các tour ngắn ngày không thể tiếp cận được, mang lại trải nghiệm phiêu lưu hoang sơ tuyệt đối.',
+                    'question' => 'Does the 5-day tour go deep into little-known villages?',
+                    'answer' => 'Yes, the 5-day route extends to Thuong Phung, Xin Man, the Lung Tam linen weaving village and deep into Tu San Canyon at the upper Nho Que River – places shorter tours cannot reach – for a truly wild adventure.',
                 ],
                 [
-                    'question' => 'Tour này phù hợp với đối tượng khách nào?',
-                    'answer' => 'Rất phù hợp với những ai yêu thích nhiếp ảnh, thích văn hóa các dân tộc Lô Lô, H\'Mông, Tày, Dao đỏ và muốn sống chậm giữa thiên nhiên kỳ vĩ nguyên sơ không xô bồ.',
+                    'question' => 'Who is this tour best suited for?',
+                    'answer' => "It is perfect for travelers who love photography and the cultures of the Lo Lo, H'Mong, Tay and Red Dao peoples, and who want to slow down amid pristine, majestic nature away from the crowds.",
                 ],
                 [
-                    'question' => 'Tôi có được trải nghiệm chợ phiên vùng cao không?',
-                    'answer' => 'Có! Nếu ngày tour rơi vào cuối tuần, hướng dẫn viên sẽ đưa bạn ghé Chợ phiên Đồng Văn hoặc Chợ phiên Mèo Vạc vào sáng Chủ Nhật để chứng kiến cảnh tượng đồng bào các dân tộc xúng xính váy hoa xuống chợ buôn bán gia súc, thổ cẩm và thưởng thức thắng cố.',
+                    'question' => 'Will I get to experience a highland market?',
+                    'answer' => 'Yes! If your tour falls on a weekend, your guide will take you to the Dong Van or Meo Vac Sunday market, where you can watch ethnic minority people in colorful dresses trading livestock and brocade, and taste thang co.',
                 ],
             ],
 
             'sapa-fansipan-peak-trekking-2d1n' => [
                 [
-                    'question' => 'Tour này lên đỉnh Fansipan bằng cáp treo hay leo bộ?',
-                    'answer' => 'Tour đã bao gồm trọn gói vé cáp treo Sun World Fansipan Legend 3 dây hiện đại và vé tàu hỏa leo núi ngắm thung lũng Mường Hoa. Chỉ mất khoảng 20 phút là bạn đã chạm tay vào cột mốc "Nóc nhà Đông Dương" 3.143m mà không cần tốn nhiều thể lực leo trèo.',
+                    'question' => 'Does this tour reach Fansipan by cable car or on foot?',
+                    'answer' => 'The tour includes tickets for the modern 3-rope Sun World Fansipan Legend cable car and the mountain train overlooking the Muong Hoa Valley. In just about 20 minutes you will touch the 3,143m "Roof of Indochina" marker without a strenuous climb.',
                 ],
                 [
-                    'question' => 'Bản Cát Cát có nhiều điểm check-in không?',
-                    'answer' => 'Rất nhiều! Bản Cát Cát có cụm cối xay nước khổng lồ, cầu treo gỗ si, thác nước Tiên Sa tung bọt trắng xóa, nhà trình tường truyền thống của người H\'Mông và nhiều góc cho thuê trang phục dân tộc lộng lẫy chụp ảnh lưu niệm.',
+                    'question' => 'Are there lots of photo spots in Cat Cat village?',
+                    'answer' => "Plenty! Cat Cat village has giant water wheels, a wooden suspension bridge, the foaming white Tien Sa waterfall, traditional H'Mong rammed-earth houses and many places to rent colorful ethnic costumes for souvenir photos.",
                 ],
                 [
-                    'question' => 'Thời tiết trên đỉnh Fansipan như thế nào, cần mặc đồ gì?',
-                    'answer' => 'Nhiệt độ trên đỉnh Fansipan thường thấp hơn thị xã Sapa từ 8 - 10 độ C và gió khá to. Bạn nên mang áo khoác giữ ấm, khăn choàng, mũ len ấm và găng tay để thoải mái chụp hình check-in.',
+                    'question' => 'What is the weather like on Fansipan, and what should I wear?',
+                    'answer' => 'The temperature at the top of Fansipan is usually 8 - 10°C lower than in Sapa town and it can be very windy. Bring a warm jacket, a scarf, a woolly hat and gloves so you can enjoy taking photos comfortably.',
                 ],
             ],
 
             'ninh-binh-tam-coc-hoa-lu-cycling-2d1n' => [
                 [
-                    'question' => 'Đi xe đạp ở Tam Cốc có an toàn không?',
-                    'answer' => 'Rất an toàn và dễ chịu. Tuyến đạp xe đi qua đường làng bê tông bằng phẳng không có dốc cao, hai bên là đồng lúa và núi đá vôi hùng vĩ, phương tiện xe cơ giới qua lại rất ít.',
+                    'question' => 'Is cycling in Tam Coc safe?',
+                    'answer' => 'Very safe and pleasant. The cycling route follows flat concrete village roads with no steep hills, flanked by rice fields and majestic limestone mountains, with very little motor traffic.',
                 ],
                 [
-                    'question' => 'Thời điểm nào ngắm đàn chim ở Vườn chim Thung Nham đẹp nhất?',
-                    'answer' => 'Khoảng 16:30 - 17:30 chiều là khoảnh khắc hoàng hôn ngoạn mục nhất, khi từng đàn chim hàng vạn con gồm cò trắng, vạc, le le và phượng hoàng đất bay rợp trời trở về tổ sau một ngày kiếm ăn.',
+                    'question' => 'When is the best time to see the birds at Thung Nham Bird Park?',
+                    'answer' => 'Around 16:30 - 17:30 is the most spectacular sunset moment, when tens of thousands of birds - white egrets, herons, whistling ducks and kingfishers - fill the sky as they return to their nests after a day of feeding.',
                 ],
                 [
-                    'question' => 'Tour có ghé thăm Cố đô Hoa Lư không?',
-                    'answer' => 'Có, bạn sẽ được hướng dẫn viên giới thiệu chi tiết về lịch sử triều đại Đinh - Tiền Lê thế kỷ thứ 10 tại Đền Vua Đinh Tiên Hoàng và Đền Vua Lê Đại Hành với các kiến trúc điêu khắc gỗ cổ kính.',
+                    'question' => 'Does the tour visit Hoa Lu Ancient Capital?',
+                    'answer' => 'Yes, your guide will introduce the history of the 10th-century Dinh and Early Le dynasties in detail at the Temples of King Dinh Tien Hoang and King Le Dai Hanh, with their ancient carved wooden architecture.',
                 ],
             ],
 
             'lan-ha-bay-cat-ba-kayaking-3d2n' => [
                 [
-                    'question' => 'Tour này chèo thuyền kayak ở những khu vực nào?',
-                    'answer' => 'Bạn sẽ chèo kayak tại Hang Tối - Hang Sáng, bãi biển Ba Trái Đào và các đầm phá hoang sơ nằm sâu trong vùng lõi Khu dự trữ sinh quyển thế giới Vườn Quốc gia Cát Bà, nơi nước biển trong vắt như ngọc bích.',
+                    'question' => 'Where do we go kayaking on this tour?',
+                    'answer' => 'You will kayak at the Dark & Bright Caves, Ba Trai Dao beach and pristine lagoons deep in the core of the Cat Ba National Park World Biosphere Reserve, where the sea is as clear as jade.',
                 ],
                 [
-                    'question' => 'Có hướng dẫn viên đi cùng khi chèo kayak không?',
-                    'answer' => 'Luôn có hướng dẫn viên kayak chuyên nghiệp kèm áo phao cứu sinh đạt chuẩn quốc tế, túi chống nước và xuồng cao tốc cứu hộ hỗ trợ đi sau để đảm bảo an toàn tuyệt đối.',
+                    'question' => 'Is there a guide with us while kayaking?',
+                    'answer' => 'There is always a professional kayak guide, along with internationally certified life jackets, dry bags and a rescue speedboat following behind to ensure complete safety.',
                 ],
                 [
-                    'question' => 'Hoạt động trekking trong Vườn Quốc gia Cát Bà có vất vả không?',
-                    'answer' => 'Đoạn trekking khoảng 5km đường rừng nhiệt đới nguyên sinh lên Đỉnh Ngự Lâm ngắm toàn cảnh đảo Cát Bà từ trên cao. Cung đường rợp bóng mát cây xanh, phù hợp cho người có thể lực trung bình.',
+                    'question' => 'Is the trekking in Cat Ba National Park strenuous?',
+                    'answer' => 'The trek is about 5km through primeval tropical forest up to Ngu Lam Peak, with panoramic views of Cat Ba Island from above. The trail is well shaded by trees and suits travelers of average fitness.',
                 ],
             ],
 
             'ha-long-bay-luxury-day-escape' => [
                 [
-                    'question' => 'Tour trong ngày có đủ thời gian thăm quan trọn vẹn Vịnh Hạ Long không?',
-                    'answer' => 'Tàu cao tốc siêu du thuyền hạng sang chạy theo hải trình dài 6 tiếng (tương đương hải trình tour ngủ đêm), đưa bạn đi đủ Hang Sửng Sốt (hang động thạch nhũ lớn nhất vịnh), Đảo Ti Tốp tắm biển ngắm toàn cảnh vịnh và chèo kayak tự do tại Hang Luồn.',
+                    'question' => 'Is a day tour enough time to fully explore Ha Long Bay?',
+                    'answer' => 'The luxury super cruise follows a 6-hour route (equivalent to an overnight cruise itinerary), taking you to Sung Sot Cave (the largest stalactite cave in the bay), Ti Top Island for swimming and panoramic views, and free kayaking at Luon Cave.',
                 ],
                 [
-                    'question' => 'Bữa trưa trên tàu phục vụ buffet hay set menu?',
-                    'answer' => 'Tour phục vụ tiệc buffet hải sản cao cấp với hơn 50 món ăn Á - Âu tươi sống, có tôm hấp sả, hàu nướng phô mai, mực xào cay, bò lúc lắc và quầy sushi - sashimi tươi ngon cùng hoa quả tráng miệng.',
+                    'question' => 'Is lunch on board a buffet or a set menu?',
+                    'answer' => 'The tour serves a premium seafood buffet with more than 50 fresh Asian - European dishes, including lemongrass steamed prawns, cheese-grilled oysters, spicy stir-fried squid, shaking beef and a fresh sushi - sashimi counter, plus fruit for dessert.',
                 ],
                 [
-                    'question' => 'Tàu có bể sục Jacuzzi hoặc sundeck tắm nắng không?',
-                    'answer' => 'Có, siêu du thuyền trang bị bể sục Jacuzzi bốn mùa lộ thiên trên tầng thượng (Sundeck) cùng ghế nằm tắm nắng hiện đại để bạn vừa ngâm mình thư giãn vừa ngắm nhìn kỳ quan thiên nhiên thế giới.',
+                    'question' => 'Does the boat have a Jacuzzi or a sundeck?',
+                    'answer' => 'Yes, the super cruise has an all-season open-air Jacuzzi on the top deck (Sundeck) with modern sun loungers, so you can relax in the water while admiring this natural wonder of the world.',
                 ],
             ],
         ];

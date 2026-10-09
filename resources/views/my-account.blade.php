@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Tài Khoản Của Tôi | Chestnut Travel')
+@section('title', 'My Account | Chestnut Travel')
 
 @section('content')
 <div class="py-12 bg-gray-50 min-h-[75vh]">
@@ -27,7 +27,7 @@
                 @csrf
                 <button type="submit" class="border border-gray-200 hover:border-red-200 hover:bg-red-50 text-red-600 font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-1.5">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    <span>Đăng xuất</span>
+                    <span>Sign out</span>
                 </button>
             </form>
         </div>
@@ -39,10 +39,10 @@
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
                         <h3 class="font-extrabold text-base text-gray-900 flex items-center gap-2">
                             <i class="fa-solid fa-ticket text-chestnut"></i>
-                            <span>Lịch Sử Đơn Đặt Tour ({{ $bookings->count() }})</span>
+                            <span>Booking History ({{ $bookings->count() }})</span>
                         </h3>
                         <a href="{{ route('home') }}#tours-section" class="text-xs font-bold text-chestnut hover:underline">
-                            + Đặt thêm tour
+                            + Book another tour
                         </a>
                     </div>
 
@@ -53,52 +53,52 @@
                                     <span class="font-mono font-bold text-xs bg-white text-gray-800 border border-gray-200 px-2.5 py-0.5 rounded">
                                         {{ $b->booking_code }}
                                     </span>
-                                    <h4 class="font-bold text-sm text-gray-900 mt-1.5">{{ $b->tour->title ?? 'Tour du lịch' }}</h4>
+                                    <h4 class="font-bold text-sm text-gray-900 mt-1.5">{{ $b->tour->title ?? 'Customized tour' }}</h4>
                                 </div>
                                 <div>
                                     @if($b->booking_status === 'confirmed')
-                                        <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Đã xác nhận</span>
+                                        <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Confirmed</span>
                                     @elseif($b->booking_status === 'cancelled')
-                                        <span class="bg-red-100 text-red-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Đã hủy</span>
+                                        <span class="bg-red-100 text-red-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Cancelled</span>
                                     @elseif($b->booking_status === 'completed')
-                                        <span class="bg-blue-100 text-blue-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Đã hoàn thành</span>
+                                        <span class="bg-blue-100 text-blue-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Completed</span>
                                     @else
-                                        <span class="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Chờ duyệt</span>
+                                        <span class="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">Pending</span>
                                     @endif
                                 </div>
                             </div>
 
                             <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs text-gray-600 bg-white p-3 rounded-xl border border-gray-100">
                                 <div>
-                                    <span class="text-[10px] text-gray-400 block font-semibold uppercase">Ngày đi</span>
+                                    <span class="text-[10px] text-gray-400 block font-semibold uppercase">Departure</span>
                                     <span class="font-bold text-gray-900">{{ $b->departure_date->format('d/m/Y') }}</span>
                                 </div>
                                 <div>
-                                    <span class="text-[10px] text-gray-400 block font-semibold uppercase">Số khách</span>
-                                    <span class="font-bold text-gray-900">{{ $b->adults }} Lớn {{ $b->children ? '+ ' . $b->children . ' Trẻ' : '' }}</span>
+                                    <span class="text-[10px] text-gray-400 block font-semibold uppercase">Travelers</span>
+                                    <span class="font-bold text-gray-900">{{ $b->adults }} {{ Str::plural('Adult', $b->adults) }} {{ $b->children ? '+ ' . $b->children . ' ' . Str::plural('Child', $b->children) : '' }}</span>
                                 </div>
                                 <div>
-                                    <span class="text-[10px] text-gray-400 block font-semibold uppercase">Tổng tiền</span>
+                                    <span class="text-[10px] text-gray-400 block font-semibold uppercase">Total</span>
                                     <span class="font-extrabold text-chestnut">${{ number_format($b->total_price, 2) }}</span>
                                 </div>
                                 <div>
-                                    <span class="text-[10px] text-gray-400 block font-semibold uppercase">Thanh toán</span>
-                                    <span class="font-semibold text-gray-700 capitalize">{{ $b->payment_status === 'paid' ? 'Đã thanh toán' : 'Chưa thu' }}</span>
+                                    <span class="text-[10px] text-gray-400 block font-semibold uppercase">Payment</span>
+                                    <span class="font-semibold text-gray-700 capitalize">{{ $b->payment_status === 'paid' ? 'Paid' : 'Unpaid' }}</span>
                                 </div>
                             </div>
 
                             <div class="mt-3 flex justify-end gap-2">
-                                <a href="{{ option('site_whatsapp_link', 'https://wa.me/' . preg_replace('/[^0-9]/', '', option('site_whatsapp', '84867216850'))) }}?text={{ urlencode('Tôi cần hỗ trợ đơn tour mã: ' . $b->booking_code) }}" target="_blank" rel="noopener" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+                                <a href="{{ option('site_whatsapp_link', 'https://wa.me/' . preg_replace('/[^0-9]/', '', option('site_whatsapp', '84867216850'))) }}?text={{ urlencode('I need help with my booking: ' . $b->booking_code) }}" target="_blank" rel="noopener" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold px-3 py-1.5 rounded-lg transition flex items-center gap-1">
                                     <i class="fa-brands fa-whatsapp text-sm"></i>
-                                    <span>Hỗ trợ WhatsApp</span>
+                                    <span>WhatsApp support</span>
                                 </a>
                             </div>
                         </div>
                     @empty
                         <div class="text-center py-12 text-gray-400 text-xs">
                             <i class="fa-solid fa-ticket text-3xl mb-2 text-gray-300"></i>
-                            <p>Bạn chưa đặt tour nào tại Chestnut Travel.</p>
-                            <a href="{{ route('home') }}#tours-section" class="inline-block mt-3 bg-chestnut text-white font-bold px-4 py-2 rounded-xl text-xs">Khám phá các tour ngay</a>
+                            <p>You haven't booked any tours with Chestnut Travel yet.</p>
+                            <a href="{{ route('home') }}#tours-section" class="inline-block mt-3 bg-chestnut text-white font-bold px-4 py-2 rounded-xl text-xs">Explore tours now</a>
                         </div>
                     @endforelse
                 </div>
@@ -108,15 +108,15 @@
                     <div class="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
                         <h3 class="font-extrabold text-base text-gray-900 flex items-center gap-2">
                             <i class="fa-regular fa-heart text-gray-700 text-base"></i>
-                            <span>Danh Sách Tour Yêu Thích</span>
+                            <span>My Wishlist</span>
                             <span id="wishlist-page-count" class="bg-gray-100 text-gray-800 text-xs font-bold px-2.5 py-0.5 rounded-full ml-1">0 tour</span>
                         </h3>
                         <div class="flex items-center gap-3">
                             <a href="{{ route('home') }}#tours-section" class="text-xs font-bold text-chestnut hover:underline">
-                                + Thêm tour
+                                + Add tours
                             </a>
                             <button onclick="clearAllWishlist()" class="text-xs text-gray-400 hover:text-gray-700 transition font-medium cursor-pointer">
-                                Xóa tất cả
+                                Clear all
                             </button>
                         </div>
                     </div>
@@ -127,9 +127,9 @@
 
                     <div id="wishlist-empty-state" class="text-center py-10 text-gray-400 text-xs">
                         <i class="fa-regular fa-heart text-3xl mb-2 text-gray-300"></i>
-                        <p>Bạn chưa lưu tour nào vào danh sách yêu thích.</p>
+                        <p>You haven't saved any tours to your wishlist yet.</p>
                         <a href="{{ route('home') }}#tours-section" class="inline-block mt-3 bg-chestnut hover:bg-orange-600 text-white font-bold px-4 py-2 rounded-xl text-xs transition">
-                            Khám phá và lưu tour yêu thích ngay
+                            Explore and save your favorite tours
                         </a>
                     </div>
                 </div>
@@ -140,14 +140,14 @@
                 <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-200">
                     <h3 class="font-extrabold text-base text-gray-900 flex items-center gap-2 mb-4 pb-3 border-b border-gray-100">
                         <i class="fa-solid fa-user-pen text-chestnut"></i>
-                        <span>Cập Nhật Thông Tin</span>
+                        <span>Update Your Details</span>
                     </h3>
 
-                    <form action="{{ route('my-account.profile') }}" method="POST" class="space-y-4">
+                    <form action="{{ route('my-account.profile') }}" method="POST" id="profile-form" novalidate class="space-y-4">
                         @csrf
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Họ và tên</label>
-                            <input type="text" name="name" value="{{ old('name', $user->name) }}" required class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Full name</label>
+                            <input type="text" name="name" value="{{ old('name', $user->name) }}" required data-required-message="Please enter your full name." class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
                         </div>
 
                         <div>
@@ -156,27 +156,27 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Số điện thoại</label>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Phone number</label>
                             <input type="tel" name="phone" value="{{ old('phone', $user->phone) }}" placeholder="0987654321" class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
                         </div>
 
                         <div class="pt-2 border-t border-gray-100">
-                            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider block mb-2">Đổi mật khẩu (bỏ trống nếu không đổi)</span>
+                            <span class="text-[11px] font-bold text-gray-400 uppercase tracking-wider block mb-2">Change password (leave blank to keep current)</span>
                             <div class="space-y-3">
                                 <div>
-                                    <input type="password" name="current_password" placeholder="Mật khẩu hiện tại..." class="w-full px-3 py-2 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
+                                    <input type="password" name="current_password" placeholder="Current password..." autocomplete="current-password" class="w-full px-3 py-2 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
                                 </div>
                                 <div>
-                                    <input type="password" name="new_password" placeholder="Mật khẩu mới (tối thiểu 6 ký tự)..." class="w-full px-3 py-2 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
+                                    <input type="password" name="new_password" minlength="6" placeholder="New password (min. 6 characters)..." autocomplete="new-password" class="w-full px-3 py-2 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
                                 </div>
                                 <div>
-                                    <input type="password" name="new_password_confirmation" placeholder="Xác nhận mật khẩu mới..." class="w-full px-3 py-2 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
+                                    <input type="password" name="new_password_confirmation" data-match="new_password" placeholder="Confirm new password..." autocomplete="new-password" class="w-full px-3 py-2 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
                                 </div>
                             </div>
                         </div>
 
                         <button type="submit" class="w-full bg-gray-900 hover:bg-black text-white font-bold py-2.5 rounded-xl text-xs transition">
-                            Lưu thay đổi
+                            Save changes
                         </button>
                     </form>
                 </div>
@@ -184,4 +184,31 @@
         </div>
     </div>
 </div>
+<script>
+    (function () {
+        const form = document.getElementById('profile-form');
+        if (!form) return;
+
+        // Show server-side validation errors next to their fields
+        const serverErrors = @json($errors->getMessages());
+        if (Object.keys(serverErrors).length) {
+            focusField(applyServerErrors(form, serverErrors));
+        }
+
+        form.addEventListener('submit', function (e) {
+            let firstInvalid = validateFields(form);
+            const current = form.querySelector('[name="current_password"]');
+            const next = form.querySelector('[name="new_password"]');
+            if (!firstInvalid && next.value && !current.value) {
+                setFieldError(current, 'Please enter your current password to set a new one.');
+                firstInvalid = current;
+            }
+            if (firstInvalid) {
+                e.preventDefault();
+                showToast('Please fix the highlighted fields.', 'error');
+                focusField(firstInvalid);
+            }
+        });
+    })();
+</script>
 @endsection

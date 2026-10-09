@@ -21,15 +21,15 @@ class LoginNotificationMail extends Mailable
     public function __construct(User $user, string $ip = '', string $userAgent = '')
     {
         $this->user = $user;
-        $this->ip = $ip ?: 'Không xác định';
-        $this->userAgent = $userAgent ?: 'Trình duyệt web';
+        $this->ip = $ip ?: 'Unknown';
+        $this->userAgent = $userAgent ?: 'Web browser';
         $this->loginTime = now()->format('H:i:s d/m/Y');
     }
 
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '[Chestnut Travel] Thông báo đăng nhập tài khoản thành công',
+            subject: '[Chestnut Travel] New sign-in to your account',
         );
     }
 

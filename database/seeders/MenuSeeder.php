@@ -14,7 +14,7 @@ class MenuSeeder extends Seeder
     {
         $headerItems = [
             [
-                'title' => 'Trang chủ',
+                'title' => 'Home',
                 'url' => '/',
                 'type' => 'link',
                 'badge' => '',
@@ -22,7 +22,7 @@ class MenuSeeder extends Seeder
                 'is_active' => true,
             ],
             [
-                'title' => 'Điểm đến',
+                'title' => 'Destinations',
                 'url' => '#',
                 'type' => 'destinations_dropdown', // Tự động load danh sách Điểm đến trong hệ thống
                 'badge' => '',
@@ -30,7 +30,7 @@ class MenuSeeder extends Seeder
                 'is_active' => true,
             ],
             [
-                'title' => 'Hoạt động',
+                'title' => 'Activities',
                 'url' => '#',
                 'type' => 'activities_dropdown', // Tự động load danh sách Hoạt động trong hệ thống
                 'badge' => '',
@@ -38,7 +38,7 @@ class MenuSeeder extends Seeder
                 'is_active' => true,
             ],
             [
-                'title' => 'Combo Trọn gói',
+                'title' => 'Package Combos',
                 'url' => '/package',
                 'type' => 'custom_dropdown',
                 'badge' => 'Hot',
@@ -46,27 +46,27 @@ class MenuSeeder extends Seeder
                 'is_active' => true,
                 'children' => [
                     [
-                        'title' => 'Tất cả Gói Combo',
-                        'subtitle' => 'Trọn gói tiết kiệm & trung chuyển liền mạch',
+                        'title' => 'All Package Combos',
+                        'subtitle' => 'All-inclusive savings & seamless transfers',
                         'url' => '/package',
                         'target' => '_self',
                     ],
                     [
-                        'title' => 'Northern Vietnam Combo (6 Ngày)',
-                        'subtitle' => 'Sa Pa, Hà Giang Loop & Ninh Bình',
+                        'title' => 'Northern Vietnam Combo (6 Days)',
+                        'subtitle' => 'Sa Pa, Ha Giang Loop & Ninh Binh',
                         'url' => '/package?region=north',
                         'target' => '_self',
                     ],
                     [
-                        'title' => 'Middle Vietnam Combo (5 Ngày)',
-                        'subtitle' => 'Huế, Hội An, Phong Nha & Đà Nẵng',
+                        'title' => 'Middle Vietnam Combo (5 Days)',
+                        'subtitle' => 'Hue, Hoi An, Phong Nha & Da Nang',
                         'url' => '/package?region=central',
                         'target' => '_self',
                     ],
                 ],
             ],
             [
-                'title' => 'Tùy chỉnh Tour',
+                'title' => 'Customize Tour',
                 'url' => '/customized-tour',
                 'type' => 'link',
                 'badge' => 'Hot',
@@ -82,7 +82,7 @@ class MenuSeeder extends Seeder
                 'is_active' => true,
             ],
             [
-                'title' => 'Đánh giá',
+                'title' => 'Reviews',
                 'url' => '/#reviews-section',
                 'type' => 'link',
                 'badge' => '',
@@ -90,7 +90,7 @@ class MenuSeeder extends Seeder
                 'is_active' => true,
             ],
             [
-                'title' => 'Liên hệ',
+                'title' => 'Contact',
                 'url' => '#contact-footer',
                 'type' => 'link',
                 'badge' => '',
@@ -102,7 +102,7 @@ class MenuSeeder extends Seeder
         Menu::updateOrCreate(
             ['code' => 'header'],
             [
-                'name' => 'Menu Chính (Header Navigation)',
+                'name' => 'Main Menu (Header Navigation)',
                 'items' => $headerItems,
                 'is_active' => true,
             ]

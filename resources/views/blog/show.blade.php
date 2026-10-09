@@ -79,7 +79,7 @@
                             <span>•</span>
                             <span class="text-gray-400 flex items-center gap-1">
                                 <i class="fa-regular fa-eye text-xs"></i>
-                                {{ number_format($post->views_count) }} lượt xem
+                                {{ number_format($post->views_count) }} views
                             </span>
                         @endif
                     </div>
@@ -212,7 +212,7 @@
                                 Your email address will not be published. Required fields are marked <span class="text-red-500">*</span>
                             </p>
 
-                            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã gửi bình luận! Bình luận của bạn đang được kiểm duyệt.'); this.reset();" class="space-y-4">
+                            <form action="#" method="POST" onsubmit="event.preventDefault(); if (!validateFields(this)) { showToast('Thank you for your comment! It is awaiting moderation.', 'success'); this.reset(); } else { showToast('Please complete the required fields.', 'error'); }" novalidate class="space-y-4">
                                 @csrf
                                 <div>
                                     <label for="comment-text" class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">

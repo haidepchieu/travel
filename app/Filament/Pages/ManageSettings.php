@@ -189,7 +189,149 @@ class ManageSettings extends Page implements HasForms
                                                 ->label('Đoạn mô tả ngắn')
                                                 ->rows(2)
                                                 ->columnSpanFull()
-                                                ->default('Các chuyến đi được yêu thích nhất với lịch trình được tối ưu kỹ lưỡng và dịch vụ trọn gói chất lượng cao.'),
+                                                ->default('Our most popular trips with carefully optimized itineraries and high-quality all-inclusive service.'),
+                                        ]),
+                                    ]),
+                            ]),
+                        Tabs\Tab::make('Tiêu đề Sections & Thống kê')
+                            ->icon('heroicon-o-squares-2x2')
+                            ->schema([
+                                Section::make('Khung "Popular Destinations"')
+                                    ->description('Tiêu đề phần điểm đến nổi bật trên trang chủ')
+                                    ->schema([
+                                        Grid::make(2)->schema([
+                                            TextInput::make('destinations_badge')
+                                                ->label('Nhãn phụ (Badge)')
+                                                ->default('Popular Destination'),
+                                            TextInput::make('destinations_title')
+                                                ->label('Tiêu đề chính')
+                                                ->default('Explore popular destination.'),
+                                            Textarea::make('destinations_subtitle')
+                                                ->label('Đoạn mô tả ngắn')
+                                                ->rows(2)
+                                                ->columnSpanFull()
+                                                ->default('From the legendary bends of Ma Pi Leng to the emerald islands of Lan Ha Bay — discover the most beautiful places in Vietnam.'),
+                                        ]),
+                                    ]),
+                                Section::make('Khung "Popular Activities"')
+                                    ->description('Tiêu đề phần hoạt động nổi bật trên trang chủ')
+                                    ->schema([
+                                        Grid::make(2)->schema([
+                                            TextInput::make('activities_badge')
+                                                ->label('Nhãn phụ (Badge)')
+                                                ->default('Popular Activities'),
+                                            TextInput::make('activities_title')
+                                                ->label('Tiêu đề chính')
+                                                ->default('Explore by activities.'),
+                                            Textarea::make('activities_subtitle')
+                                                ->label('Đoạn mô tả ngắn')
+                                                ->rows(2)
+                                                ->columnSpanFull()
+                                                ->default('Wide range of activities to involved in.'),
+                                        ]),
+                                    ]),
+                                Section::make('Khung "Client Testimonials"')
+                                    ->description('Tiêu đề phần đánh giá khách hàng trên trang chủ')
+                                    ->schema([
+                                        Grid::make(2)->schema([
+                                            TextInput::make('testimonials_badge')
+                                                ->label('Nhãn phụ (Badge)')
+                                                ->default('Testimonials'),
+                                            TextInput::make('testimonials_title')
+                                                ->label('Tiêu đề chính')
+                                                ->default('Client testimonials'),
+                                            Textarea::make('testimonials_subtitle')
+                                                ->label('Đoạn mô tả ngắn')
+                                                ->rows(2)
+                                                ->columnSpanFull()
+                                                ->default('Real travelers. Real stories. Real opinions to help you make the right choice.'),
+                                        ]),
+                                    ]),
+                                Section::make('Khung "Blog & Tips"')
+                                    ->description('Tiêu đề phần blog & mẹo du lịch trên trang chủ')
+                                    ->schema([
+                                        Grid::make(2)->schema([
+                                            TextInput::make('blog_badge')
+                                                ->label('Nhãn phụ (Badge)')
+                                                ->default('Blog & Tips'),
+                                            TextInput::make('blog_title')
+                                                ->label('Tiêu đề chính')
+                                                ->default('Travel tips and blog'),
+                                            Textarea::make('blog_subtitle')
+                                                ->label('Đoạn mô tả ngắn')
+                                                ->rows(2)
+                                                ->columnSpanFull()
+                                                ->default('Latest travel tips and blog covering all travel experiences.'),
+                                        ]),
+                                    ]),
+                                Section::make('Khung "Stats Banner" — Số liệu thống kê')
+                                    ->description('4 con số thống kê hiển thị giữa trang chủ (hỗ trợ hiệu ứng đếm số động)')
+                                    ->schema([
+                                        Grid::make(4)->schema([
+                                            Section::make('Số liệu 1')->schema([
+                                                TextInput::make('stat_1_number')
+                                                    ->label('Số')
+                                                    ->numeric()
+                                                    ->default(10000),
+                                                TextInput::make('stat_1_suffix')
+                                                    ->label('Hậu tố')
+                                                    ->default('+'),
+                                                TextInput::make('stat_1_label')
+                                                    ->label('Nhãn')
+                                                    ->default('Happy travelers'),
+                                            ]),
+                                            Section::make('Số liệu 2')->schema([
+                                                TextInput::make('stat_2_number')
+                                                    ->label('Số')
+                                                    ->numeric()
+                                                    ->default(500),
+                                                TextInput::make('stat_2_suffix')
+                                                    ->label('Hậu tố')
+                                                    ->default('+'),
+                                                TextInput::make('stat_2_label')
+                                                    ->label('Nhãn')
+                                                    ->default('Successful trips'),
+                                            ]),
+                                            Section::make('Số liệu 3')->schema([
+                                                TextInput::make('stat_3_number')
+                                                    ->label('Số')
+                                                    ->numeric()
+                                                    ->default(100),
+                                                TextInput::make('stat_3_suffix')
+                                                    ->label('Hậu tố')
+                                                    ->default('%'),
+                                                TextInput::make('stat_3_label')
+                                                    ->label('Nhãn')
+                                                    ->default('Genuine 5-star reviews'),
+                                            ]),
+                                            Section::make('Số liệu 4')->schema([
+                                                TextInput::make('stat_4_number')
+                                                    ->label('Số')
+                                                    ->numeric()
+                                                    ->default(24),
+                                                TextInput::make('stat_4_suffix')
+                                                    ->label('Hậu tố')
+                                                    ->default('/7'),
+                                                TextInput::make('stat_4_label')
+                                                    ->label('Nhãn')
+                                                    ->default('Dedicated customer support'),
+                                            ]),
+                                        ]),
+                                    ]),
+                                Section::make('Trust Badges dưới Hero')
+                                    ->description('Các dòng chứng nhận tin cậy hiển thị dưới thanh tìm kiếm trên banner')
+                                    ->schema([
+                                        Grid::make(2)->schema([
+                                            TextInput::make('hero_trust_rating')
+                                                ->label('Điểm đánh giá')
+                                                ->default('5.0 / 5.0'),
+                                            TextInput::make('hero_trust_text_1')
+                                                ->label('Chữ đánh giá')
+                                                ->default('(500+ five-star Tripadvisor reviews)'),
+                                            TextInput::make('hero_trust_text_2')
+                                                ->label('Chứng nhận / cam kết phụ')
+                                                ->columnSpanFull()
+                                                ->default('Insurance & caring local guides'),
                                         ]),
                                     ]),
                             ]),
@@ -347,7 +489,7 @@ class ManageSettings extends Page implements HasForms
                                             TextInput::make('site_bank_name')
                                                 ->label('Tên Ngân hàng')
                                                 ->required()
-                                                ->default('MB Bank (Ngân hàng Quân Đội)')
+                                                ->default('MB Bank (Military Commercial Joint Stock Bank)')
                                                 ->placeholder('VD: MB Bank, Vietcombank, Techcombank, ACB, VPBank...'),
 
                                             TextInput::make('site_bank_bin')
@@ -379,7 +521,7 @@ class ManageSettings extends Page implements HasForms
                                         Textarea::make('site_bank_note')
                                             ->label('Ghi chú / Hướng dẫn thanh toán cho khách')
                                             ->rows(3)
-                                            ->default('Vui lòng quét mã QR hoặc chuyển khoản với nội dung là Mã đơn đặt tour (VD: CNT-A1B2C3). Đơn hàng sẽ được quản trị viên duyệt và gửi email xác nhận ngay khi nhận được thanh toán.')
+                                            ->default('Please scan the QR code or make a bank transfer using your booking code as the reference (e.g. CNT-A1B2C3). Your booking will be reviewed and a confirmation email sent as soon as payment is received.')
                                             ->helperText('Hiển thị trên hộp thoại đặt tour và trang xác nhận đơn hàng.'),
                                     ]),
                             ]),
@@ -393,11 +535,6 @@ class ManageSettings extends Page implements HasForms
         $state = $this->form->getState();
 
         foreach ($state as $key => $value) {
-            // Preserve existing uploaded file if user did not choose a new file
-            if (in_array($key, ['site_logo', 'site_favicon', 'award_badge_image', 'footer_payment_image', 'booking_modal_logo', 'site_bank_qr_image']) && $value === null) {
-                continue;
-            }
-
             if (is_array($value)) {
                 Option::set($key, $value, 'general', 'json');
             } else {

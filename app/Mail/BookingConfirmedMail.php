@@ -23,7 +23,7 @@ class BookingConfirmedMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '[Chestnut Travel] Xác nhận đặt tour thành công - Mã đơn #' . $this->booking->booking_code,
+            subject: '[Chestnut Travel] Booking confirmed - Booking #' . $this->booking->booking_code,
         );
     }
 

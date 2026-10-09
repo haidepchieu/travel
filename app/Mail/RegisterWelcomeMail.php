@@ -23,7 +23,7 @@ class RegisterWelcomeMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: '[Chestnut Travel] Chào mừng bạn gia nhập Chestnut Travel!',
+            subject: '[Chestnut Travel] Welcome to Chestnut Travel!',
         );
     }
 

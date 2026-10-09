@@ -31,11 +31,16 @@ class AccountController extends Controller
             'phone' => ['nullable', 'string', 'max:30'],
             'current_password' => ['nullable', 'required_with:new_password'],
             'new_password' => ['nullable', 'string', 'min:6', 'confirmed'],
+        ], [
+            'name.required' => 'Please enter your full name.',
+            'current_password.required_with' => 'Please enter your current password to set a new one.',
+            'new_password.min' => 'Your new password must be at least 6 characters.',
+            'new_password.confirmed' => 'The new password confirmation does not match.',
         ]);
 
         if (!empty($validated['new_password'])) {
             if (!Hash::check($validated['current_password'], $user->password)) {
-                return back()->withErrors(['current_password' => 'Mật khẩu hiện tại không đúng.']);
+                return back()->withErrors(['current_password' => 'Your current password is incorrect.']);
             }
             $user->password = Hash::make($validated['new_password']);
         }
@@ -44,6 +49,6 @@ class AccountController extends Controller
         $user->phone = $validated['phone'] ?? null;
         $user->save();
 
-        return back()->with('success', 'Cập nhật thông tin tài khoản thành công!');
+        return back()->with('success', 'Your account details have been updated!');
     }
 }

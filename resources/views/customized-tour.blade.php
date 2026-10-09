@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Thiết Kế Tour Riêng Theo Yêu Cầu - ' . option('site_name', 'Chestnut Travel'))
-@section('meta_description', 'Thiết kế kỳ nghỉ mơ ước tại Việt Nam cùng Chestnut Travel: Tùy chỉnh lịch trình, ngày khởi hành, ngân sách và phương tiện theo ý bạn.')
+@section('title', 'Design Your Own Private Tour - ' . option('site_name', 'Chestnut Travel'))
+@section('meta_description', 'Design your dream holiday in Vietnam with Chestnut Travel: customize the itinerary, departure date, budget and transport to suit you.')
 
 @section('content')
 <!-- HERO SECTION -->
@@ -16,29 +16,29 @@
         <nav class="flex items-center space-x-2 text-xs text-teal-100/80 mb-6 font-medium">
             <a href="{{ route('home') }}" class="hover:text-white transition flex items-center gap-1.5">
                 <i class="fa-solid fa-house text-[11px]"></i>
-                <span>Trang chủ</span>
+                <span>Home</span>
             </a>
             <span class="text-teal-200/50">/</span>
-            <span class="text-white font-semibold">Thiết kế tour riêng</span>
+            <span class="text-white font-semibold">Customized tour</span>
         </nav>
 
         <div class="text-center max-w-3xl mx-auto">
             <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider bg-white/10 backdrop-blur-md text-teal-100 border border-white/15 mb-4 shadow-sm">
                 <i class="fa-solid fa-sliders text-[#28B5A4]"></i>
-                Trải nghiệm độc bản theo yêu cầu
+                Unique experiences, made to order
             </span>
             <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-5 font-serif-display leading-tight">
-                Thiết Kế Tour Riêng Theo Ý Bạn
+                Design Your Own Private Tour
             </h1>
             <div class="space-y-3 text-teal-50/90 text-sm sm:text-base leading-relaxed font-light">
                 <p>
-                    Chúng tôi chuẩn bị biểu mẫu chi tiết dưới đây để bạn dễ dàng chia sẻ ý tưởng và mong muốn về chuyến đi của mình.
+                    We have prepared the detailed form below so you can easily share your ideas and wishes for your trip.
                 </p>
                 <p>
-                    Bạn có thể tùy chọn ngày đi, điểm đến yêu thích, tiêu chuẩn phòng nghỉ, phương tiện di chuyển và ngân sách dự kiến. Đội ngũ chuyên gia bản địa của Chestnut Travel sẽ thiết kế lịch trình tối ưu nhất dành riêng cho bạn!
+                    Choose your travel dates, favorite destinations, accommodation standard, transport and estimated budget. Chestnut Travel's local experts will design the best possible itinerary just for you!
                 </p>
                 <p class="font-normal text-white">
-                    Tất cả tư vấn và lên lịch trình đều hoàn toàn miễn phí và được phản hồi trong vòng 30 phút.
+                    All consultations and itinerary planning are completely free, with a reply within 30 minutes.
                 </p>
             </div>
         </div>
@@ -54,7 +54,7 @@
             <i class="fa-solid fa-check text-lg"></i>
         </div>
         <div>
-            <h3 class="font-bold text-emerald-900 text-base mb-1">Gửi yêu cầu thành công!</h3>
+            <h3 class="font-bold text-emerald-900 text-base mb-1">Request sent successfully!</h3>
             <p class="text-emerald-700 text-sm">{{ session('custom_tour_message') }}</p>
         </div>
     </div>
@@ -68,46 +68,46 @@
                     <i class="fa-solid fa-pencil"></i>
                 </div>
                 <div>
-                    <h2 class="text-base font-bold text-gray-900">Chi tiết Tour theo yêu cầu của bạn</h2>
-                    <p class="text-xs text-gray-500">Chỉ mất 2 phút để hoàn thiện - Đội ngũ chuyên gia sẽ thiết kế lịch trình miễn phí</p>
+                    <h2 class="text-base font-bold text-gray-900">Your customized tour details</h2>
+                    <p class="text-xs text-gray-500">Takes just 2 minutes - our experts will design your itinerary for free</p>
                 </div>
             </div>
             <div class="flex items-center gap-2 text-xs font-semibold text-teal-800 bg-teal-50 px-3 py-1.5 rounded-full border border-teal-100">
                 <i class="fa-regular fa-clock text-teal-600"></i>
-                <span>Phản hồi trong 30 phút</span>
+                <span>Reply within 30 minutes</span>
             </div>
         </div>
 
-        <form action="{{ route('customized-tour.store') }}" method="POST" id="customized-tour-form" class="p-6 sm:p-10 space-y-10">
+        <form action="{{ route('customized-tour.store') }}" method="POST" id="customized-tour-form" novalidate class="p-6 sm:p-10 space-y-10">
             @csrf
 
             <!-- SECTION 1: CONTACT INFORMATION -->
             <div class="space-y-4">
                 <div class="flex items-center gap-2 border-b border-gray-100 pb-2">
                     <span class="w-6 h-6 rounded-full bg-teal-100 text-[#26786e] font-bold text-xs flex items-center justify-center">1</span>
-                    <h3 class="text-base font-bold text-gray-900">Thông tin liên hệ</h3>
+                    <h3 class="text-base font-bold text-gray-900">Contact information</h3>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-semibold text-gray-700 mb-1.5">
-                            Họ và tên của bạn <span class="text-red-500">*</span>
+                            Your full name <span class="text-red-500">*</span>
                         </label>
                         <div class="relative">
                             <i class="fa-regular fa-user absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                            <input type="text" name="customer_name" required value="{{ Auth::check() ? Auth::user()->name : old('customer_name') }}"
-                                   placeholder="VD: Nguyen Van A / John Smith"
+                            <input type="text" name="customer_name" required data-required-message="Please enter your full name." autocomplete="name" value="{{ Auth::check() ? Auth::user()->name : old('customer_name') }}"
+                                   placeholder="e.g. John Smith"
                                    class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#26786e] focus:border-transparent outline-none transition">
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-xs font-semibold text-gray-700 mb-1.5">
-                            Email nhận lịch trình & báo giá <span class="text-red-500">*</span>
+                            Email for itinerary & quote <span class="text-red-500">*</span>
                         </label>
                         <div class="relative">
                             <i class="fa-regular fa-envelope absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
-                            <input type="email" name="customer_email" required value="{{ Auth::check() ? Auth::user()->email : old('customer_email') }}"
+                            <input type="email" name="customer_email" required data-required-message="Please enter your email address so we can send your itinerary." autocomplete="email" value="{{ Auth::check() ? Auth::user()->email : old('customer_email') }}"
                                    placeholder="email@example.com"
                                    class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#26786e] focus:border-transparent outline-none transition">
                         </div>
@@ -115,24 +115,24 @@
 
                     <div>
                         <label class="block text-xs font-semibold text-gray-700 mb-1.5">
-                            Số điện thoại <span class="text-red-500">*</span>
+                            Phone number <span class="text-red-500">*</span>
                         </label>
                         <div class="relative">
                             <i class="fa-brands fa-whatsapp absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-600 text-base"></i>
-                            <input type="tel" name="customer_phone" required value="{{ Auth::check() ? (Auth::user()->phone ?? '') : old('customer_phone') }}"
-                                   placeholder="+84 867 216 850 hoặc số Zalo"
+                            <input type="tel" name="customer_phone" required data-required-message="Please enter your phone / WhatsApp number." autocomplete="tel" value="{{ Auth::check() ? (Auth::user()->phone ?? '') : old('customer_phone') }}"
+                                   placeholder="+84 867 216 850 or WhatsApp number"
                                    class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#26786e] focus:border-transparent outline-none transition">
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-xs font-semibold text-gray-700 mb-1.5">
-                            Quốc tịch / Nơi sinh sống
+                            Nationality / Country of residence
                         </label>
                         <div class="relative">
                             <i class="fa-solid fa-globe absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
                             <input type="text" name="nationality" value="{{ old('nationality') }}"
-                                   placeholder="VD: Vietnam, Australia, United States, France..."
+                                   placeholder="e.g. Australia, United States, France..."
                                    class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#26786e] focus:border-transparent outline-none transition">
                         </div>
                     </div>
@@ -143,13 +143,13 @@
             <div class="space-y-4">
                 <div class="flex items-center gap-2 border-b border-gray-100 pb-2">
                     <span class="w-6 h-6 rounded-full bg-teal-100 text-[#26786e] font-bold text-xs flex items-center justify-center">2</span>
-                    <h3 class="text-base font-bold text-gray-900">Thời gian & Số lượng khách</h3>
+                    <h3 class="text-base font-bold text-gray-900">Dates & Travelers</h3>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     <div>
                         <label class="block text-xs font-semibold text-gray-700 mb-1.5">
-                            Ngày dự kiến khởi hành
+                            Expected departure date
                         </label>
                         <div class="relative">
                             <i class="fa-regular fa-calendar absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 text-sm"></i>
@@ -160,29 +160,29 @@
 
                     <div>
                         <label class="block text-xs font-semibold text-gray-700 mb-1.5">
-                            Thời gian chuyến đi (Số ngày)
+                            Trip length (days)
                         </label>
                         <select name="duration" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#26786e] focus:border-transparent outline-none transition bg-white">
-                            <option value="2-3 ngày (Cuối tuần ngắn ngày)">2 - 3 ngày (Chuyến đi ngắn)</option>
-                            <option value="4-5 ngày (Tour phổ biến nhất)" selected>4 - 5 ngày (Phổ biến nhất)</option>
-                            <option value="6-7 ngày (1 tuần trải nghiệm)">6 - 7 ngày (1 tuần trọn vẹn)</option>
-                            <option value="8-10 ngày (Khám phá sâu)">8 - 10 ngày (Bắc & Trung Bộ)</option>
-                            <option value="Trên 10 ngày (Xuyên Việt)">Trên 10 ngày (Grand Tour)</option>
-                            <option value="Linh hoạt theo tư vấn">Linh hoạt theo tư vấn chuyên gia</option>
+                            <option value="2-3 days (Short weekend trip)">2 - 3 days (Short trip)</option>
+                            <option value="4-5 days (Most popular)" selected>4 - 5 days (Most popular)</option>
+                            <option value="6-7 days (A full week)">6 - 7 days (A full week)</option>
+                            <option value="8-10 days (In-depth discovery)">8 - 10 days (North & Central)</option>
+                            <option value="Over 10 days (Across Vietnam)">Over 10 days (Grand Tour)</option>
+                            <option value="Flexible - expert advice">Flexible - based on our experts' advice</option>
                         </select>
                     </div>
 
                     <div class="grid grid-cols-2 gap-2">
                         <div>
                             <label class="block text-xs font-semibold text-gray-700 mb-1.5">
-                                Người lớn <span class="text-red-500">*</span>
+                                Adults <span class="text-red-500">*</span>
                             </label>
-                            <input type="number" name="adults" min="1" max="50" value="2" required
+                            <input type="number" name="adults" min="1" max="50" value="2" required data-required-message="Please enter the number of adults."
                                    class="w-full px-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#26786e] focus:border-transparent outline-none transition text-center font-bold">
                         </div>
                         <div>
                             <label class="block text-xs font-semibold text-gray-700 mb-1.5">
-                                Trẻ em (&lt;12t)
+                                Children (&lt;12 yrs)
                             </label>
                             <input type="number" name="children" min="0" max="20" value="0"
                                    class="w-full px-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#26786e] focus:border-transparent outline-none transition text-center font-bold">
@@ -196,26 +196,26 @@
                 <div class="flex items-center justify-between border-b border-gray-100 pb-2">
                     <div class="flex items-center gap-2">
                         <span class="w-6 h-6 rounded-full bg-teal-100 text-[#26786e] font-bold text-xs flex items-center justify-center">3</span>
-                        <h3 class="text-base font-bold text-gray-900">Điểm đến mong muốn</h3>
+                        <h3 class="text-base font-bold text-gray-900">Preferred destinations</h3>
                     </div>
-                    <span class="text-xs text-gray-400 font-medium">Có thể chọn nhiều điểm</span>
+                    <span class="text-xs text-gray-400 font-medium">Select as many as you like</span>
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
                     @php
                         $presetDestinations = [
-                            ['name' => 'Hà Giang (Loop)', 'icon' => 'fa-mountain', 'color' => 'text-teal-600'],
+                            ['name' => 'Ha Giang (Loop)', 'icon' => 'fa-mountain', 'color' => 'text-teal-600'],
                             ['name' => 'Sa Pa', 'icon' => 'fa-person-hiking', 'color' => 'text-emerald-600'],
-                            ['name' => 'Ninh Bình (Tràng An)', 'icon' => 'fa-water', 'color' => 'text-cyan-600'],
-                            ['name' => 'Cát Bà / Vịnh Lan Hạ', 'icon' => 'fa-ship', 'color' => 'text-blue-600'],
-                            ['name' => 'Vịnh Hạ Long', 'icon' => 'fa-anchor', 'color' => 'text-indigo-600'],
-                            ['name' => 'Tà Xùa (Săn Mây)', 'icon' => 'fa-cloud', 'color' => 'text-purple-600'],
-                            ['name' => 'Hà Nội (Phố Cổ)', 'icon' => 'fa-city', 'color' => 'text-amber-600'],
-                            ['name' => 'Hội An', 'icon' => 'fa-lightbulb', 'color' => 'text-orange-500'],
-                            ['name' => 'Đà Nẵng', 'icon' => 'fa-umbrella-beach', 'color' => 'text-yellow-600'],
-                            ['name' => 'Huế Cố Đô', 'icon' => 'fa-landmark', 'color' => 'text-red-500'],
-                            ['name' => 'Cao Bằng (Bản Giốc)', 'icon' => 'fa-gem', 'color' => 'text-teal-500'],
-                            ['name' => 'Mai Châu / Mộc Châu', 'icon' => 'fa-seedling', 'color' => 'text-green-600'],
+                            ['name' => 'Ninh Binh (Trang An)', 'icon' => 'fa-water', 'color' => 'text-cyan-600'],
+                            ['name' => 'Cat Ba / Lan Ha Bay', 'icon' => 'fa-ship', 'color' => 'text-blue-600'],
+                            ['name' => 'Ha Long Bay', 'icon' => 'fa-anchor', 'color' => 'text-indigo-600'],
+                            ['name' => 'Ta Xua (Cloud Hunting)', 'icon' => 'fa-cloud', 'color' => 'text-purple-600'],
+                            ['name' => 'Hanoi (Old Quarter)', 'icon' => 'fa-city', 'color' => 'text-amber-600'],
+                            ['name' => 'Hoi An', 'icon' => 'fa-lightbulb', 'color' => 'text-orange-500'],
+                            ['name' => 'Da Nang', 'icon' => 'fa-umbrella-beach', 'color' => 'text-yellow-600'],
+                            ['name' => 'Hue Imperial City', 'icon' => 'fa-landmark', 'color' => 'text-red-500'],
+                            ['name' => 'Cao Bang (Ban Gioc)', 'icon' => 'fa-gem', 'color' => 'text-teal-500'],
+                            ['name' => 'Mai Chau / Moc Chau', 'icon' => 'fa-seedling', 'color' => 'text-green-600'],
                         ];
                     @endphp
 
@@ -233,44 +233,44 @@
             <div class="space-y-4">
                 <div class="flex items-center gap-2 border-b border-gray-100 pb-2">
                     <span class="w-6 h-6 rounded-full bg-teal-100 text-[#26786e] font-bold text-xs flex items-center justify-center">4</span>
-                    <h3 class="text-base font-bold text-gray-900">Tiêu chuẩn chỗ ở</h3>
+                    <h3 class="text-base font-bold text-gray-900">Accommodation standard</h3>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                     <label class="flex flex-col p-4 rounded-2xl border border-gray-200 hover:border-[#26786e] hover:bg-teal-50/30 cursor-pointer transition select-none has-[:checked]:border-[#26786e] has-[:checked]:bg-teal-50">
                         <div class="flex items-center justify-between mb-2">
                             <i class="fa-solid fa-house-chimney text-emerald-600 text-lg"></i>
-                            <input type="radio" name="accommodation" value="Homestay bản địa" checked class="text-[#26786e] focus:ring-[#26786e]">
+                            <input type="radio" name="accommodation" value="Local homestay" checked class="text-[#26786e] focus:ring-[#26786e]">
                         </div>
-                        <span class="font-bold text-xs text-gray-900 mb-0.5">Homestay Bản Địa</span>
-                        <span class="text-[11px] text-gray-500 leading-tight">Ấm cúng, trải nghiệm văn hóa địa phương gần gũi</span>
+                        <span class="font-bold text-xs text-gray-900 mb-0.5">Local Homestay</span>
+                        <span class="text-[11px] text-gray-500 leading-tight">Cozy, with an up-close local cultural experience</span>
                     </label>
 
                     <label class="flex flex-col p-4 rounded-2xl border border-gray-200 hover:border-[#26786e] hover:bg-teal-50/30 cursor-pointer transition select-none has-[:checked]:border-[#26786e] has-[:checked]:bg-teal-50">
                         <div class="flex items-center justify-between mb-2">
                             <i class="fa-solid fa-hotel text-blue-600 text-lg"></i>
-                            <input type="radio" name="accommodation" value="Khách sạn 3 sao tiện nghi" class="text-[#26786e] focus:ring-[#26786e]">
+                            <input type="radio" name="accommodation" value="Comfortable 3-star hotel" class="text-[#26786e] focus:ring-[#26786e]">
                         </div>
-                        <span class="font-bold text-xs text-gray-900 mb-0.5">Khách sạn 3 Sao</span>
-                        <span class="text-[11px] text-gray-500 leading-tight">Phòng riêng tiện nghi, sạch đẹp, vị trí trung tâm</span>
+                        <span class="font-bold text-xs text-gray-900 mb-0.5">3-Star Hotel</span>
+                        <span class="text-[11px] text-gray-500 leading-tight">Clean, comfortable private rooms in central locations</span>
                     </label>
 
                     <label class="flex flex-col p-4 rounded-2xl border border-gray-200 hover:border-[#26786e] hover:bg-teal-50/30 cursor-pointer transition select-none has-[:checked]:border-[#26786e] has-[:checked]:bg-teal-50">
                         <div class="flex items-center justify-between mb-2">
                             <i class="fa-solid fa-crown text-amber-500 text-lg"></i>
-                            <input type="radio" name="accommodation" value="Resort & Khách sạn 4-5 sao" class="text-[#26786e] focus:ring-[#26786e]">
+                            <input type="radio" name="accommodation" value="4-5 star resort & hotel" class="text-[#26786e] focus:ring-[#26786e]">
                         </div>
-                        <span class="font-bold text-xs text-gray-900 mb-0.5">Resort 4 - 5 Sao</span>
-                        <span class="text-[11px] text-gray-500 leading-tight">Sang trọng, cao cấp, bể bơi vô cực & dịch vụ VIP</span>
+                        <span class="font-bold text-xs text-gray-900 mb-0.5">4 - 5 Star Resort</span>
+                        <span class="text-[11px] text-gray-500 leading-tight">Luxurious, upscale, infinity pools & VIP service</span>
                     </label>
 
                     <label class="flex flex-col p-4 rounded-2xl border border-gray-200 hover:border-[#26786e] hover:bg-teal-50/30 cursor-pointer transition select-none has-[:checked]:border-[#26786e] has-[:checked]:bg-teal-50">
                         <div class="flex items-center justify-between mb-2">
                             <i class="fa-solid fa-ship text-teal-600 text-lg"></i>
-                            <input type="radio" name="accommodation" value="Du thuyền cao cấp / Boutique Cruise" class="text-[#26786e] focus:ring-[#26786e]">
+                            <input type="radio" name="accommodation" value="Boutique cruise" class="text-[#26786e] focus:ring-[#26786e]">
                         </div>
                         <span class="font-bold text-xs text-gray-900 mb-0.5">Boutique Cruise</span>
-                        <span class="text-[11px] text-gray-500 leading-tight">Du thuyền nghỉ đêm trên Vịnh Lan Hạ / Hạ Long</span>
+                        <span class="text-[11px] text-gray-500 leading-tight">Overnight cruise on Lan Ha / Ha Long Bay</span>
                     </label>
                 </div>
             </div>
@@ -280,20 +280,20 @@
                 <div class="flex items-center justify-between border-b border-gray-100 pb-2">
                     <div class="flex items-center gap-2">
                         <span class="w-6 h-6 rounded-full bg-teal-100 text-[#26786e] font-bold text-xs flex items-center justify-center">5</span>
-                        <h3 class="text-base font-bold text-gray-900">Hoạt động trải nghiệm quan tâm</h3>
+                        <h3 class="text-base font-bold text-gray-900">Activities you're interested in</h3>
                     </div>
-                    <span class="text-xs text-gray-400 font-medium">Tùy chọn theo sở thích</span>
+                    <span class="text-xs text-gray-400 font-medium">Choose what you enjoy</span>
                 </div>
 
                 <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
                     @php
                         $presetActivities = [
-                            ['name' => 'Motorbike Tour (Easy Rider)', 'desc' => 'Tự lái hoặc có tài xế bản địa chở sau', 'icon' => 'fa-motorcycle', 'color' => 'text-orange-500'],
-                            ['name' => 'Trekking & Hiking', 'desc' => 'Đi bộ qua ruộng bậc thang & núi đồi', 'icon' => 'fa-person-hiking', 'color' => 'text-emerald-500'],
-                            ['name' => 'Boating & Kayak', 'desc' => 'Chèo kayak, đi thuyền kayak ngắm vịnh/hang động', 'icon' => 'fa-ship', 'color' => 'text-blue-500'],
-                            ['name' => 'Street Food Tour', 'desc' => 'Thưởng thức ẩm thực đặc sản đường phố', 'icon' => 'fa-utensils', 'color' => 'text-red-500'],
-                            ['name' => 'Văn hóa bản địa & Làng nghề', 'desc' => 'Dệt thổ cẩm, làm nón lá, thưởng trà', 'icon' => 'fa-landmark', 'color' => 'text-amber-500'],
-                            ['name' => 'Nghỉ dưỡng & Chụp ảnh', 'desc' => 'Thư giãn, săn mây, check-in view đẹp', 'icon' => 'fa-camera', 'color' => 'text-purple-500'],
+                            ['name' => 'Motorbike Tour (Easy Rider)', 'desc' => 'Ride yourself or sit behind a local driver', 'icon' => 'fa-motorcycle', 'color' => 'text-orange-500'],
+                            ['name' => 'Trekking & Hiking', 'desc' => 'Walk through rice terraces & hills', 'icon' => 'fa-person-hiking', 'color' => 'text-emerald-500'],
+                            ['name' => 'Boating & Kayak', 'desc' => 'Kayak and boat through bays & caves', 'icon' => 'fa-ship', 'color' => 'text-blue-500'],
+                            ['name' => 'Street Food Tour', 'desc' => 'Taste local street food specialties', 'icon' => 'fa-utensils', 'color' => 'text-red-500'],
+                            ['name' => 'Local Culture & Craft Villages', 'desc' => 'Brocade weaving, conical hat making, tea tasting', 'icon' => 'fa-landmark', 'color' => 'text-amber-500'],
+                            ['name' => 'Relaxation & Photography', 'desc' => 'Unwind, chase clouds, capture stunning views', 'icon' => 'fa-camera', 'color' => 'text-purple-500'],
                         ];
                     @endphp
 
@@ -317,24 +317,24 @@
                 <!-- Budget -->
                 <div class="space-y-2">
                     <label class="block text-xs font-semibold text-gray-700">
-                        Mức ngân sách ước tính / người
+                        Estimated budget per person
                     </label>
                     <select name="budget" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#26786e] focus:border-transparent outline-none transition bg-white">
-                        <option value="Tiết kiệm / Backpacking (&lt; $40 / ngày)">Tiết kiệm / Backpacking (&lt; $40 / ngày / người)</option>
-                        <option value="Tiêu chuẩn linh hoạt ($50 - $90 / ngày)" selected>Tiêu chuẩn thoải mái ($50 - $90 / ngày / người)</option>
-                        <option value="Cao cấp / Luxury (&gt; $100 / ngày)">Cao cấp & Riêng tư (&gt; $100 / ngày / người)</option>
-                        <option value="Linh hoạt theo tư vấn của Chestnut Travel">Linh hoạt theo tư vấn lịch trình tốt nhất</option>
+                        <option value="Budget / Backpacking (&lt; $40 / day)">Budget / Backpacking (&lt; $40 / day / person)</option>
+                        <option value="Standard comfort ($50 - $90 / day)" selected>Standard comfort ($50 - $90 / day / person)</option>
+                        <option value="Premium / Luxury (&gt; $100 / day)">Premium & Private (&gt; $100 / day / person)</option>
+                        <option value="Flexible - Chestnut Travel advice">Flexible - based on the best itinerary advice</option>
                     </select>
-                    <p class="text-[11px] text-gray-400">Chestnut Travel cam kết giá trực tiếp từ đối tác bản địa, không qua trung gian.</p>
+                    <p class="text-[11px] text-gray-400">Chestnut Travel guarantees direct prices from local partners, with no middlemen.</p>
                 </div>
 
                 <!-- Special Requests -->
                 <div class="space-y-2">
                     <label class="block text-xs font-semibold text-gray-700">
-                        Ghi chú & Yêu cầu đặc biệt
+                        Notes & special requests
                     </label>
                     <textarea name="special_requests" rows="3"
-                              placeholder="Lưu ý về ăn chay/dị ứng, có người lớn tuổi hoặc trẻ nhỏ, địa điểm nhất định muốn ghé thăm..."
+                              placeholder="Vegetarian/allergy notes, traveling with seniors or young children, places you definitely want to visit..."
                               class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#26786e] focus:border-transparent outline-none transition resize-none"></textarea>
                 </div>
             </div>
@@ -343,12 +343,12 @@
             <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div class="flex items-center gap-3 text-xs text-gray-500">
                     <i class="fa-solid fa-shield-halved text-[#26786e] text-base"></i>
-                    <span>Thông tin của bạn được bảo mật tuyệt đối theo chính sách bảo vệ dữ liệu.</span>
+                    <span>Your information is kept strictly confidential under our data protection policy.</span>
                 </div>
 
                 <div class="flex items-center gap-3 w-full sm:w-auto">
                     <!-- WhatsApp Direct -->
-                    <a href="https://wa.me/84867216850?text={{ urlencode('Xin chào Chestnut Travel, tôi muốn tư vấn thiết kế tour riêng tại Việt Nam.') }}"
+                    <a href="https://wa.me/84867216850?text={{ urlencode('Hello Chestnut Travel, I would like advice on designing a private tour in Vietnam.') }}"
                        target="_blank" rel="noopener"
                        class="px-5 py-3 rounded-full border border-emerald-500 text-emerald-700 hover:bg-emerald-50 text-xs font-bold transition flex items-center justify-center gap-2 shrink-0">
                         <i class="fa-brands fa-whatsapp text-emerald-600 text-sm"></i>
@@ -358,7 +358,7 @@
                     <!-- Submit Button -->
                     <button type="submit" id="submit-custom-tour-btn"
                             class="w-full sm:w-auto bg-[#26786e] hover:bg-[#1f625a] text-white px-8 py-3.5 rounded-full text-sm font-bold shadow-lg shadow-teal-900/20 transition transform active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
-                        <span>Gửi Yêu Cầu Thiết Kế Tour</span>
+                        <span>Send My Tour Request</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>
                     </button>
                 </div>
@@ -373,8 +373,8 @@
                 <i class="fa-solid fa-compass"></i>
             </div>
             <div>
-                <h4 class="font-bold text-gray-900 text-sm mb-1">Chuyên gia bản địa (Local Experts)</h4>
-                <p class="text-xs text-gray-500 leading-relaxed">Đội ngũ hướng dẫn viên sinh ra và lớn lên tại địa phương, am hiểu sâu sắc từng con đèo, bản làng.</p>
+                <h4 class="font-bold text-gray-900 text-sm mb-1">Local Experts</h4>
+                <p class="text-xs text-gray-500 leading-relaxed">Our guides were born and raised locally and know every mountain pass and village inside out.</p>
             </div>
         </div>
 
@@ -383,8 +383,8 @@
                 <i class="fa-solid fa-badge-percent"></i>
             </div>
             <div>
-                <h4 class="font-bold text-gray-900 text-sm mb-1">Cam kết giá tốt nhất (Best Price)</h4>
-                <p class="text-xs text-gray-500 leading-relaxed">Tối ưu chi phí theo ngân sách của bạn với chất lượng dịch vụ minh bạch, không phụ phí phát sinh ẩn.</p>
+                <h4 class="font-bold text-gray-900 text-sm mb-1">Best Price Guaranteed</h4>
+                <p class="text-xs text-gray-500 leading-relaxed">Costs optimized for your budget with transparent service quality and no hidden surcharges.</p>
             </div>
         </div>
 
@@ -393,10 +393,64 @@
                 <i class="fa-solid fa-headset"></i>
             </div>
             <div>
-                <h4 class="font-bold text-gray-900 text-sm mb-1">Hỗ trợ 24/7 (Always By Your Side)</h4>
-                <p class="text-xs text-gray-500 leading-relaxed">Nhân viên đồng hành hỗ trợ mọi phát sinh trên đường đi qua WhatsApp, hotline và trực tiếp tại điểm đón.</p>
+                <h4 class="font-bold text-gray-900 text-sm mb-1">24/7 Support - Always By Your Side</h4>
+                <p class="text-xs text-gray-500 leading-relaxed">Our staff support you with anything that comes up on the road via WhatsApp, hotline and in person at pickup.</p>
             </div>
         </div>
     </div>
 </div>
+<script>
+    // Customized tour request: validate inline, submit via AJAX and show clear feedback
+    (function () {
+        const form = document.getElementById('customized-tour-form');
+        if (!form) return;
+
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const firstInvalid = validateFields(form);
+            if (firstInvalid) {
+                showToast('Please complete the highlighted fields to send your request.', 'error');
+                focusField(firstInvalid);
+                return;
+            }
+
+            const btn = document.getElementById('submit-custom-tour-btn');
+            const originalBtnHtml = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Sending your request...</span>';
+
+            let result;
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json',
+                    },
+                    body: new FormData(form),
+                });
+                result = await readJsonResponse(response);
+            } catch (err) {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHtml;
+                showToast(NETWORK_ERROR_MESSAGE, 'error');
+                return;
+            }
+
+            if (result.ok) {
+                showToast(result.data.message || 'Your request has been sent successfully!', 'success');
+                if (result.data.booking_code) {
+                    window.location.href = '{{ url('/booking/success') }}/' + encodeURIComponent(result.data.booking_code);
+                }
+                return;
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = originalBtnHtml;
+            focusField(applyServerErrors(form, result.data.errors));
+            showToast(result.message || 'Something went wrong. Please try again.', 'error');
+        });
+    })();
+</script>
 @endsection

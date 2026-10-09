@@ -74,7 +74,7 @@
                 <button type="button" 
                         onclick="toggleWishlist({{ $tour->id }}, '{{ addslashes($tour->title) }}', '{{ $mainImage }}', '{{ route('tour.show', $tour->slug) }}', {{ $basePrice }})" 
                         data-wishlist-id="{{ $tour->id }}"
-                        title="Lưu vào yêu thích"
+                        title="Save to wishlist"
                         class="hidden sm:inline-flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-700 hover:text-gray-900 border border-gray-200 px-3.5 py-2.5 rounded-xl text-xs font-bold shadow-sm transition active:scale-95 cursor-pointer">
                     <i class="fa-regular fa-heart text-sm"></i>
                 </button>
@@ -96,9 +96,9 @@
                     <span class="text-gray-900">{{ number_format($avgRating, 1) }}</span>
                 </div>
                 @if($actualReviewCount > 0)
-                    <span class="text-gray-500">({{ $actualReviewCount }} đánh giá)</span>
+                    <span class="text-gray-500">({{ $actualReviewCount }} {{ Str::plural('review', $actualReviewCount) }})</span>
                 @else
-                    <span class="text-gray-400">(Chưa có đánh giá)</span>
+                    <span class="text-gray-400">(No reviews yet)</span>
                 @endif
             </div>
 
@@ -107,7 +107,7 @@
             <!-- Duration -->
             <div class="flex items-center gap-1.5">
                 <i class="fa-regular fa-clock text-chestnut"></i>
-                <span class="font-bold text-gray-800">{{ $tour->duration_days }} Ngày {{ $tour->duration_nights }} Đêm</span>
+                <span class="font-bold text-gray-800">{{ $tour->duration_days }} {{ Str::plural('Day', $tour->duration_days) }} {{ $tour->duration_nights }} {{ Str::plural('Night', $tour->duration_nights) }}</span>
             </div>
 
             <div class="hidden sm:block text-gray-300">•</div>
@@ -115,7 +115,7 @@
             <!-- Group Size -->
             <div class="flex items-center gap-1.5">
                 <i class="fa-solid fa-users text-chestnut"></i>
-                <span>{{ $tour->group_size ?? 'Max 10 người' }}</span>
+                <span>{{ $tour->group_size ?? 'Max 10 people' }}</span>
             </div>
 
             <div class="hidden sm:block text-gray-300">•</div>
@@ -131,7 +131,7 @@
             <!-- Departure -->
             <div class="flex items-center gap-1.5">
                 <i class="fa-solid fa-location-dot text-chestnut"></i>
-                <span>Khởi hành từ: <b>{{ $tour->departure_from ?? 'Hà Nội / Hà Giang' }}</b></span>
+                <span>Departs from: <b>{{ $tour->departure_from ?? 'Hanoi / Ha Giang' }}</b></span>
             </div>
         </div>
     </div>
@@ -210,21 +210,21 @@
         <div class="flex items-center justify-between">
             <nav class="flex items-center gap-1 sm:gap-2 overflow-x-auto py-2.5 sm:py-3 text-xs sm:text-sm font-bold text-gray-600 no-scrollbar">
                 <a href="#overview" class="tab-link px-3 sm:px-4 py-1.5 rounded-lg hover:text-chestnut hover:bg-orange-50 transition active text-chestnut bg-orange-50/80">
-                    <i class="fa-solid fa-circle-info mr-1 text-[11px]"></i> Tổng quan
+                    <i class="fa-solid fa-circle-info mr-1 text-[11px]"></i> Overview
                 </a>
                 <a href="#itinerary" class="tab-link px-3 sm:px-4 py-1.5 rounded-lg hover:text-chestnut hover:bg-orange-50 transition">
-                    <i class="fa-solid fa-calendar-days mr-1 text-[11px]"></i> Lịch trình chi tiết
+                    <i class="fa-solid fa-calendar-days mr-1 text-[11px]"></i> Itinerary
                 </a>
                 <a href="#cost" class="tab-link px-3 sm:px-4 py-1.5 rounded-lg hover:text-chestnut hover:bg-orange-50 transition">
-                    <i class="fa-solid fa-receipt mr-1 text-[11px]"></i> Bao gồm & Không bao gồm
+                    <i class="fa-solid fa-receipt mr-1 text-[11px]"></i> Includes & Excludes
                 </a>
                 @if(!empty($tour->faqs) && is_array($tour->faqs) && count($tour->faqs) > 0)
                 <a href="#faqs" class="tab-link px-3 sm:px-4 py-1.5 rounded-lg hover:text-chestnut hover:bg-orange-50 transition">
-                    <i class="fa-solid fa-circle-question mr-1 text-[11px]"></i> Hỏi đáp FAQ
+                    <i class="fa-solid fa-circle-question mr-1 text-[11px]"></i> FAQs
                 </a>
                 @endif
                 <a href="#reviews" class="tab-link px-3 sm:px-4 py-1.5 rounded-lg hover:text-chestnut hover:bg-orange-50 transition">
-                    <i class="fa-solid fa-star mr-1 text-[11px] text-amber-500"></i> Đánh giá du khách{{ $actualReviewCount > 0 ? " ($actualReviewCount)" : '' }}
+                    <i class="fa-solid fa-star mr-1 text-[11px] text-amber-500"></i> Reviews{{ $actualReviewCount > 0 ? " ($actualReviewCount)" : '' }}
                 </a>
             </nav>
 
@@ -243,12 +243,12 @@
             <!-- LEFT COLUMN: ARTICLE & CONTENT (8 Cols / ~66%) -->
             <div class="lg:col-span-8 space-y-12">
 
-                <!-- SECTION: OVERVIEW (BÀI VIẾT CHI TIẾT & GIỚI THIỆU) -->
+                <!-- SECTION: OVERVIEW -->
                 <div id="overview" class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200/80 shadow-sm scroll-mt-36">
                     <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
                         <div>
-                            <span class="text-chestnut font-extrabold text-xs uppercase tracking-widest block mb-1">Giới thiệu chuyến đi</span>
-                            <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Tổng quan & Trải nghiệm</h2>
+                            <span class="text-chestnut font-extrabold text-xs uppercase tracking-widest block mb-1">About this trip</span>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Overview & Experience</h2>
                         </div>
                         <div class="w-10 h-10 rounded-2xl bg-orange-50 text-chestnut flex items-center justify-center text-lg">
                             <i class="fa-solid fa-mountain-sun"></i>
@@ -260,7 +260,7 @@
                         <div class="bg-gradient-to-br from-amber-50/60 to-orange-50/40 rounded-2xl p-6 border border-orange-100/80 mb-8">
                             <h3 class="text-sm font-extrabold text-gray-900 uppercase tracking-wider mb-4 flex items-center gap-2">
                                 <i class="fa-solid fa-sparkles text-chestnut"></i>
-                                <span>Điểm nhấn nổi bật trong tour</span>
+                                <span>Trip highlights</span>
                             </h3>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs text-gray-800">
                                 @foreach($tour->highlights as $hl)
@@ -273,34 +273,34 @@
                         </div>
                     @endif
 
-                    <!-- Rich Overview Article (Soạn bài viết ý) -->
+                    <!-- Rich overview article -->
                     <div class="prose prose-stone max-w-none text-gray-700 leading-relaxed text-sm sm:text-base prose-headings:font-extrabold prose-headings:text-gray-900 prose-img:rounded-2xl prose-img:shadow-md prose-blockquote:border-l-4 prose-blockquote:border-chestnut prose-blockquote:bg-orange-50/50 prose-blockquote:py-2.5 prose-blockquote:px-5 prose-blockquote:rounded-r-xl prose-blockquote:text-gray-700 prose-blockquote:font-medium prose-blockquote:italic">
                         {!! $tour->overview !!}
                     </div>
                 </div>
 
-                <!-- SECTION: COMBO INCLUDED STAGES (DÀNH CHO GÓI TOUR COMBO) -->
+                <!-- SECTION: COMBO INCLUDED STAGES (COMBO PACKAGES ONLY) -->
                 @if($tour->is_combo && $tour->comboItems && $tour->comboItems->count() > 0)
                     <div id="combo-stages" class="bg-gradient-to-br from-amber-50/40 via-white to-orange-50/30 rounded-3xl p-6 sm:p-10 border-2 border-orange-200/80 shadow-md scroll-mt-36">
                         <div class="flex items-center justify-between pb-4 border-b border-orange-100 mb-6">
                             <div>
                                 <span class="text-chestnut font-black text-xs uppercase tracking-widest block mb-1">
-                                    <i class="fa-solid fa-gift mr-1"></i> Gói Tour Trọn Gói Kết Hợp
+                                    <i class="fa-solid fa-gift mr-1"></i> All-inclusive Combo Package
                                 </span>
-                                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Các Chặng & Tour Trong Combo Này</h2>
+                                <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Stages & Tours in This Combo</h2>
                             </div>
                             @if($tour->calculated_saving > 0)
                                 <div class="hidden sm:block text-right">
-                                    <span class="text-[10px] text-gray-500 block uppercase font-bold">Ưu đãi Combo</span>
+                                    <span class="text-[10px] text-gray-500 block uppercase font-bold">Combo deal</span>
                                     <span class="inline-block bg-emerald-600 text-white font-extrabold text-xs px-3 py-1 rounded-full shadow-sm">
-                                        Tiết kiệm ${{ round($tour->calculated_saving) }}
+                                        Save ${{ round($tour->calculated_saving) }}
                                     </span>
                                 </div>
                             @endif
                         </div>
 
                         <p class="text-xs sm:text-sm text-gray-600 mb-6 leading-relaxed">
-                            Combo này được kết hợp từ {{ $tour->comboItems->count() }} chặng tour chuyên biệt, kết nối bằng xe đưa đón liên tỉnh cao cấp. Bạn không cần lo lắng về việc tự đặt xe hay chuyển tiếp giữa các tỉnh.
+                            This combo brings together {{ $tour->comboItems->count() }} specialist tour stages, connected by premium inter-province transfers. No need to worry about booking your own transport between provinces.
                         </p>
 
                         <!-- Stages list -->
@@ -320,7 +320,7 @@
                                         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-2">
                                             <div>
                                                 <span class="text-[11px] font-black text-chestnut uppercase tracking-wider block">
-                                                    {{ $stage->stage_title ?: ('Chặng ' . ($idx + 1)) }}
+                                                    {{ $stage->stage_title ?: ('Stage ' . ($idx + 1)) }}
                                                 </span>
                                                 <h3 class="text-base font-extrabold text-gray-900">
                                                     @if($child)
@@ -336,7 +336,7 @@
 
                                             <div class="flex items-center gap-2 shrink-0">
                                                 <span class="bg-stone-100 text-stone-700 text-[11px] font-bold px-2.5 py-1 rounded-full">
-                                                    <i class="fa-regular fa-clock mr-1"></i> {{ $stage->stage_days }} Ngày
+                                                    <i class="fa-regular fa-clock mr-1"></i> {{ $stage->stage_days }} {{ Str::plural('Day', $stage->stage_days) }}
                                                 </span>
                                                 @if($child && $child->destination)
                                                     <span class="bg-teal-50 text-[#28B5A4] text-[11px] font-bold px-2.5 py-1 rounded-full">
@@ -356,7 +356,7 @@
                                             <div class="bg-orange-50/70 border border-orange-200/60 rounded-xl p-3 text-xs text-orange-950 flex items-start gap-2.5">
                                                 <i class="fa-solid fa-van-shuttle text-chestnut text-sm mt-0.5 shrink-0"></i>
                                                 <div>
-                                                    <span class="font-bold block text-[11px] uppercase tracking-wider text-chestnut">Trung chuyển chặng:</span>
+                                                    <span class="font-bold block text-[11px] uppercase tracking-wider text-chestnut">Transfer between stages:</span>
                                                     <span>{{ $stage->transit_notes }}</span>
                                                 </div>
                                             </div>
@@ -370,22 +370,22 @@
                         @if($tour->combo_original_price > $basePrice)
                             <div class="mt-8 pt-6 border-t border-orange-200/70 bg-white rounded-2xl p-5 border border-stone-200 flex flex-col sm:flex-row items-center justify-between gap-4">
                                 <div class="text-center sm:text-left">
-                                    <span class="text-xs text-gray-500 font-semibold block">So sánh chi phí khi đặt Combo:</span>
+                                    <span class="text-xs text-gray-500 font-semibold block">Price comparison when booking the combo:</span>
                                     <div class="flex items-center gap-2 mt-0.5 justify-center sm:justify-start">
-                                        <span class="text-xs text-gray-400 line-through">Tổng tour lẻ: ${{ number_format($tour->combo_original_price, 0) }}</span>
-                                        <span class="text-base font-black text-chestnut">➔ Giá Combo: ${{ number_format($basePrice, 0) }}</span>
+                                        <span class="text-xs text-gray-400 line-through">Separate tours total: ${{ number_format($tour->combo_original_price, 0) }}</span>
+                                        <span class="text-base font-black text-chestnut">➔ Combo price: ${{ number_format($basePrice, 0) }}</span>
                                     </div>
                                 </div>
                                 <div class="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 text-emerald-800 font-black text-xs px-4 py-2 rounded-xl">
                                     <i class="fa-solid fa-circle-check text-emerald-600"></i>
-                                    <span>Tiết kiệm ngay ${{ number_format($tour->calculated_saving, 0) }} khi đặt gói này!</span>
+                                    <span>Save ${{ number_format($tour->calculated_saving, 0) }} instantly with this package!</span>
                                 </div>
                             </div>
                         @endif
                     </div>
                 @endif
 
-                <!-- SECTION: DETAILED ITINERARY (LỊCH TRÌNH THEO NGÀY) -->
+                <!-- SECTION: DETAILED DAY-BY-DAY ITINERARY -->
                 <div id="itinerary" class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200/80 shadow-sm scroll-mt-36">
                     <div class="flex items-center justify-between pb-6 border-b border-gray-100 mb-6">
                         <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">Itinerary</h2>
@@ -406,7 +406,7 @@
                             @foreach($tour->itineraries as $index => $iti)
                                 @php
                                     $rawTitle = trim($iti->title);
-                                    $hasPrefix = preg_match('/^(day|ngày|full\s*day)/i', $rawTitle);
+                                    $hasPrefix = preg_match('/^(day|full\s*day)/i', $rawTitle);
                                     if ($hasPrefix) {
                                         $displayTitle = $rawTitle;
                                     } elseif (($tour->duration_days ?? 1) <= 1 && $tour->itineraries->count() <= 1) {
@@ -441,13 +441,13 @@
                                                 @if($iti->meals)
                                                     <span class="inline-flex items-center gap-1.5 bg-gray-50 border border-gray-200/80 px-2.5 py-1 rounded-md">
                                                         <i class="fa-solid fa-utensils text-[#14b8a6]"></i>
-                                                        <span>Bữa ăn: <strong class="text-gray-800">{{ $iti->meals }}</strong></span>
+                                                        <span>Meals: <strong class="text-gray-800">{{ $iti->meals }}</strong></span>
                                                     </span>
                                                 @endif
                                                 @if($iti->accommodation)
                                                     <span class="inline-flex items-center gap-1.5 bg-gray-50 border border-gray-200/80 px-2.5 py-1 rounded-md">
                                                         <i class="fa-solid fa-bed text-[#14b8a6]"></i>
-                                                        <span>Lưu trú: <strong class="text-gray-800">{{ $iti->accommodation }}</strong></span>
+                                                        <span>Accommodation: <strong class="text-gray-800">{{ $iti->accommodation }}</strong></span>
                                                     </span>
                                                 @endif
                                             </div>
@@ -461,15 +461,15 @@
                             @endforeach
                         </div>
                     @else
-                        <p class="text-sm text-gray-500 py-4">Lịch trình chi tiết đang được cập nhật. Vui lòng liên hệ với tư vấn viên để nhận lộ trình mới nhất!</p>
+                        <p class="text-sm text-gray-500 py-4">The detailed itinerary is being updated. Please contact our travel consultants for the latest schedule!</p>
                     @endif
                 </div>
 
-                <!-- SECTION: INCLUSIONS & EXCLUSIONS (COST / BAO GỒM & KHÔNG BAO GỒM) -->
+                <!-- SECTION: INCLUSIONS & EXCLUSIONS (COST) -->
                 <div id="cost" class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200/80 shadow-sm scroll-mt-36">
                     <div class="pb-4 border-b border-gray-100 mb-8">
-                        <span class="text-chestnut font-extrabold text-xs uppercase tracking-widest block mb-1">Dịch vụ & Chi phí</span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Chi tiết dịch vụ bao gồm & không bao gồm</h2>
+                        <span class="text-chestnut font-extrabold text-xs uppercase tracking-widest block mb-1">Services & Costs</span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">What's included & excluded</h2>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -480,7 +480,7 @@
                                     <i class="fa-solid fa-check"></i>
                                 </div>
                                 <h3 class="text-base font-extrabold text-emerald-950 uppercase tracking-wider">
-                                    Dịch vụ bao gồm (What's Included)
+                                    What's Included
                                 </h3>
                             </div>
 
@@ -495,23 +495,23 @@
                                 @else
                                     <li class="flex items-start gap-3">
                                         <i class="fa-solid fa-circle-check text-emerald-600 text-base mt-0.5 flex-shrink-0"></i>
-                                        <span>Xe giường nằm cao cấp khứ hồi Hà Nội – Hà Giang.</span>
+                                        <span>Round-trip premium sleeper bus Hanoi – Ha Giang.</span>
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <i class="fa-solid fa-circle-check text-emerald-600 text-base mt-0.5 flex-shrink-0"></i>
-                                        <span>Lái xe Easy Rider chuyên nghiệp kiêm hướng dẫn viên địa phương.</span>
+                                        <span>Professional Easy Rider driver who doubles as your local guide.</span>
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <i class="fa-solid fa-circle-check text-emerald-600 text-base mt-0.5 flex-shrink-0"></i>
-                                        <span>Toàn bộ phòng nghỉ Homestay / Khách sạn đầy đủ tiện nghi.</span>
+                                        <span>All homestay / hotel accommodation with full amenities.</span>
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <i class="fa-solid fa-circle-check text-emerald-600 text-base mt-0.5 flex-shrink-0"></i>
-                                        <span>Tất cả các bữa ăn trong chương trình theo ẩm thực bản địa.</span>
+                                        <span>All meals in the program featuring local cuisine.</span>
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <i class="fa-solid fa-circle-check text-emerald-600 text-base mt-0.5 flex-shrink-0"></i>
-                                        <span>Vé tham quan các thắng cảnh và vé thuyền hẻm Tu Sản - Sông Nho Quế.</span>
+                                        <span>Entrance tickets to attractions and the Tu San Canyon – Nho Que River boat trip.</span>
                                     </li>
                                 @endif
                             </ul>
@@ -524,7 +524,7 @@
                                     <i class="fa-solid fa-xmark"></i>
                                 </div>
                                 <h3 class="text-base font-extrabold text-rose-950 uppercase tracking-wider">
-                                    Không bao gồm (What's Excluded)
+                                    What's Excluded
                                 </h3>
                             </div>
 
@@ -539,19 +539,19 @@
                                 @else
                                     <li class="flex items-start gap-3">
                                         <i class="fa-solid fa-circle-xmark text-rose-500 text-base mt-0.5 flex-shrink-0"></i>
-                                        <span>Đồ uống bia, rượu, nước ngọt cá nhân phát sinh ngoài thực đơn.</span>
+                                        <span>Personal drinks (beer, wine, soft drinks) outside the set menu.</span>
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <i class="fa-solid fa-circle-xmark text-rose-500 text-base mt-0.5 flex-shrink-0"></i>
-                                        <span>Tiền bồi dưỡng (Tip) cho bác tài và hướng dẫn viên (tùy tâm).</span>
+                                        <span>Tips for drivers and guides (at your discretion).</span>
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <i class="fa-solid fa-circle-xmark text-rose-500 text-base mt-0.5 flex-shrink-0"></i>
-                                        <span>Bảo hiểm du lịch tự túc và chi tiêu mua sắm quà lưu niệm cá nhân.</span>
+                                        <span>Personal travel insurance and souvenir shopping.</span>
                                     </li>
                                     <li class="flex items-start gap-3">
                                         <i class="fa-solid fa-circle-xmark text-rose-500 text-base mt-0.5 flex-shrink-0"></i>
-                                        <span>Thuế giá trị gia tăng VAT (nếu quý khách yêu cầu xuất hóa đơn).</span>
+                                        <span>VAT (if you require an official invoice).</span>
                                     </li>
                                 @endif
                             </ul>
@@ -559,13 +559,13 @@
                     </div>
                 </div>
 
-                <!-- SECTION: FAQS (CÂU HỎI THƯỜNG GẶP) -->
+                <!-- SECTION: FAQS -->
                 @if(!empty($tour->faqs) && is_array($tour->faqs) && count($tour->faqs) > 0)
                 <div id="faqs" class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200/80 shadow-sm scroll-mt-36">
                     <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
                         <div>
-                            <span class="text-chestnut font-extrabold text-xs uppercase tracking-widest block mb-1">Giải đáp thắc mắc</span>
-                            <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Câu hỏi thường gặp (FAQ)</h2>
+                            <span class="text-chestnut font-extrabold text-xs uppercase tracking-widest block mb-1">Your questions answered</span>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Frequently Asked Questions</h2>
                         </div>
                         <div class="w-10 h-10 rounded-2xl bg-orange-50 text-chestnut flex items-center justify-center text-lg">
                             <i class="fa-solid fa-circle-question"></i>
@@ -601,12 +601,12 @@
                 </div>
                 @endif
 
-                <!-- SECTION: REVIEWS (ĐÁNH GIÁ TRIPADVISOR) -->
+                <!-- SECTION: REVIEWS (TRIPADVISOR) -->
                 <div id="reviews" class="bg-white rounded-3xl p-6 sm:p-10 border border-gray-200/80 shadow-sm scroll-mt-36">
                     <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-gray-100 mb-8 gap-4">
                         <div>
-                            <span class="text-chestnut font-extrabold text-xs uppercase tracking-widest block mb-1">Cảm nhận khách hàng</span>
-                            <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Đánh giá từ du khách thực tế</h2>
+                            <span class="text-chestnut font-extrabold text-xs uppercase tracking-widest block mb-1">Traveler feedback</span>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900">Reviews from real travelers</h2>
                         </div>
                         <!-- Big Rating Card -->
                         <div class="flex items-center gap-3 bg-amber-50 border border-amber-200 px-4 py-3 rounded-2xl">
@@ -621,7 +621,7 @@
                                     </div>
                                 </div>
                                 <span class="text-[10px] text-gray-500 font-semibold block mt-0.5">
-                                    {{ $actualReviewCount > 0 ? "{$actualReviewCount} Đánh giá thực tế" : 'Chưa có đánh giá' }}
+                                    {{ $actualReviewCount > 0 ? $actualReviewCount . ' verified ' . Str::plural('review', $actualReviewCount) : 'No reviews yet' }}
                                 </span>
                             </div>
                         </div>
@@ -655,7 +655,7 @@
                                             <div>
                                                 <h4 class="font-extrabold text-sm text-gray-900">{{ $rev->author_name }}</h4>
                                                 <span class="text-[11px] text-gray-400">
-                                                    {{ $rev->author_location ? $rev->author_location . ' • ' : '' }}{{ $rev->review_date ?? 'Gần đây' }}
+                                                    {{ $rev->author_location ? $rev->author_location . ' • ' : '' }}{{ $rev->review_date ?? 'Recently' }}
                                                 </span>
                                             </div>
                                         </div>
@@ -680,7 +680,7 @@
                         @else
                             <div class="text-center py-8 text-gray-400 text-xs sm:text-sm">
                                 <i class="fa-regular fa-comment-dots text-2xl text-gray-300 block mb-2"></i>
-                                <span>Chưa có đánh giá nào cho chuyến đi này. Hãy liên hệ với chúng tôi để trở thành người trải nghiệm đầu tiên!</span>
+                                <span>There are no reviews for this trip yet. Contact us and be the first to experience it!</span>
                             </div>
                         @endif
                     </div>
@@ -691,12 +691,12 @@
                 <!-- ============================================================== -->
                 <div id="enquiry" class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-200/90 shadow-sm mt-10">
                     <div class="mb-6">
-                        <span class="text-xs font-extrabold text-chestnut uppercase tracking-widest block mb-1">Tư vấn miễn phí</span>
+                        <span class="text-xs font-extrabold text-chestnut uppercase tracking-widest block mb-1">Free consultation</span>
                         <h2 class="text-xl sm:text-2xl font-black text-gray-900 tracking-tight">
                             You can send your enquiry via the form below.
                         </h2>
                         <p class="text-xs sm:text-sm text-gray-500 mt-1.5 leading-relaxed">
-                            Hãy gửi thông tin của bạn, đội ngũ chuyên gia bản địa của Chestnut Travel sẽ phản hồi chi tiết lịch trình và báo giá tốt nhất trong vòng 15-30 phút.
+                            Send us your details and Chestnut Travel's local experts will reply with a detailed itinerary and the best quote within 15-30 minutes.
                         </p>
                     </div>
 
@@ -704,13 +704,21 @@
                         <div class="mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm flex items-center gap-3">
                             <i class="fa-solid fa-circle-check text-emerald-600 text-lg"></i>
                             <div>
-                                <span class="font-bold block">Gửi yêu cầu thành công!</span>
+                                <span class="font-bold block">Enquiry sent successfully!</span>
                                 <span>{{ session('enquiry_success') }}</span>
                             </div>
                         </div>
                     @endif
 
-                    <form action="{{ route('tour.enquiry') }}" method="POST" id="tour-enquiry-form" class="space-y-4 text-xs">
+                    <div id="enquiry-status" class="hidden mb-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs sm:text-sm flex items-center gap-3" role="status">
+                        <i class="fa-solid fa-circle-check text-emerald-600 text-lg"></i>
+                        <div>
+                            <span class="font-bold block">Enquiry sent successfully!</span>
+                            <span data-message></span>
+                        </div>
+                    </div>
+
+                    <form action="{{ route('tour.enquiry') }}" method="POST" id="tour-enquiry-form" novalidate class="space-y-4 text-xs">
                         @csrf
                         <input type="hidden" name="tour_id" value="{{ $tour->id }}">
 
@@ -734,7 +742,7 @@
                                 <input type="text" 
                                        id="enquiry_name" 
                                        name="enquiry_name" 
-                                       required 
+                                       required data-required-message="Please enter your name." 
                                        placeholder="Enter Your Name *" 
                                        value="{{ Auth::user()->name ?? old('enquiry_name') }}"
                                        class="w-full bg-white border border-gray-200 focus:border-chestnut rounded-xl px-4 py-3 outline-none transition font-medium">
@@ -748,7 +756,7 @@
                                 <input type="email" 
                                        id="enquiry_email" 
                                        name="enquiry_email" 
-                                       required 
+                                       required data-required-message="Please enter your email address." 
                                        placeholder="Enter Your Email *" 
                                        value="{{ Auth::user()->email ?? old('enquiry_email') }}"
                                        class="w-full bg-white border border-gray-200 focus:border-chestnut rounded-xl px-4 py-3 outline-none transition font-medium">
@@ -784,7 +792,7 @@
                                 <input type="text" 
                                        id="enquiry_contact" 
                                        name="enquiry_contact" 
-                                       required 
+                                       required data-required-message="Please enter your contact number or WhatsApp." 
                                        placeholder="Enter Your Contact Number *" 
                                        value="{{ Auth::user()->phone ?? old('enquiry_contact') }}"
                                        class="w-full bg-white border border-gray-200 focus:border-chestnut rounded-xl px-4 py-3 outline-none transition font-medium">
@@ -799,7 +807,7 @@
                             <textarea id="enquiry_message" 
                                       name="enquiry_message" 
                                       rows="4" 
-                                      placeholder="Bạn cần hỗ trợ điều chỉnh lịch trình, số lượng người, ngày khởi hành, khách sạn..." 
+                                      placeholder="Let us know if you need changes to the itinerary, group size, departure date, hotels..." 
                                       class="w-full bg-white border border-gray-200 focus:border-chestnut rounded-xl p-4 outline-none transition font-medium resize-none"></textarea>
                         </div>
 
@@ -807,7 +815,7 @@
                             <button type="submit" 
                                     class="w-full sm:w-auto bg-[#28B5A4] hover:bg-[#209C8D] text-white font-extrabold text-xs px-8 py-3.5 rounded-xl shadow-lg shadow-[#28B5A4]/25 transition active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
                                 <i class="fa-solid fa-paper-plane"></i>
-                                <span>Send Enquiry (Gửi yêu cầu)</span>
+                                <span>Send Enquiry</span>
                             </button>
                         </div>
                     </form>
@@ -828,15 +836,15 @@
                     @endphp
                     <div class="flex items-center gap-2 flex-wrap">
                         <span class="inline-block bg-[#F59E0B] text-white text-[11px] font-bold px-2.5 py-0.5 rounded-full">
-                            Giảm {{ $discountPercent }}%
+                            {{ $discountPercent }}% OFF
                         </span>
                         @if($tour->is_combo)
                             <span class="inline-block bg-chestnut text-white text-[11px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                                {{ $tour->combo_badge ?: 'GÓI COMBO' }}
+                                {{ $tour->combo_badge ?: 'COMBO PACKAGE' }}
                             </span>
                             @if($tour->calculated_saving > 0)
                                 <span class="inline-block bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
-                                    Tiết kiệm ${{ round($tour->calculated_saving) }}
+                                    Save ${{ round($tour->calculated_saving) }}
                                 </span>
                             @endif
                         @endif
@@ -844,12 +852,12 @@
 
                     <!-- Price from strikethrough -->
                     <div class="mt-2 text-xs text-gray-500 font-medium">
-                        Giá từ <del class="line-through text-gray-400 font-normal">${{ number_format($originalPrice, 0) }}</del>
+                        From <del class="line-through text-gray-400 font-normal">${{ number_format($originalPrice, 0) }}</del>
                     </div>
 
                     <!-- Main Price / Adult -->
                     <div class="text-2xl sm:text-3xl font-black text-gray-900 mt-0.5 mb-4">
-                        ${{ number_format($basePrice, 0) }} <span class="text-xs sm:text-sm font-normal text-gray-500">/ Khách</span>
+                        ${{ number_format($basePrice, 0) }} <span class="text-xs sm:text-sm font-normal text-gray-500">/ person</span>
                     </div>
 
                     <!-- Checkboxes & Guarantees -->
@@ -858,23 +866,23 @@
                             <span class="w-4 h-4 rounded border border-[#28B5A4] text-[#28B5A4] flex items-center justify-center text-[10px] shrink-0 font-bold">
                                 <i class="fa-solid fa-check"></i>
                             </span>
-                            <span class="font-medium text-gray-800">Cam kết giá tốt nhất</span>
-                            <span class="w-3.5 h-3.5 rounded bg-[#28B5A4] text-white text-[9px] font-bold flex items-center justify-center cursor-pointer shrink-0" title="Cam kết chất lượng chuẩn mực và giá tốt nhất">?</span>
+                            <span class="font-medium text-gray-800">Best price guaranteed</span>
+                            <span class="w-3.5 h-3.5 rounded bg-[#28B5A4] text-white text-[9px] font-bold flex items-center justify-center cursor-pointer shrink-0" title="Guaranteed quality service at the best price">?</span>
                         </div>
 
                         <div class="flex items-center gap-2">
                             <span class="w-4 h-4 rounded border border-[#28B5A4] text-[#28B5A4] flex items-center justify-center text-[10px] shrink-0 font-bold">
                                 <i class="fa-solid fa-check"></i>
                             </span>
-                            <span class="font-medium text-gray-800">Không phụ phí ẩn</span>
-                            <span class="w-3.5 h-3.5 rounded bg-[#28B5A4] text-white text-[9px] font-bold flex items-center justify-center cursor-pointer shrink-0" title="Giá trọn gói minh bạch, không phí ẩn">?</span>
+                            <span class="font-medium text-gray-800">No hidden fees</span>
+                            <span class="w-3.5 h-3.5 rounded bg-[#28B5A4] text-white text-[9px] font-bold flex items-center justify-center cursor-pointer shrink-0" title="Transparent all-inclusive pricing, no hidden fees">?</span>
                         </div>
 
                         <div class="flex items-center gap-2">
                             <span class="w-4 h-4 rounded border border-[#28B5A4] text-[#28B5A4] flex items-center justify-center text-[10px] shrink-0 font-bold">
                                 <i class="fa-solid fa-check"></i>
                             </span>
-                            <span class="font-medium text-gray-800">Hướng dẫn viên bản địa am hiểu</span>
+                            <span class="font-medium text-gray-800">Knowledgeable local guides</span>
                         </div>
                     </div>
 
@@ -883,13 +891,13 @@
                         <button type="button" 
                                 onclick="openBookingFromWidget()" 
                                 class="w-full bg-[#E88024] hover:bg-[#d6721b] text-white font-bold py-3.5 px-6 rounded-lg text-sm sm:text-base shadow-sm transition active:scale-98 flex items-center justify-center cursor-pointer">
-                            Kiểm tra chỗ & Đặt tour
+                            Check Availability & Book
                         </button>
                     </div>
 
                     <!-- Need help with booking footer text -->
                     <div class="mt-4 text-center text-xs text-gray-500 font-medium">
-                        Cần hỗ trợ tư vấn? <a href="#enquiry" class="text-[#28B5A4] hover:underline">Gửi tin nhắn cho chúng tôi</a>
+                        Need help with booking? <a href="#enquiry" class="text-[#28B5A4] hover:underline">Send us a message</a>
                     </div>
                 </div>
 
@@ -901,7 +909,7 @@
                         <span class="w-8 h-8 rounded-xl bg-orange-100 text-chestnut flex items-center justify-center text-sm">
                             <i class="fa-solid fa-circle-info"></i>
                         </span>
-                        <span>Thông tin chuyến đi</span>
+                        <span>Trip information</span>
                     </h3>
                     <ul class="space-y-3.5 text-xs">
                         <li class="flex items-start gap-3">
@@ -909,8 +917,8 @@
                                 <i class="fa-solid fa-language"></i>
                             </span>
                             <div>
-                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Ngôn ngữ</span>
-                                <span class="font-bold text-gray-800 text-xs sm:text-sm">{{ $tour->languages ?? 'Tiếng Việt / English' }}</span>
+                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Languages</span>
+                                <span class="font-bold text-gray-800 text-xs sm:text-sm">{{ $tour->languages ?? 'English / Vietnamese' }}</span>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
@@ -918,8 +926,8 @@
                                 <i class="fa-regular fa-clock"></i>
                             </span>
                             <div>
-                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Thời gian</span>
-                                <span class="font-bold text-gray-800 text-xs sm:text-sm">{{ $tour->duration_days }} Ngày - {{ $tour->duration_nights }} Đêm</span>
+                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Duration</span>
+                                <span class="font-bold text-gray-800 text-xs sm:text-sm">{{ $tour->duration_days }} {{ Str::plural('Day', $tour->duration_days) }} - {{ $tour->duration_nights }} {{ Str::plural('Night', $tour->duration_nights) }}</span>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
@@ -927,8 +935,8 @@
                                 <i class="fa-solid fa-hotel"></i>
                             </span>
                             <div>
-                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Nơi lưu trú</span>
-                                <span class="font-bold text-gray-800 text-xs sm:text-sm">Homestay bản địa / Khách sạn tiện nghi</span>
+                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Accommodation</span>
+                                <span class="font-bold text-gray-800 text-xs sm:text-sm">Local homestay / Comfortable hotel</span>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
@@ -936,8 +944,8 @@
                                 <i class="fa-regular fa-id-card"></i>
                             </span>
                             <div>
-                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Giấy tờ cần có</span>
-                                <span class="font-bold text-gray-800 text-xs sm:text-sm">CCCD / Hộ chiếu (Bằng lái nếu tự lái)</span>
+                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Required documents</span>
+                                <span class="font-bold text-gray-800 text-xs sm:text-sm">ID card / Passport (driving licence if self-riding)</span>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
@@ -945,8 +953,8 @@
                                 <i class="fa-solid fa-plane-departure"></i>
                             </span>
                             <div>
-                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Điểm đón</span>
-                                <span class="font-bold text-gray-800 text-xs sm:text-sm">{{ $tour->departure_from ?? 'Hà Nội' }}</span>
+                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Pickup point</span>
+                                <span class="font-bold text-gray-800 text-xs sm:text-sm">{{ $tour->departure_from ?? 'Hanoi' }}</span>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
@@ -954,8 +962,8 @@
                                 <i class="fa-solid fa-bus"></i>
                             </span>
                             <div>
-                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Phương tiện</span>
-                                <span class="font-bold text-gray-800 text-xs sm:text-sm">{{ $tour->transportation ?? 'Xe Limousine VIP / Xe máy chuyên dụng' }}</span>
+                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Transportation</span>
+                                <span class="font-bold text-gray-800 text-xs sm:text-sm">{{ $tour->transportation ?? 'VIP Limousine / Touring motorbike' }}</span>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
@@ -963,8 +971,8 @@
                                 <i class="fa-solid fa-person-hiking"></i>
                             </span>
                             <div>
-                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Loại hình tour</span>
-                                <span class="font-bold text-gray-800 text-xs sm:text-sm">{{ $tour->trip_type ?? 'Trải nghiệm bản địa / Easy Rider' }}</span>
+                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Trip type</span>
+                                <span class="font-bold text-gray-800 text-xs sm:text-sm">{{ $tour->trip_type ?? 'Local experience / Easy Rider' }}</span>
                             </div>
                         </li>
                         <li class="flex items-start gap-3">
@@ -972,8 +980,8 @@
                                 <i class="fa-solid fa-users"></i>
                             </span>
                             <div>
-                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Quy mô đoàn</span>
-                                <span class="font-bold text-gray-800 text-xs sm:text-sm">{{ $tour->group_size ?? 'Nhóm nhỏ 6 - 10 người' }}</span>
+                                <span class="text-gray-400 block font-semibold text-[10px] uppercase tracking-wider">Group size</span>
+                                <span class="font-bold text-gray-800 text-xs sm:text-sm">{{ $tour->group_size ?? 'Small group of 6 - 10 people' }}</span>
                             </div>
                         </li>
                     </ul>
@@ -988,7 +996,7 @@
                             <span class="w-8 h-8 rounded-xl bg-orange-100 text-chestnut flex items-center justify-center text-sm">
                                 <i class="fa-solid fa-fire"></i>
                             </span>
-                            <span>Tour nổi bật khác</span>
+                            <span>Other featured tours</span>
                         </h3>
                         <div class="space-y-4">
                             @foreach($featuredTours as $ft)
@@ -1006,7 +1014,7 @@
                                         </a>
                                         @if($hasDiscount)
                                             <span class="absolute top-2.5 left-2.5 bg-red-600 text-white font-black text-[10px] uppercase px-2 py-0.5 rounded-full shadow">
-                                                Giảm {{ $discountPct }}%
+                                                {{ $discountPct }}% OFF
                                             </span>
                                         @endif
                                         <div class="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur-sm text-white text-xs font-black px-2.5 py-1 rounded-xl">
@@ -1023,11 +1031,11 @@
                                         <div class="flex items-center justify-between text-[11px] text-gray-500 font-medium pt-2 border-t border-gray-100">
                                             <span class="flex items-center gap-1">
                                                 <i class="fa-solid fa-location-dot text-chestnut text-[10px]"></i>
-                                                <span>{{ $ft->destination->name ?? 'Việt Nam' }}</span>
+                                                <span>{{ $ft->destination->name ?? 'Vietnam' }}</span>
                                             </span>
                                             <span class="flex items-center gap-1">
                                                 <i class="fa-regular fa-clock text-gray-400 text-[10px]"></i>
-                                                <span>{{ $ft->duration_days }}N - {{ $ft->duration_nights }}Đ</span>
+                                                <span>{{ $ft->duration_days }}D - {{ $ft->duration_nights }}N</span>
                                             </span>
                                         </div>
                                     </div>
@@ -1050,16 +1058,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="mb-10 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
-                <span class="text-xs font-extrabold text-chestnut uppercase tracking-widest block mb-1">Khám phá thêm</span>
-                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">Tour liên quan</h2>
+                <span class="text-xs font-extrabold text-chestnut uppercase tracking-widest block mb-1">Explore more</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-gray-900 tracking-tight">Related tours</h2>
             </div>
             <a href="{{ route('home') }}#tours-section" class="text-xs font-bold text-chestnut hover:underline flex items-center gap-1.5 self-start sm:self-end">
-                <span>Xem tất cả chuyến đi khác</span>
-                <i class="fa-solid fa-arrow-right text-[10px]"></i>
-            </a>
-        </div>
-            <a href="{{ route('home') }}#tours-section" class="text-xs font-bold text-chestnut hover:underline flex items-center gap-1.5 self-start sm:self-end">
-                <span>Xem tất cả chuyến đi khác</span>
+                <span>View all other trips</span>
                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </a>
         </div>
@@ -1477,43 +1480,60 @@
     // Start auto slide on page load
     startAutoSlide();
 
-    // Enquiry form AJAX submit handler
+    // Enquiry form AJAX submit handler with inline validation
     const enquiryForm = document.getElementById('tour-enquiry-form');
     if (enquiryForm) {
-        enquiryForm.addEventListener('submit', function(e) {
+        enquiryForm.addEventListener('submit', async function(e) {
             e.preventDefault();
+            const statusBox = document.getElementById('enquiry-status');
+            if (statusBox) statusBox.classList.add('hidden');
+
+            const firstInvalid = validateFields(enquiryForm);
+            if (firstInvalid) {
+                showToast('Please complete the highlighted fields to send your enquiry.', 'error');
+                focusField(firstInvalid);
+                return;
+            }
+
             const btn = enquiryForm.querySelector('button[type="submit"]');
             const originalBtnHtml = btn.innerHTML;
             btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Đang gửi yêu cầu...</span>';
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Sending your enquiry...</span>';
 
-            const formData = new FormData(enquiryForm);
-
-            fetch(enquiryForm.action, {
-                method: 'POST',
-                headers: {
-                    'X-Requested-With': 'XMLHttpRequest',
-                    'Accept': 'application/json',
-                },
-                body: formData
-            })
-            .then(res => res.json())
-            .then(data => {
+            let result;
+            try {
+                const response = await fetch(enquiryForm.action, {
+                    method: 'POST',
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Accept': 'application/json',
+                    },
+                    body: new FormData(enquiryForm),
+                });
+                result = await readJsonResponse(response);
+            } catch (err) {
                 btn.disabled = false;
                 btn.innerHTML = originalBtnHtml;
-                if (data.success) {
-                    alert(data.message || 'Cảm ơn bạn! Yêu cầu tư vấn của bạn đã được gửi thành công.');
-                    enquiryForm.reset();
-                } else {
-                    alert('Có lỗi xảy ra, vui lòng thử lại hoặc liên hệ hotline.');
+                showToast(NETWORK_ERROR_MESSAGE, 'error');
+                return;
+            }
+
+            btn.disabled = false;
+            btn.innerHTML = originalBtnHtml;
+
+            if (result.ok) {
+                const message = result.data.message || 'Thank you! Your enquiry has been sent successfully.';
+                showToast(message, 'success', 7000);
+                if (statusBox) {
+                    statusBox.querySelector('[data-message]').textContent = message;
+                    statusBox.classList.remove('hidden');
                 }
-            })
-            .catch(err => {
-                btn.disabled = false;
-                btn.innerHTML = originalBtnHtml;
-                // Fallback normal form submit if error
-                enquiryForm.submit();
-            });
+                enquiryForm.querySelectorAll('textarea').forEach(t => t.value = '');
+                return;
+            }
+
+            focusField(applyServerErrors(enquiryForm, result.data.errors));
+            showToast(result.message || 'Something went wrong. Please try again or contact our hotline.', 'error');
         });
     }
 </script>

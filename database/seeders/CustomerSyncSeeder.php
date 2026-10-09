@@ -27,7 +27,7 @@ class CustomerSyncSeeder extends Seeder
             $user = User::where('email', $email)->first();
             if (!$user) {
                 $user = User::create([
-                    'name' => $booking->customer_name ?: 'Khách hàng',
+                    'name' => $booking->customer_name ?: 'Customer',
                     'email' => $email,
                     'phone' => $booking->customer_phone,
                     'role' => 'customer',

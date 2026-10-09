@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', option('site_name', 'Chestnut Travel') . ' - ' . option('site_tagline', 'Handling all your travel issues'))</title>
-    <meta name="description" content="@yield('meta_description', 'Chestnut Travel - Du lịch trải nghiệm uy tín và thoải mái hàng đầu Việt Nam. Khám phá Hà Giang Loop, Sa Pa, Vịnh Lan Hạ, Ninh Bình.')">
+    <meta name="description" content="@yield('meta_description', 'Chestnut Travel - Trusted and comfortable authentic travel experiences in Vietnam. Explore the Ha Giang Loop, Sa Pa, Lan Ha Bay and Ninh Binh.')">
     <link rel="canonical" href="{{ url()->current() }}">
     <link rel="icon" type="image/x-icon" href="{{ option_image('site_favicon', asset('storage/site/favicon.png')) }}">
     <link rel="shortcut icon" href="{{ option_image('site_favicon', asset('storage/site/favicon.png')) }}">
@@ -24,7 +24,7 @@
             theme: {
                 extend: {
                     colors: {
-                        chestnut: '#28B5A4', // Màu xanh ngọc thương hiệu Chestnut Travel
+                        chestnut: '#28B5A4', // Chestnut Travel brand teal
                         'chestnut-hover': '#209C8D',
                         'chestnut-dark': '#17786C',
                         'chestnut-orange': '#E48E45',
@@ -44,10 +44,10 @@
 
     <style>
         :root {
-            --primary: #28B5A4; /* Màu xanh ngọc chuẩn của Chestnut Travel */
+            --primary: #28B5A4; /* Chestnut Travel brand teal */
             --primary-hover: #209C8D;
             --primary-dark: #17786C;
-            --secondary: #E48E45; /* Màu cam phụ (phù hiệu, giá, mũi tên) */
+            --secondary: #E48E45; /* Secondary orange (badges, prices, arrows) */
             --secondary-hover: #D27B32;
             --dark: #1E2329;
             --dark-surface: #2B313A;
@@ -182,18 +182,18 @@
 
             <!-- Right Actions: Wishlist (Always available for both Guest & Auth), Booking Lookup & Auth Modal -->
             <div class="flex items-center space-x-4">
-                <!-- Danh sách yêu thích (Luôn hiển thị cho khách vãng lai và thành viên, dẫn trực tiếp vào trang /wishlist - 1 nét vẽ, không đỏ) -->
-                <a href="{{ route('wishlist') }}" class="text-gray-600 hover:text-gray-900 flex items-center gap-1.5 transition font-medium text-xs cursor-pointer group" title="Danh sách yêu thích">
+                <!-- Wishlist (always visible for guests and members, links to /wishlist) -->
+                <a href="{{ route('wishlist') }}" class="text-gray-600 hover:text-gray-900 flex items-center gap-1.5 transition font-medium text-xs cursor-pointer group" title="Wishlist">
                     <i class="fa-regular fa-heart text-xs text-gray-500 group-hover:text-gray-900 transition"></i>
-                    <span>Danh sách yêu thích</span>
+                    <span>Wishlist</span>
                     <span id="topbar-wishlist-count" class="bg-gray-800 text-white text-[10px] font-bold px-1.5 py-0.2 rounded-full hidden leading-none">0</span>
                 </a>
 
                 @auth
-                    <!-- Tra cứu tour (Chỉ hiển thị cho tài khoản đã đăng nhập) -->
+                    <!-- Booking lookup (signed-in users only) -->
                     <a href="{{ route('booking.lookup') }}" class="hover:text-chestnut text-gray-600 flex items-center gap-1 transition font-medium text-xs">
                         <i class="fa-solid fa-magnifying-glass text-[11px] text-gray-400"></i>
-                        <span>Tra cứu tour</span>
+                        <span>Find my booking</span>
                     </a>
 
                     <!-- Logged in user dropdown -->
@@ -208,39 +208,39 @@
                         <div class="dropdown-menu absolute right-0 top-full pt-1.5 w-48 z-50">
                             <div class="bg-white text-gray-800 rounded-xl shadow-xl py-2 border border-gray-100 ring-1 ring-black/5">
                                 <div class="px-4 py-2 border-b border-gray-100 text-xs text-gray-500">
-                                    Xin chào, <span class="font-bold text-gray-900 block truncate">{{ Auth::user()->name }}</span>
+                                    Hello, <span class="font-bold text-gray-900 block truncate">{{ Auth::user()->name }}</span>
                                 </div>
                                 <a href="{{ route('my-account') }}" class="block px-4 py-2 hover:bg-orange-50 hover:text-chestnut transition text-xs flex items-center gap-2">
-                                    <i class="fa-solid fa-ticket text-chestnut"></i> Đơn tour của tôi
+                                    <i class="fa-solid fa-ticket text-chestnut"></i> My bookings
                                 </a>
                                 <a href="{{ route('wishlist') }}" class="block px-4 py-2 hover:bg-gray-50 hover:text-gray-900 transition text-xs flex items-center gap-2 cursor-pointer">
-                                    <i class="fa-regular fa-heart text-gray-500"></i> Danh sách yêu thích
+                                    <i class="fa-regular fa-heart text-gray-500"></i> Wishlist
                                 </a>
                                 <a href="{{ route('booking.lookup') }}" class="block px-4 py-2 hover:bg-orange-50 hover:text-chestnut transition text-xs flex items-center gap-2">
-                                    <i class="fa-solid fa-magnifying-glass text-gray-500"></i> Tra cứu đơn đặt tour
+                                    <i class="fa-solid fa-magnifying-glass text-gray-500"></i> Find my booking
                                 </a>
                                 <a href="{{ route('my-account') }}#profile" class="block px-4 py-2 hover:bg-orange-50 hover:text-chestnut transition text-xs flex items-center gap-2">
-                                    <i class="fa-solid fa-user-gear text-gray-500"></i> Thông tin tài khoản
+                                    <i class="fa-solid fa-user-gear text-gray-500"></i> Account settings
                                 </a>
                                 @if(Auth::user()->email === 'admin@chestnuttravel.net' || Auth::user()->email === 'admin@gmail.com')
                                     <a href="{{ url('/admin') }}" target="_blank" class="block px-4 py-2 hover:bg-amber-50 text-amber-700 transition text-xs flex items-center gap-2 font-semibold">
-                                        <i class="fa-solid fa-shield-halved"></i> Trang Quản trị (Admin)
+                                        <i class="fa-solid fa-shield-halved"></i> Admin panel
                                     </a>
                                 @endif
                                 <form action="{{ route('customer.logout') }}" method="POST" class="border-t border-gray-100 mt-1">
                                     @csrf
                                     <button type="submit" class="w-full text-left px-4 py-2 hover:bg-red-50 text-red-600 transition text-xs flex items-center gap-2">
-                                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất
+                                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Sign out
                                     </button>
                                 </form>
                             </div>
                         </div>
                     </div>
                 @else
-                    <!-- Guest: Open Auth Modal (Không hiển thị Tra cứu tour khi chưa đăng nhập) -->
+                    <!-- Guest: open auth modal (booking lookup hidden until signed in) -->
                     <button onclick="openAuthModal('login')" class="text-gray-700 hover:text-chestnut flex items-center gap-1.5 transition font-semibold">
                         <i class="fa-regular fa-user text-chestnut"></i>
-                        <span>Đăng nhập / Đăng ký</span>
+                        <span>Sign in / Register</span>
                     </button>
                 @endauth
             </div>
@@ -287,12 +287,12 @@
                                 <!-- Destination Dropdown (Auto-loaded from Destinations Database) -->
                                 <div class="relative group">
                                     <button class="px-3 py-2 rounded-lg hover:text-chestnut hover:bg-teal-50 transition flex items-center gap-1">
-                                        <span>{{ $mItem['title'] ?? 'Điểm đến' }}</span>
+                                        <span>{{ $mItem['title'] ?? 'Destinations' }}</span>
                                         <i class="fa-solid fa-chevron-down text-[10px] text-gray-400 group-hover:rotate-180 transition"></i>
                                     </button>
                                     <div class="dropdown-menu absolute left-0 top-full pt-1.5 w-64 z-50">
                                         <div class="bg-white rounded-2xl shadow-2xl py-3 border border-gray-100 ring-1 ring-black/5 max-h-96 overflow-y-auto">
-                                            <div class="px-4 py-1 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Điểm đến nổi bật</div>
+                                            <div class="px-4 py-1 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Top destinations</div>
                                             @foreach($navDestinations as $d)
                                                 <a href="{{ route('home') }}?destination={{ $d->slug }}#tours-section" class="flex items-center justify-between px-4 py-2 hover:bg-teal-50 hover:text-chestnut transition">
                                                     <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-[#28B5A4] text-xs"></i> {{ $d->name }}</span>
@@ -309,12 +309,12 @@
                                 <!-- Activities Dropdown (Auto-loaded from Activities Database) -->
                                 <div class="relative group">
                                     <button class="px-3 py-2 rounded-lg hover:text-chestnut hover:bg-teal-50 transition flex items-center gap-1">
-                                        <span>{{ $mItem['title'] ?? 'Hoạt động' }}</span>
+                                        <span>{{ $mItem['title'] ?? 'Activities' }}</span>
                                         <i class="fa-solid fa-chevron-down text-[10px] text-gray-400 group-hover:rotate-180 transition"></i>
                                     </button>
                                     <div class="dropdown-menu absolute left-0 top-full pt-1.5 w-64 z-50">
                                         <div class="bg-white rounded-2xl shadow-2xl py-3 border border-gray-100 ring-1 ring-black/5 max-h-96 overflow-y-auto">
-                                            <div class="px-4 py-1 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Hoạt động du lịch</div>
+                                            <div class="px-4 py-1 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Travel activities</div>
                                             @foreach($navActivities as $act)
                                                 <a href="{{ route('activities.show', $act->slug) }}" class="flex items-center justify-between px-4 py-2 hover:bg-teal-50 hover:text-chestnut transition">
                                                     <span class="flex items-center gap-2">
@@ -372,20 +372,20 @@
                         @endforeach
                     @else
                         <!-- Fallback Static Nav if Menu is not configured yet -->
-                        <a href="{{ route('home') }}" class="px-3 py-2 rounded-lg text-chestnut hover:bg-teal-50 transition">Trang chủ</a>
+                        <a href="{{ route('home') }}" class="px-3 py-2 rounded-lg text-chestnut hover:bg-teal-50 transition">Home</a>
 
                         <!-- Package Combo (Matching https://chestnuttravel.net/package/) -->
                         <div class="relative group">
                             <a href="{{ route('package.index') }}" class="px-3 py-2 rounded-lg hover:text-chestnut hover:bg-teal-50 transition flex items-center gap-1.5 {{ request()->routeIs('package.*') ? 'text-chestnut bg-teal-50/50' : '' }}">
                                 <span>Package Combo</span>
-                                <span class="text-[9px] bg-orange-100 text-orange-600 px-1.5 py-0.2 rounded-full font-bold uppercase">Tiết kiệm</span>
+                                <span class="text-[9px] bg-orange-100 text-orange-600 px-1.5 py-0.2 rounded-full font-bold uppercase">Save</span>
                                 <i class="fa-solid fa-chevron-down text-[10px] text-gray-400 group-hover:rotate-180 transition"></i>
                             </a>
                             <div class="dropdown-menu absolute left-0 top-full pt-1.5 w-64 z-50">
                                 <div class="bg-white rounded-2xl shadow-2xl py-3 border border-gray-100 ring-1 ring-black/5">
-                                    <div class="px-4 py-1 text-[11px] font-bold text-gray-400 uppercase tracking-wider">Gói Tour Combo Trọn Gói</div>
+                                    <div class="px-4 py-1 text-[11px] font-bold text-gray-400 uppercase tracking-wider">All-inclusive combo packages</div>
                                     <a href="{{ route('package.index') }}" class="flex items-center justify-between px-4 py-2 hover:bg-teal-50 hover:text-chestnut transition">
-                                        <span class="flex items-center gap-2"><i class="fa-solid fa-gift text-chestnut text-xs"></i> Tất cả Package Combo</span>
+                                        <span class="flex items-center gap-2"><i class="fa-solid fa-gift text-chestnut text-xs"></i> All package combos</span>
                                         <span class="text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-bold">Hot</span>
                                     </a>
                                     <a href="{{ route('package.index', ['region' => 'north']) }}" class="flex items-center justify-between px-4 py-2 hover:bg-teal-50 hover:text-chestnut transition">
@@ -399,12 +399,12 @@
                         </div>
 
                         <a href="{{ route('customized-tour') }}" class="px-3 py-2 rounded-lg hover:text-chestnut hover:bg-teal-50 transition flex items-center gap-1">
-                            <span>Tùy chỉnh Tour</span>
+                            <span>Customize Tour</span>
                             <span class="text-[9px] bg-red-500 text-white px-1.5 py-0.2 rounded-full font-bold uppercase">Hot</span>
                         </a>
                         <a href="{{ route('blog.index') }}" class="px-3 py-2 rounded-lg hover:text-chestnut hover:bg-teal-50 transition">Blog & Tips</a>
-                        <a href="#reviews-section" class="px-3 py-2 rounded-lg hover:text-chestnut hover:bg-teal-50 transition">Đánh giá</a>
-                        <a href="#contact-footer" class="px-3 py-2 rounded-lg hover:text-chestnut hover:bg-teal-50 transition">Liên hệ</a>
+                        <a href="#reviews-section" class="px-3 py-2 rounded-lg hover:text-chestnut hover:bg-teal-50 transition">Reviews</a>
+                        <a href="#contact-footer" class="px-3 py-2 rounded-lg hover:text-chestnut hover:bg-teal-50 transition">Contact</a>
                     @endif
                 </nav>
 
@@ -415,16 +415,16 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
 
-                    <!-- Wishlist Quick Button (Dẫn trực tiếp vào trang /wishlist - 1 nét vẽ, không đỏ) -->
-                    <a href="{{ route('wishlist') }}" class="w-10 h-10 rounded-full border border-gray-200 text-gray-600 hover:text-gray-900 hover:border-gray-400 transition flex items-center justify-center relative cursor-pointer group" title="Danh sách yêu thích">
+                    <!-- Wishlist quick button (links to /wishlist) -->
+                    <a href="{{ route('wishlist') }}" class="w-10 h-10 rounded-full border border-gray-200 text-gray-600 hover:text-gray-900 hover:border-gray-400 transition flex items-center justify-center relative cursor-pointer group" title="Wishlist">
                         <i class="fa-regular fa-heart text-base text-gray-500 group-hover:text-gray-900 transition"></i>
                         <span id="nav-wishlist-badge" class="absolute -top-1 -right-1 bg-gray-800 text-white text-[9px] font-bold w-4 h-4 rounded-full flex items-center justify-center hidden leading-none">0</span>
                     </a>
 
-                    <!-- CTA Customize Tour (Dẫn trực tiếp vào trang /customized-tour như Chestnut Travel) -->
+                    <!-- CTA Customize Tour (links to /customized-tour) -->
                     <a href="{{ route('customized-tour') }}" class="bg-[#28B5A4] hover:bg-[#209C8D] text-white px-5 py-2.5 rounded-full text-xs font-bold shadow-md shadow-teal-500/20 transition transform active:scale-95 flex items-center gap-2">
                         <i class="fa-solid fa-sliders"></i>
-                        <span>Tùy chỉnh Tour</span>
+                        <span>Customize Tour</span>
                     </a>
 
                     <!-- Mobile Menu Hamburger -->
@@ -437,27 +437,27 @@
 
         <!-- MOBILE MENU DRAWER -->
         <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 pt-2 pb-6 space-y-2">
-            <a href="{{ route('home') }}" class="block px-3 py-2 text-base font-semibold text-chestnut">Trang chủ</a>
+            <a href="{{ route('home') }}" class="block px-3 py-2 text-base font-semibold text-chestnut">Home</a>
             <a href="{{ route('customized-tour') }}" class="block px-3 py-2 text-base font-semibold text-gray-800 hover:text-chestnut flex items-center justify-between">
                 <span class="flex items-center gap-2">
                     <i class="fa-solid fa-sliders text-[#28B5A4]"></i>
-                    <span>Tùy chỉnh Tour</span>
+                    <span>Customize Tour</span>
                 </span>
                 <span class="text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-bold uppercase">Hot</span>
             </a>
 
-            <!-- Combo Trọn gói in Mobile -->
+            <!-- Package combos in mobile -->
             <a href="{{ route('package.index') }}" class="block px-3 py-2 text-base font-semibold text-gray-800 hover:text-chestnut flex items-center justify-between">
                 <span class="flex items-center gap-2">
                     <i class="fa-solid fa-gift text-orange-500"></i>
-                    <span>Combo Trọn gói</span>
+                    <span>Package Combos</span>
                 </span>
                 <span class="text-[10px] bg-red-100 text-red-600 px-2 py-0.5 rounded-full font-bold uppercase">HOT</span>
             </a>
             
             <!-- Destinations in Mobile -->
             <div class="border-t border-gray-100 my-1 pt-2">
-                <p class="px-3 text-xs font-bold text-gray-400 uppercase tracking-wider">Điểm đến</p>
+                <p class="px-3 text-xs font-bold text-gray-400 uppercase tracking-wider">Destinations</p>
                 @foreach(($navDestinations ?? \App\Models\Destination::where('is_active', true)->orderBy('sort_order', 'asc')->get()) as $d)
                     <a href="{{ route('home') }}?destination={{ $d->slug }}#tours-section" class="block px-4 py-1.5 text-sm text-gray-700 hover:text-chestnut">{{ $d->name }}</a>
                 @endforeach
@@ -465,7 +465,7 @@
 
             <!-- Activities in Mobile -->
             <div class="border-t border-gray-100 my-1 pt-2">
-                <p class="px-3 text-xs font-bold text-gray-400 uppercase tracking-wider">Hoạt động (Activities)</p>
+                <p class="px-3 text-xs font-bold text-gray-400 uppercase tracking-wider">Activities</p>
                 @foreach(($navActivities ?? \App\Models\Activity::where('is_active', true)->get()) as $act)
                     <a href="{{ route('activities.show', $act->slug) }}" class="block px-4 py-1.5 text-sm text-gray-700 hover:text-chestnut">{{ $act->name }}</a>
                 @endforeach
@@ -480,18 +480,18 @@
             </div>
 
             <div class="border-t border-gray-100 my-1 pt-2">
-                <!-- Danh sách yêu thích (Tất cả người dùng) -->
+                <!-- Wishlist (all users) -->
                 <a href="{{ route('wishlist') }}" class="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-gray-900 flex items-center gap-2">
-                    <i class="fa-regular fa-heart text-gray-500"></i> Danh sách yêu thích
+                    <i class="fa-regular fa-heart text-gray-500"></i> Wishlist
                 </a>
 
                 @auth
                     <a href="{{ route('booking.lookup') }}" class="block px-3 py-2 text-sm font-semibold text-gray-700 flex items-center gap-2">
-                        <i class="fa-solid fa-magnifying-glass text-gray-400"></i> Tra cứu đơn đặt tour
+                        <i class="fa-solid fa-magnifying-glass text-gray-400"></i> Find my booking
                     </a>
-                    <a href="{{ route('my-account') }}" class="block px-3 py-2 text-sm font-semibold text-chestnut">Tài khoản của tôi</a>
+                    <a href="{{ route('my-account') }}" class="block px-3 py-2 text-sm font-semibold text-chestnut">My account</a>
                 @else
-                    <button onclick="openAuthModal('login')" class="w-full text-left px-3 py-2 text-sm font-semibold text-chestnut">Đăng nhập / Đăng ký</button>
+                    <button onclick="openAuthModal('login')" class="w-full text-left px-3 py-2 text-sm font-semibold text-chestnut">Sign in / Register</button>
                 @endauth
             </div>
         </div>
@@ -511,6 +511,14 @@
             <span>{{ session('info') }}</span>
             <button onclick="document.getElementById('flash-alert').remove()" class="ml-2 text-white/80 hover:text-white">✕</button>
         </div>
+    @endif
+
+    @if($errors->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                showToast(@json($errors->first()), 'error', 7000);
+            });
+        </script>
     @endif
 
     <!-- MAIN CONTENT -->
@@ -581,7 +589,7 @@
 
                 <!-- Col 2: Destinations -->
                 <div>
-                    <h3 class="text-white font-bold text-lg tracking-tight mb-4">Điểm đến</h3>
+                    <h3 class="text-white font-bold text-lg tracking-tight mb-4">Destinations</h3>
                     <ul class="space-y-2.5 text-xs sm:text-sm text-white/85">
                         @php
                             $footerDestinations = ($navDestinations ?? \App\Models\Destination::where('is_active', true)->orderBy('sort_order', 'asc')->get())->take(6);
@@ -593,14 +601,14 @@
                                 </a>
                             </li>
                         @empty
-                            <li><a href="{{ route('home') }}#tours-section" class="hover:text-white hover:underline transition">Tour Du Lịch Việt Nam</a></li>
+                            <li><a href="{{ route('home') }}#tours-section" class="hover:text-white hover:underline transition">Vietnam Tours</a></li>
                         @endforelse
                     </ul>
                 </div>
 
                 <!-- Col 3: Activities -->
                 <div>
-                    <h3 class="text-white font-bold text-lg tracking-tight mb-4">Hoạt động du lịch</h3>
+                    <h3 class="text-white font-bold text-lg tracking-tight mb-4">Activities</h3>
                     <ul class="space-y-2.5 text-xs sm:text-sm text-white/85">
                         @php
                             $footerActivities = ($navActivities ?? \App\Models\Activity::where('is_active', true)->get())->take(6);
@@ -612,20 +620,20 @@
                                 </a>
                             </li>
                         @empty
-                            <li><a href="{{ route('home') }}#tours-section" class="hover:text-white hover:underline transition">Tất cả hoạt động</a></li>
+                            <li><a href="{{ route('home') }}#tours-section" class="hover:text-white hover:underline transition">All activities</a></li>
                         @endforelse
                     </ul>
                 </div>
 
                 <!-- Col 4: Trip Types -->
                 <div>
-                    <h3 class="text-white font-bold text-lg tracking-tight mb-4">Loại hình tour</h3>
+                    <h3 class="text-white font-bold text-lg tracking-tight mb-4">Trip Types</h3>
                     <ul class="space-y-2.5 text-xs sm:text-sm text-white/85">
-                        <li><a href="{{ route('package.index') }}" class="hover:text-white hover:underline transition font-bold text-orange-300 flex items-center gap-1.5"><i class="fa-solid fa-gift text-xs"></i> Tour Combo Trọn Gói</a></li>
-                        <li><a href="{{ route('home') }}?s=Budget#tours-section" class="hover:text-white hover:underline transition">Tour Tiết Kiệm</a></li>
-                        <li><a href="{{ route('home') }}?s=Cultural#tours-section" class="hover:text-white hover:underline transition">Văn Hóa Bản Địa</a></li>
-                        <li><a href="{{ route('home') }}?s=Child-friendly#tours-section" class="hover:text-white hover:underline transition">Phù Hợp Gia Đình</a></li>
-                        <li><a href="{{ route('home') }}?s=Adventure#tours-section" class="hover:text-white hover:underline transition">Khám Phá & Trải Nghiệm</a></li>
+                        <li><a href="{{ route('package.index') }}" class="hover:text-white hover:underline transition font-bold text-orange-300 flex items-center gap-1.5"><i class="fa-solid fa-gift text-xs"></i> All-inclusive Combo Tours</a></li>
+                        <li><a href="{{ route('home') }}?s=Budget#tours-section" class="hover:text-white hover:underline transition">Budget Tours</a></li>
+                        <li><a href="{{ route('home') }}?s=Cultural#tours-section" class="hover:text-white hover:underline transition">Local Culture</a></li>
+                        <li><a href="{{ route('home') }}?s=Child-friendly#tours-section" class="hover:text-white hover:underline transition">Family Friendly</a></li>
+                        <li><a href="{{ route('home') }}?s=Adventure#tours-section" class="hover:text-white hover:underline transition">Adventure & Discovery</a></li>
                     </ul>
                 </div>
 
@@ -634,18 +642,18 @@
             <!-- Bottom Copyright & Secured Payment (Matching chestnuttravel.net footer-b) -->
             <div class="border-t border-white/15 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/85">
                 <div class="flex flex-wrap items-center justify-center md:justify-start gap-1.5 text-center md:text-left">
-                    <span>&copy; Bản quyền {{ date('Y') }} <a href="{{ route('home') }}" class="font-semibold text-white hover:underline">{{ option('site_name', 'Chestnut Travel') }}</a>.</span>
-                    <span class="text-white/70">Phát triển bởi <a href="https://chestnuttravel.net/" rel="nofollow" target="_blank" class="hover:underline text-white">Chestnut Travel.</a></span>
+                    <span>&copy; Copyright {{ date('Y') }} <a href="{{ route('home') }}" class="font-semibold text-white hover:underline">{{ option('site_name', 'Chestnut Travel') }}</a>.</span>
+                    <span class="text-white/70">Developed by <a href="https://chestnuttravel.net/" rel="nofollow" target="_blank" class="hover:underline text-white">Chestnut Travel.</a></span>
                     <span class="mx-1 text-white/40">•</span>
-                    <a href="#" class="privacy-policy-link hover:underline text-white/90">Chính sách bảo mật</a>
+                    <a href="#" class="privacy-policy-link hover:underline text-white/90">Privacy Policy</a>
                     @auth
                         <span class="mx-1 text-white/40">•</span>
-                        <a href="{{ route('booking.lookup') }}" class="hover:underline text-white/90">Tra cứu đơn</a>
+                        <a href="{{ route('booking.lookup') }}" class="hover:underline text-white/90">Find my booking</a>
                     @endauth
                 </div>
 
                 <div class="payments-showcase flex items-center gap-2">
-                    <span class="font-medium text-white/90">Thanh toán an toàn:</span>
+                    <span class="font-medium text-white/90">Secure payment:</span>
                     <img width="196" height="26" src="{{ option_image('footer_payment_image', asset('images/footer-payment.png')) }}" class="attachment-full size-full inline-block" alt="Secured Payment" decoding="async">
                 </div>
             </div>
@@ -653,7 +661,7 @@
     </footer>
 
     <!-- Floating Back to Top Button (Chestnut Travel Style) -->
-    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-[#26786e] text-white shadow-xl hover:bg-[#209C8D] transition-all duration-300 items-center justify-center hidden opacity-0 translate-y-2 cursor-pointer border border-white/20 active:scale-95" aria-label="Back to top" title="Lên đầu trang">
+    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-[#26786e] text-white shadow-xl hover:bg-[#209C8D] transition-all duration-300 items-center justify-center hidden opacity-0 translate-y-2 cursor-pointer border border-white/20 active:scale-95" aria-label="Back to top" title="Back to top">
         <i class="fa-solid fa-chevron-up text-sm"></i>
     </button>
 
@@ -695,7 +703,7 @@
     </script>
 
     <!-- ========================================== -->
-    <!-- AUTH MODAL (Đăng nhập / Đăng ký)          -->
+    <!-- AUTH MODAL (Sign in / Register)          -->
     <!-- ========================================== -->
     <div id="auth-modal" class="fixed inset-0 z-50 hidden bg-black/70 flex items-center justify-center p-4 overscroll-contain">
         <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden relative animate-fadeIn" onclick="event.stopPropagation()">
@@ -709,16 +717,16 @@
                 <div class="w-12 h-12 rounded-xl bg-orange-100 text-chestnut mx-auto flex items-center justify-center text-xl mb-3">
                     <i class="fa-solid fa-user-circle"></i>
                 </div>
-                <h3 class="text-xl font-extrabold text-gray-900" id="auth-modal-title">Tài khoản Chestnut Travel</h3>
-                <p class="text-xs text-gray-500 mt-1 mb-4">Đăng nhập để theo dõi đơn tour và nhận ưu đãi riêng</p>
+                <h3 class="text-xl font-extrabold text-gray-900" id="auth-modal-title">Chestnut Travel Account</h3>
+                <p class="text-xs text-gray-500 mt-1 mb-4">Sign in to track your bookings and get exclusive offers</p>
 
                 <!-- Tab switcher -->
                 <div id="auth-modal-tabs" class="flex border-b border-gray-200">
                     <button id="tab-btn-login" onclick="switchAuthTab('login')" class="flex-1 py-2.5 font-bold text-xs border-b-2 border-chestnut text-chestnut transition">
-                        ĐĂNG NHẬP
+                        SIGN IN
                     </button>
                     <button id="tab-btn-register" onclick="switchAuthTab('register')" class="flex-1 py-2.5 font-bold text-xs border-b-2 border-transparent text-gray-500 hover:text-gray-900 transition">
-                        TẠO TÀI KHOẢN
+                        CREATE ACCOUNT
                     </button>
                 </div>
             </div>
@@ -730,47 +738,47 @@
                     <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3.5 text-2xl shadow-lg shadow-emerald-500/20">
                         <i class="fa-solid fa-circle-check text-3xl"></i>
                     </div>
-                    <h3 class="text-lg font-black text-gray-900 mb-1">Đăng Nhập Thành Công!</h3>
+                    <h3 class="text-lg font-black text-gray-900 mb-1">Signed In Successfully!</h3>
                     <p class="text-xs text-gray-600 leading-relaxed mb-4">
-                        Chào mừng <strong id="login-success-name" class="text-gray-900 font-bold">Quý khách</strong> quay trở lại cùng Chestnut Travel.
+                        Welcome back to Chestnut Travel, <strong id="login-success-name" class="text-gray-900 font-bold">traveler</strong>.
                     </p>
                     <div class="flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2.5 rounded-xl text-xs font-bold border border-emerald-200 justify-center">
                         <i class="fa-solid fa-circle-notch fa-spin text-sm"></i>
-                        <span>Đang tải thông tin của bạn...</span>
+                        <span>Loading your account...</span>
                     </div>
                 </div>
 
-                <form id="form-login" onsubmit="handleAuthSubmit(event, '{{ route('customer.login') }}', 'login')" class="space-y-4">
+                <form id="form-login" onsubmit="handleAuthSubmit(event, '{{ route('customer.login') }}', 'login')" novalidate class="space-y-4">
                     @csrf
                     <div id="login-error" class="hidden bg-red-50 text-red-600 text-xs p-3 rounded-lg border border-red-200"></div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email hoặc Số điện thoại</label>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email or phone number</label>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400"><i class="fa-regular fa-envelope text-xs"></i></span>
-                            <input type="text" name="email" required placeholder="name@example.com hoặc SĐT" class="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
+                            <input type="text" name="email" required data-required-message="Please enter your email or phone number." autocomplete="username" placeholder="name@example.com or phone number" class="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
                         </div>
                     </div>
 
                     <div>
                         <div class="flex justify-between items-center mb-1">
-                            <label class="block text-xs font-bold text-gray-700 uppercase">Mật khẩu</label>
-                            <a href="#" onclick="alert('Vui lòng liên hệ Hotline {{ option('site_hotline', '+84 867 216 850') }} để được cấp lại mật khẩu nhanh chóng.')" class="text-[11px] text-chestnut hover:underline font-medium">Quên mật khẩu?</a>
+                            <label class="block text-xs font-bold text-gray-700 uppercase">Password</label>
+                            <a href="#" onclick="event.preventDefault(); showToast('Please contact our hotline {{ option('site_hotline', '+84 867 216 850') }} to quickly reset your password.', 'info')" class="text-[11px] text-chestnut hover:underline font-medium">Forgot password?</a>
                         </div>
                         <div class="relative">
                             <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400"><i class="fa-solid fa-lock text-xs"></i></span>
-                            <input type="password" name="password" required placeholder="Nhập mật khẩu..." class="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
+                            <input type="password" name="password" required data-required-message="Please enter your password." autocomplete="current-password" placeholder="Enter your password..." class="w-full pl-9 pr-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
                         </div>
                     </div>
 
                     <div class="flex items-center">
                         <input type="checkbox" name="remember" id="remember" class="w-4 h-4 text-chestnut border-gray-300 rounded focus:ring-chestnut">
-                        <label for="remember" class="ml-2 text-xs text-gray-600">Ghi nhớ đăng nhập</label>
+                        <label for="remember" class="ml-2 text-xs text-gray-600">Remember me</label>
                     </div>
 
                     <button type="submit" id="btn-login-submit" class="w-full bg-chestnut hover:bg-orange-600 text-white font-bold py-2.5 rounded-xl text-xs shadow-md shadow-orange-500/20 transition flex items-center justify-center gap-2 cursor-pointer">
                         <i class="fa-solid fa-arrow-right-to-bracket text-xs"></i>
-                        <span id="btn-login-text">Đăng nhập ngay</span>
+                        <span id="btn-login-text">Sign in</span>
                     </button>
                 </form>
             </div>
@@ -782,10 +790,10 @@
                     <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3.5 text-2xl shadow-lg shadow-emerald-500/20 animate-bounce">
                         <i class="fa-solid fa-circle-check text-3xl"></i>
                     </div>
-                    <h3 class="text-lg font-black text-gray-900 mb-1">🎉 Đăng Ký Thành Công!</h3>
+                    <h3 class="text-lg font-black text-gray-900 mb-1">🎉 Registration Successful!</h3>
                     <p class="text-xs text-gray-600 leading-relaxed mb-3">
-                        Chào mừng <strong id="register-success-name" class="text-gray-900 font-bold">Quý khách</strong> đã gia nhập Chestnut Travel!<br>
-                        Hệ thống đã <span class="text-emerald-700 font-bold">tự động đăng nhập</span> và <span class="text-emerald-700 font-bold">gửi thư chào mừng</span> đến email:
+                        Welcome to Chestnut Travel, <strong id="register-success-name" class="text-gray-900 font-bold">traveler</strong>!<br>
+                        You have been <span class="text-emerald-700 font-bold">signed in automatically</span> and we have <span class="text-emerald-700 font-bold">sent a welcome email</span> to:
                     </p>
                     <div class="bg-gray-50 border border-gray-200 rounded-xl py-2 px-3 mb-4 inline-block max-w-full">
                         <span id="register-success-email" class="font-mono text-xs text-emerald-800 font-bold flex items-center justify-center gap-1.5 break-all">
@@ -794,43 +802,43 @@
                     </div>
                     <div class="flex items-center gap-2 bg-emerald-50 text-emerald-700 px-4 py-2.5 rounded-xl text-xs font-bold border border-emerald-200 justify-center">
                         <i class="fa-solid fa-circle-notch fa-spin text-sm"></i>
-                        <span>Đang đưa bạn vào hệ thống trong giây lát...</span>
+                        <span>Taking you to your account in a moment...</span>
                     </div>
                 </div>
 
-                <form id="form-register" onsubmit="handleAuthSubmit(event, '{{ route('customer.register') }}', 'register')" class="space-y-3">
+                <form id="form-register" onsubmit="handleAuthSubmit(event, '{{ route('customer.register') }}', 'register')" novalidate class="space-y-3">
                     @csrf
                     <div id="register-error" class="hidden bg-red-50 text-red-600 text-xs p-3 rounded-lg border border-red-200"></div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Họ và tên của bạn</label>
-                        <input type="text" name="name" required placeholder="VD: Nguyễn Văn A" class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Your full name</label>
+                        <input type="text" name="name" required data-required-message="Please enter your full name." autocomplete="name" placeholder="e.g. John Smith" class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
                     </div>
 
                     <div class="grid grid-cols-2 gap-2">
                         <div>
                             <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Email</label>
-                            <input type="email" name="email" required placeholder="name@email.com" class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
+                            <input type="email" name="email" required data-required-message="Please enter your email address." autocomplete="email" placeholder="name@email.com" class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Số điện thoại</label>
+                            <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Phone number</label>
                             <input type="tel" name="phone" placeholder="0987654321" class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Mật khẩu (tối thiểu 6 ký tự)</label>
-                        <input type="password" name="password" required minlength="6" placeholder="Tạo mật khẩu an toàn..." class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Password (min. 6 characters)</label>
+                        <input type="password" name="password" required minlength="6" data-required-message="Please create a password." autocomplete="new-password" placeholder="Create a secure password..." class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Xác nhận mật khẩu</label>
-                        <input type="password" name="password_confirmation" required minlength="6" placeholder="Nhập lại mật khẩu..." class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1">Confirm password</label>
+                        <input type="password" name="password_confirmation" required data-match="password" data-required-message="Please confirm your password." autocomplete="new-password" placeholder="Re-enter your password..." class="w-full px-3 py-2.5 border border-gray-300 rounded-xl text-xs focus:outline-none focus:border-chestnut focus:ring-1 focus:ring-chestnut transition">
                     </div>
 
                     <button type="submit" id="btn-register-submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-xl text-xs shadow-md shadow-emerald-600/20 transition flex items-center justify-center gap-2 mt-2 cursor-pointer">
                         <i class="fa-solid fa-user-plus text-xs"></i>
-                        <span id="btn-register-text">Đăng ký tài khoản</span>
+                        <span id="btn-register-text">Create account</span>
                     </button>
                 </form>
             </div>
@@ -838,7 +846,7 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- QUICK BOOKING MODAL (Dành cho Cả Khách Vãng Lai & Thành Viên) -->
+    <!-- QUICK BOOKING MODAL (for both guests and members) -->
     <!-- ========================================== -->
     <!-- ========================================== -->
     <!-- ADVANCED 4-STEP TOUR BOOKING & CHECKOUT MODAL -->
@@ -854,37 +862,37 @@
             <div class="bg-[#181C20] text-white p-5 sm:p-6 border-b border-white/10">
                 <div class="flex items-center gap-2 mb-2">
                     <span class="inline-block bg-chestnut text-white text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full tracking-wider">CHESTNUT BOOKING ENGINE</span>
-                    <span class="text-xs text-stone-400 flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Đảm bảo giá tốt nhất</span>
+                    <span class="text-xs text-stone-400 flex items-center gap-1"><i class="fa-solid fa-shield-halved text-emerald-400"></i> Best price guaranteed</span>
                 </div>
-                <h3 class="text-base sm:text-xl font-black text-white line-clamp-1" id="modal-tour-title">Đặt Tour Du Lịch</h3>
+                <h3 class="text-base sm:text-xl font-black text-white line-clamp-1" id="modal-tour-title">Book Your Tour</h3>
                 
                 <!-- Stepper Tabs -->
                 <div class="grid grid-cols-4 gap-2 mt-5 text-[11px] font-bold">
                     <button type="button" onclick="switchBookingStep(1)" id="step-tab-1" class="step-tab flex items-center gap-1.5 py-2 px-2.5 rounded-xl border border-chestnut bg-chestnut/20 text-white transition text-left cursor-pointer">
                         <span class="w-5 h-5 rounded-full bg-chestnut text-white flex items-center justify-center text-[10px] shrink-0 font-mono">1</span>
-                        <span class="hidden sm:inline truncate">1. Lịch & Gói</span>
+                        <span class="hidden sm:inline truncate">1. Date & Package</span>
                     </button>
                     <button type="button" onclick="switchBookingStep(2)" id="step-tab-2" class="step-tab flex items-center gap-1.5 py-2 px-2.5 rounded-xl border border-white/10 bg-white/5 text-stone-400 transition text-left cursor-pointer">
                         <span class="w-5 h-5 rounded-full bg-white/10 text-stone-300 flex items-center justify-center text-[10px] shrink-0 font-mono">2</span>
-                        <span class="hidden sm:inline truncate">2. Khách & Thêm</span>
+                        <span class="hidden sm:inline truncate">2. Guests & Extras</span>
                     </button>
                     <button type="button" onclick="switchBookingStep(3)" id="step-tab-3" class="step-tab flex items-center gap-1.5 py-2 px-2.5 rounded-xl border border-white/10 bg-white/5 text-stone-400 transition text-left cursor-pointer">
                         <span class="w-5 h-5 rounded-full bg-white/10 text-stone-300 flex items-center justify-center text-[10px] shrink-0 font-mono">3</span>
-                        <span class="hidden sm:inline truncate">3. Thông tin</span>
+                        <span class="hidden sm:inline truncate">3. Your Details</span>
                     </button>
                     <button type="button" onclick="switchBookingStep(4)" id="step-tab-4" class="step-tab flex items-center gap-1.5 py-2 px-2.5 rounded-xl border border-white/10 bg-white/5 text-stone-400 transition text-left cursor-pointer">
                         <span class="w-5 h-5 rounded-full bg-white/10 text-stone-300 flex items-center justify-center text-[10px] shrink-0 font-mono">4</span>
-                        <span class="hidden sm:inline truncate">4. Thanh toán</span>
+                        <span class="hidden sm:inline truncate">4. Payment</span>
                     </button>
                 </div>
             </div>
 
             <!-- Booking Form -->
-            <form id="form-quick-booking" onsubmit="handleBookingSubmit(event)" class="p-5 sm:p-7 space-y-5">
+            <form id="form-quick-booking" onsubmit="handleBookingSubmit(event)" novalidate class="p-5 sm:p-7 space-y-5">
                 @csrf
                 <input type="hidden" name="tour_id" id="modal-tour-id" value="">
                 <input type="hidden" name="package_price" id="modal-package-price" value="199">
-                <input type="hidden" name="package_option" id="modal-package-option" value="Easy Rider (Có tài xế lái kèm)">
+                <input type="hidden" name="package_option" id="modal-package-option" value="Easy Rider (With local driver)">
                 <input type="hidden" name="extra_services" id="modal-extra-services-json" value="[]">
 
                 <div id="booking-error" class="hidden bg-red-50 text-red-600 text-xs p-3 rounded-xl border border-red-200"></div>
@@ -894,41 +902,41 @@
                     <div class="bg-orange-50/70 border border-orange-200/80 rounded-2xl p-3.5 flex items-start gap-2.5 text-xs text-stone-700">
                         <i class="fa-solid fa-circle-info text-chestnut text-sm mt-0.5"></i>
                         <div>
-                            <span class="font-bold text-gray-900">Khởi hành hàng ngày từ Hà Nội & Hà Giang!</span> Chọn ngày khởi hành và loại hình trải nghiệm của bạn.
+                            <span class="font-bold text-gray-900">Daily departures from Hanoi & Ha Giang!</span> Choose your departure date and experience type.
                         </div>
                     </div>
 
                     <div>
                         <label class="block text-xs font-bold text-gray-800 uppercase mb-1.5">
-                            <i class="fa-regular fa-calendar text-chestnut mr-1"></i> Ngày khởi hành *
+                            <i class="fa-regular fa-calendar text-chestnut mr-1"></i> Departure date *
                         </label>
-                        <input type="date" name="departure_date" id="modal-date" required min="{{ date('Y-m-d') }}" value="{{ date('Y-m-d', strtotime('+2 days')) }}" onchange="calculateBookingTotal()" class="w-full px-3.5 py-2.5 border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition font-medium">
+                        <input type="date" name="departure_date" id="modal-date" required data-required-message="Please choose your departure date." min="{{ date('Y-m-d') }}" value="{{ date('Y-m-d', strtotime('+2 days')) }}" onchange="calculateBookingTotal()" class="w-full px-3.5 py-2.5 border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition font-medium">
                         <input type="hidden" name="departure_time" id="modal-time" value="">
                     </div>
 
                     <!-- Package Options -->
                     <div>
-                        <label class="block text-xs font-bold text-gray-800 uppercase mb-2">Chọn gói dịch vụ (Package Type):</label>
+                        <label class="block text-xs font-bold text-gray-800 uppercase mb-2">Choose your package:</label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="modal-package-container">
-                            <label class="package-option-card flex items-start gap-3 p-3.5 rounded-2xl border-2 border-chestnut bg-orange-50/40 cursor-pointer transition" onclick="selectModalPackage('Easy Rider (Có tài xế lái kèm)', currentTourPrice, this)">
+                            <label class="package-option-card flex items-start gap-3 p-3.5 rounded-2xl border-2 border-chestnut bg-orange-50/40 cursor-pointer transition" onclick="selectModalPackage('Easy Rider (With local driver)', currentTourPrice, this)">
                                 <input type="radio" name="modal_pkg_radio" checked class="mt-1 text-chestnut focus:ring-chestnut">
                                 <div class="flex-1">
                                     <div class="flex justify-between items-center">
-                                        <span class="text-xs font-extrabold text-gray-900">Easy Rider (Có tài xế)</span>
+                                        <span class="text-xs font-extrabold text-gray-900">Easy Rider (With driver)</span>
                                         <span class="text-xs font-black text-chestnut" id="modal-pkg-price-1">$199</span>
                                     </div>
-                                    <p class="text-[11px] text-gray-500 mt-0.5">Tài xế bản địa giàu kinh nghiệm lái xe đưa đón bạn an toàn suốt hành trình.</p>
+                                    <p class="text-[11px] text-gray-500 mt-0.5">An experienced local driver rides you safely throughout the journey.</p>
                                 </div>
                             </label>
 
-                            <label class="package-option-card flex items-start gap-3 p-3.5 rounded-2xl border-2 border-stone-200 hover:border-chestnut bg-white cursor-pointer transition" onclick="selectModalPackage('Self-Drive (Tự lái xe máy)', Math.max(99, currentTourPrice - 50), this)">
+                            <label class="package-option-card flex items-start gap-3 p-3.5 rounded-2xl border-2 border-stone-200 hover:border-chestnut bg-white cursor-pointer transition" onclick="selectModalPackage('Self-Drive (Ride your own motorbike)', Math.max(99, currentTourPrice - 50), this)">
                                 <input type="radio" name="modal_pkg_radio" class="mt-1 text-chestnut focus:ring-chestnut">
                                 <div class="flex-1">
                                     <div class="flex justify-between items-center">
-                                        <span class="text-xs font-extrabold text-gray-900">Self-Drive (Tự lái xe)</span>
+                                        <span class="text-xs font-extrabold text-gray-900">Self-Drive (Ride yourself)</span>
                                         <span class="text-xs font-black text-chestnut" id="modal-pkg-price-2">$149</span>
                                     </div>
-                                    <p class="text-[11px] text-gray-500 mt-0.5">Dành cho bạn đã có bằng lái quốc tế và kinh nghiệm ôm cua đường đèo dốc.</p>
+                                    <p class="text-[11px] text-gray-500 mt-0.5">For riders with an international licence and experience on steep mountain passes.</p>
                                 </div>
                             </label>
                         </div>
@@ -936,7 +944,7 @@
 
                     <div class="flex justify-end pt-2">
                         <button type="button" onclick="switchBookingStep(2)" class="px-6 py-2.5 bg-chestnut hover:bg-orange-600 text-white text-xs font-extrabold rounded-xl transition flex items-center gap-1.5 cursor-pointer">
-                            <span>Tiếp tục: Số khách & Dịch vụ thêm</span>
+                            <span>Next: Guests & Extras</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
@@ -946,12 +954,12 @@
                 <div id="step-content-2" class="step-content hidden space-y-4">
                     <!-- Passengers Count -->
                     <div>
-                        <label class="block text-xs font-bold text-gray-800 uppercase mb-2">Số lượng khách (Travelers):</label>
+                        <label class="block text-xs font-bold text-gray-800 uppercase mb-2">Number of travelers:</label>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-stone-50 p-4 rounded-2xl border border-stone-200">
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <span class="text-xs font-extrabold text-gray-900 block">Người lớn (&ge;10 tuổi)</span>
-                                    <span class="text-[10px] text-gray-500" id="modal-adult-rate-label">$199 / người</span>
+                                    <span class="text-xs font-extrabold text-gray-900 block">Adults (age 10+)</span>
+                                    <span class="text-[10px] text-gray-500" id="modal-adult-rate-label">$199 / person</span>
                                 </div>
                                 <div class="flex items-center gap-2 bg-white border border-stone-200 rounded-xl px-2 py-1 shadow-2xs">
                                     <button type="button" onclick="changeModalGuests('adults', -1)" class="w-6 h-6 flex items-center justify-center text-gray-500 hover:text-chestnut font-bold text-sm cursor-pointer">-</button>
@@ -962,8 +970,8 @@
 
                             <div class="flex items-center justify-between">
                                 <div>
-                                    <span class="text-xs font-extrabold text-gray-900 block">Trẻ em (4 - 9 tuổi)</span>
-                                    <span class="text-[10px] text-emerald-600 font-semibold" id="modal-child-rate-label">Giảm 25% giá người lớn</span>
+                                    <span class="text-xs font-extrabold text-gray-900 block">Children (age 4 - 9)</span>
+                                    <span class="text-[10px] text-emerald-600 font-semibold" id="modal-child-rate-label">25% off the adult price</span>
                                 </div>
                                 <div class="flex items-center gap-2 bg-white border border-stone-200 rounded-xl px-2 py-1 shadow-2xs">
                                     <button type="button" onclick="changeModalGuests('children', -1)" class="w-6 h-6 flex items-center justify-center text-gray-500 hover:text-chestnut font-bold text-sm cursor-pointer">-</button>
@@ -976,7 +984,7 @@
 
                     <!-- Extra Addon Services (Dynamic from Database & Filament Admin) -->
                     <div>
-                        <label class="block text-xs font-bold text-gray-800 uppercase mb-2">Dịch vụ tùy chọn cộng thêm (Extra Services):</label>
+                        <label class="block text-xs font-bold text-gray-800 uppercase mb-2">Optional extra services:</label>
                         <div class="space-y-2.5" id="modal-extra-services-list">
                             @php
                                 try {
@@ -1019,10 +1027,10 @@
 
                     <div class="flex justify-between items-center pt-2">
                         <button type="button" onclick="switchBookingStep(1)" class="px-4 py-2 border border-stone-300 text-stone-600 hover:text-stone-900 text-xs font-bold rounded-xl transition cursor-pointer">
-                            <i class="fa-solid fa-arrow-left mr-1"></i> Quay lại
+                            <i class="fa-solid fa-arrow-left mr-1"></i> Back
                         </button>
                         <button type="button" onclick="switchBookingStep(3)" class="px-6 py-2.5 bg-chestnut hover:bg-orange-600 text-white text-xs font-extrabold rounded-xl transition flex items-center gap-1.5 cursor-pointer">
-                            <span>Tiếp tục: Thông tin du khách</span>
+                            <span>Next: Your Details</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
@@ -1030,40 +1038,40 @@
 
                 <!-- STEP 3: TRAVELER CONTACT & PICKUP INFO -->
                 <div id="step-content-3" class="step-content hidden space-y-3.5">
-                    <p class="text-xs text-stone-500">Thông tin của trưởng đoàn để Chestnut Travel xuất vé điện tử và gửi thông báo đón:</p>
+                    <p class="text-xs text-stone-500">Lead traveler details so Chestnut Travel can issue your e-ticket and pickup information:</p>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Họ và tên của bạn *</label>
-                        <input type="text" name="customer_name" id="modal-name" required value="{{ Auth::user()->name ?? '' }}" placeholder="VD: David Miller / Nguyễn Văn A" class="w-full px-3.5 py-2.5 border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
+                        <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Full name *</label>
+                        <input type="text" name="customer_name" id="modal-name" required data-required-message="Please enter your full name." autocomplete="name" value="{{ Auth::user()->name ?? '' }}" placeholder="e.g. David Miller" class="w-full px-3.5 py-2.5 border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                         <div>
-                            <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Email nhận xác nhận *</label>
-                            <input type="email" name="customer_email" id="modal-email" required value="{{ Auth::user()->email ?? '' }}" placeholder="email@example.com" class="w-full px-3.5 py-2.5 border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
+                            <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Email for confirmation *</label>
+                            <input type="email" name="customer_email" id="modal-email" required data-required-message="Please enter your email address so we can send your confirmation." autocomplete="email" value="{{ Auth::user()->email ?? '' }}" placeholder="email@example.com" class="w-full px-3.5 py-2.5 border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
                         </div>
                         <div>
-                            <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Số điện thoại *</label>
-                            <input type="tel" name="customer_phone" id="modal-phone" required value="{{ Auth::user()->phone ?? '' }}" placeholder="+84 987 654 321" class="w-full px-3.5 py-2.5 border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
+                            <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Phone / WhatsApp *</label>
+                            <input type="tel" name="customer_phone" id="modal-phone" required data-required-message="Please enter your phone / WhatsApp number." autocomplete="tel" value="{{ Auth::user()->phone ?? '' }}" placeholder="+84 987 654 321" class="w-full px-3.5 py-2.5 border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
                         </div>
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Khách sạn đón (nếu có)</label>
-                        <input type="text" name="hotel_pickup" id="modal-hotel" placeholder="Tên khách sạn & địa chỉ tại Phố Cổ Hà Nội..." class="w-full px-3.5 py-2.5 border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
+                        <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Pickup hotel (optional)</label>
+                        <input type="text" name="hotel_pickup" id="modal-hotel" placeholder="Hotel name & address in Hanoi Old Quarter..." class="w-full px-3.5 py-2.5 border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition">
                     </div>
 
                     <div>
-                        <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Yêu cầu ăn uống / Ghi chú đặc biệt</label>
-                        <textarea name="special_requests" id="modal-notes" rows="2" placeholder="Ăn chay, dị ứng thực phẩm, mũ bảo hiểm cỡ to..." class="w-full px-3.5 py-2.5 border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition"></textarea>
+                        <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Dietary requirements / Special requests</label>
+                        <textarea name="special_requests" id="modal-notes" rows="2" placeholder="Vegetarian, food allergies, large helmet size..." class="w-full px-3.5 py-2.5 border border-stone-300 rounded-xl text-xs focus:outline-none focus:border-chestnut transition"></textarea>
                     </div>
 
                     <div class="flex justify-between items-center pt-2">
                         <button type="button" onclick="switchBookingStep(2)" class="px-4 py-2 border border-stone-300 text-stone-600 hover:text-stone-900 text-xs font-bold rounded-xl transition cursor-pointer">
-                            <i class="fa-solid fa-arrow-left mr-1"></i> Quay lại
+                            <i class="fa-solid fa-arrow-left mr-1"></i> Back
                         </button>
                         <button type="button" onclick="switchBookingStep(4)" class="px-6 py-2.5 bg-chestnut hover:bg-orange-600 text-white text-xs font-extrabold rounded-xl transition flex items-center gap-1.5 cursor-pointer">
-                            <span>Tiếp tục: Thanh toán & Xác nhận</span>
+                            <span>Next: Payment & Confirmation</span>
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
@@ -1072,21 +1080,21 @@
                 <!-- STEP 4: PAYMENT OPTIONS & SUBMIT (2 OPTIONS: VIETQR OR PAY ON ARRIVAL) -->
                 <div id="step-content-4" class="step-content hidden space-y-4">
                     <div>
-                        <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Phương thức thanh toán (Payment Method):</label>
-                        <p class="text-xs text-stone-500 mb-3">Vui lòng chọn phương thức thanh toán thuận tiện nhất:</p>
+                        <label class="block text-xs font-bold text-gray-800 uppercase mb-1">Payment method:</label>
+                        <p class="text-xs text-stone-500 mb-3">Please choose the most convenient payment method:</p>
 
                         <div class="space-y-3">
-                            <!-- Option 1: Chuyển khoản ngân hàng VietQR -->
+                            <!-- Option 1: VietQR bank transfer -->
                             <label class="payment-method-card flex flex-col p-4 rounded-2xl border-2 border-chestnut bg-orange-50/40 cursor-pointer transition" onclick="selectPaymentMethod('vietqr', this)">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center gap-3">
                                         <input type="radio" name="modal_pay_radio" value="vietqr" checked class="text-chestnut focus:ring-chestnut">
                                         <div>
                                             <div class="flex items-center gap-2">
-                                                <span class="text-xs sm:text-sm font-extrabold text-gray-900">1. Chuyển khoản ngân hàng (Quét mã VietQR)</span>
-                                                <span class="bg-red-100 text-red-700 text-[10px] font-black px-2 py-0.5 rounded-full uppercase">Khuyên dùng</span>
+                                                <span class="text-xs sm:text-sm font-extrabold text-gray-900">1. Bank transfer (Scan VietQR code)</span>
+                                                <span class="bg-red-100 text-red-700 text-[10px] font-black px-2 py-0.5 rounded-full uppercase">Recommended</span>
                                             </div>
-                                            <span class="text-[11px] text-gray-500 block mt-0.5">Quét mã QR bằng App ngân hàng bất kỳ để chuyển khoản nhanh 24/7</span>
+                                            <span class="text-[11px] text-gray-500 block mt-0.5">Scan the QR code with any banking app for an instant 24/7 transfer</span>
                                         </div>
                                     </div>
                                     <div class="flex items-center gap-1.5 shrink-0">
@@ -1106,41 +1114,41 @@
                                         </div>
                                         <div class="flex-1 space-y-1.5 text-xs text-stone-700 w-full">
                                             <div class="flex justify-between items-center pb-1 border-b border-stone-100">
-                                                <span class="text-stone-500">Ngân hàng:</span>
-                                                <strong class="text-gray-900">{{ option('site_bank_name', 'MB Bank (Ngân hàng Quân Đội)') }}</strong>
+                                                <span class="text-stone-500">Bank:</span>
+                                                <strong class="text-gray-900">{{ option('site_bank_name', 'MB Bank (Military Commercial Joint Stock Bank)') }}</strong>
                                             </div>
                                             <div class="flex justify-between items-center pb-1 border-b border-stone-100">
-                                                <span class="text-stone-500">Số tài khoản:</span>
+                                                <span class="text-stone-500">Account number:</span>
                                                 <div class="flex items-center gap-2">
                                                     <span class="font-mono font-bold text-chestnut text-sm tracking-wide">{{ option('site_bank_account', '0348788668') }}</span>
-                                                    <button type="button" onclick="event.stopPropagation(); navigator.clipboard.writeText('{{ option('site_bank_account', '0348788668') }}'); alert('Đã sao chép số tài khoản!')" class="text-[10px] px-1.5 py-0.5 bg-stone-100 hover:bg-stone-200 rounded font-semibold text-stone-600">
+                                                    <button type="button" onclick="event.stopPropagation(); navigator.clipboard.writeText('{{ option('site_bank_account', '0348788668') }}'); showToast('Account number copied!', 'success')" class="text-[10px] px-1.5 py-0.5 bg-stone-100 hover:bg-stone-200 rounded font-semibold text-stone-600">
                                                         <i class="fa-regular fa-copy"></i> Copy
                                                     </button>
                                                 </div>
                                             </div>
                                             <div class="flex justify-between items-center pb-1 border-b border-stone-100">
-                                                <span class="text-stone-500">Chủ tài khoản:</span>
+                                                <span class="text-stone-500">Account holder:</span>
                                                 <strong class="text-gray-900 uppercase">{{ option('site_bank_owner', 'CHESTNUT TRAVEL VN') }}</strong>
                                             </div>
                                             <p class="text-[11px] text-stone-500 italic mt-1 leading-snug">
-                                                {{ option('site_bank_note', 'Quét mã QR hoặc chuyển khoản. Đơn đặt tour sẽ được quản trị viên duyệt và gửi email xác nhận ngay khi nhận được thanh toán.') }}
+                                                {{ option('site_bank_note', 'Scan the QR code or make a bank transfer. Your booking will be reviewed by our team and a confirmation email will be sent as soon as payment is received.') }}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </label>
 
-                            <!-- Option 2: Thanh toán sau (Pay Later / Khi đón tour) -->
+                            <!-- Option 2: Pay later (on pickup) -->
                             <label class="payment-method-card flex flex-col p-4 rounded-2xl border-2 border-stone-200 hover:border-chestnut bg-white cursor-pointer transition" onclick="selectPaymentMethod('pay_on_arrival', this)">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center gap-3">
                                         <input type="radio" name="modal_pay_radio" value="pay_on_arrival" class="text-chestnut focus:ring-chestnut">
                                         <div>
                                             <div class="flex items-center gap-2">
-                                                <span class="text-xs sm:text-sm font-extrabold text-gray-900">2. Thanh toán sau (Pay Later / Khi đón tour)</span>
-                                                <span class="bg-blue-100 text-blue-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase">Giữ chỗ trước</span>
+                                                <span class="text-xs sm:text-sm font-extrabold text-gray-900">2. Pay later (Pay on arrival)</span>
+                                                <span class="bg-blue-100 text-blue-800 text-[10px] font-black px-2 py-0.5 rounded-full uppercase">Reserve now</span>
                                             </div>
-                                            <span class="text-[11px] text-gray-500 block mt-0.5">Không cần trả trước - Thanh toán trực tiếp khi hướng dẫn viên đón tour</span>
+                                            <span class="text-[11px] text-gray-500 block mt-0.5">No prepayment needed - pay directly when your guide picks you up</span>
                                         </div>
                                     </div>
                                     <div class="w-9 h-9 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-base shrink-0">
@@ -1149,7 +1157,7 @@
                                 </div>
                                 <div id="pay-later-note" class="hidden mt-3 pt-3 border-t border-stone-100 text-xs text-blue-900 bg-blue-50/60 p-3 rounded-xl leading-relaxed">
                                     <i class="fa-solid fa-circle-info text-blue-600 mr-1"></i>
-                                    <strong>Chính sách giữ chỗ:</strong> Đơn đặt tour của bạn sẽ được tiếp nhận ở trạng thái chờ duyệt. Quản trị viên sẽ kiểm tra và gửi email xác nhận đặt tour thành công cho bạn.
+                                    <strong>Reservation policy:</strong> Your booking will be received as pending. Our team will review it and send you a booking confirmation email.
                                 </div>
                             </label>
                         </div>
@@ -1161,7 +1169,7 @@
 
                     <div class="flex justify-between items-center pt-2">
                         <button type="button" onclick="switchBookingStep(3)" class="px-4 py-2 border border-stone-300 text-stone-600 hover:text-stone-900 text-xs font-bold rounded-xl transition cursor-pointer">
-                            <i class="fa-solid fa-arrow-left mr-1"></i> Quay lại
+                            <i class="fa-solid fa-arrow-left mr-1"></i> Back
                         </button>
                     </div>
                 </div>
@@ -1171,22 +1179,22 @@
                     <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div class="w-full sm:w-auto space-y-1 text-center sm:text-left">
                             <div class="flex items-center gap-2 justify-center sm:justify-start">
-                                <span class="text-[11px] text-gray-500 uppercase font-bold">Tổng tour trọn gói:</span>
+                                <span class="text-[11px] text-gray-500 uppercase font-bold">Package total:</span>
                                 <span class="text-xs font-bold text-gray-900" id="modal-grand-total">$0.00</span>
                             </div>
                             <div class="flex items-baseline gap-2 justify-center sm:justify-start">
-                                <span class="text-[11px] text-chestnut font-black uppercase tracking-wider" id="modal-payable-label">THANH TOÁN QUA THẺ (100%):</span>
+                                <span class="text-[11px] text-chestnut font-black uppercase tracking-wider" id="modal-payable-label">PAY BY VIETQR (100%):</span>
                                 <span class="text-xl sm:text-2xl font-black text-chestnut" id="modal-payable-display">$0.00</span>
-                                <span class="text-xs font-bold text-stone-400" id="modal-payable-vnd">~ 0 VNĐ</span>
+                                <span class="text-xs font-bold text-stone-400" id="modal-payable-vnd">~ 0 VND</span>
                             </div>
                             <div class="text-[10px] text-stone-500 hidden" id="modal-remaining-notice">
-                                Thanh toán khi hướng dẫn viên đón tour: <strong class="text-gray-900" id="modal-remaining-display">$0.00</strong>
+                                Pay your guide on pickup: <strong class="text-gray-900" id="modal-remaining-display">$0.00</strong>
                             </div>
                         </div>
 
                         <button type="submit" id="btn-submit-booking" class="w-full sm:w-auto bg-[#E48E45] hover:bg-[#D27B32] text-white font-extrabold px-8 py-3.5 rounded-2xl text-xs shadow-lg shadow-orange-500/25 transition transform active:scale-95 flex items-center justify-center gap-2 cursor-pointer">
                             <i class="fa-solid fa-bolt"></i>
-                            <span id="btn-submit-text">THANH TOÁN & HOÀN TẤT ĐẶT TOUR</span>
+                            <span id="btn-submit-text">PAY & COMPLETE BOOKING</span>
                         </button>
                     </div>
                 </div>
@@ -1195,7 +1203,7 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- SEARCH MODAL (Tìm kiếm nhanh)              -->
+    <!-- SEARCH MODAL (Quick search)               -->
     <!-- ========================================== -->
     <div id="search-modal" class="fixed inset-0 z-50 hidden bg-black/75 flex items-start justify-center pt-24 px-4 overscroll-contain">
         <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full p-6 relative animate-fadeIn" onclick="event.stopPropagation()">
@@ -1204,24 +1212,24 @@
             </button>
             <h4 class="text-base font-bold text-gray-900 mb-4 flex items-center gap-2">
                 <i class="fa-solid fa-magnifying-glass text-chestnut"></i>
-                <span>Tìm kiếm hành trình trải nghiệm</span>
+                <span>Search for your next adventure</span>
             </h4>
             <form action="{{ route('home') }}#tours-section" method="GET" class="flex gap-2">
-                <input type="text" name="s" placeholder="Nhập tên tour, địa danh (Hà Giang, Sa Pa, Vịnh Lan Hạ...)" class="flex-1 px-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:border-chestnut transition">
-                <button type="submit" class="bg-chestnut hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-xl text-sm transition">Tìm kiếm</button>
+                <input type="text" name="s" placeholder="Enter a tour name or place (Ha Giang, Sa Pa, Lan Ha Bay...)" class="flex-1 px-4 py-3 border border-gray-300 rounded-xl text-sm focus:outline-none focus:border-chestnut transition">
+                <button type="submit" class="bg-chestnut hover:bg-orange-600 text-white font-bold px-6 py-3 rounded-xl text-sm transition">Search</button>
             </form>
             <div class="mt-4 flex flex-wrap gap-2 text-xs text-gray-500">
-                <span class="font-bold text-gray-700">Gợi ý phổ biến:</span>
-                <a href="{{ route('home') }}?s=Ha+Giang#tours-section" class="bg-gray-100 hover:bg-orange-50 hover:text-chestnut px-2.5 py-1 rounded-full transition">Hà Giang Loop</a>
+                <span class="font-bold text-gray-700">Popular searches:</span>
+                <a href="{{ route('home') }}?s=Ha+Giang#tours-section" class="bg-gray-100 hover:bg-orange-50 hover:text-chestnut px-2.5 py-1 rounded-full transition">Ha Giang Loop</a>
                 <a href="{{ route('home') }}?s=Sapa#tours-section" class="bg-gray-100 hover:bg-orange-50 hover:text-chestnut px-2.5 py-1 rounded-full transition">Sa Pa Trekking</a>
-                <a href="{{ route('home') }}?s=Lan+Ha#tours-section" class="bg-gray-100 hover:bg-orange-50 hover:text-chestnut px-2.5 py-1 rounded-full transition">Vịnh Lan Hạ</a>
-                <a href="{{ route('home') }}?s=Ninh+Binh#tours-section" class="bg-gray-100 hover:bg-orange-50 hover:text-chestnut px-2.5 py-1 rounded-full transition">Ninh Bình</a>
+                <a href="{{ route('home') }}?s=Lan+Ha#tours-section" class="bg-gray-100 hover:bg-orange-50 hover:text-chestnut px-2.5 py-1 rounded-full transition">Lan Ha Bay</a>
+                <a href="{{ route('home') }}?s=Ninh+Binh#tours-section" class="bg-gray-100 hover:bg-orange-50 hover:text-chestnut px-2.5 py-1 rounded-full transition">Ninh Binh</a>
             </div>
         </div>
     </div>
 
     <!-- ========================================== -->
-    <!-- WISHLIST MODAL (Danh Sách Yêu Thích)       -->
+    <!-- WISHLIST MODAL                             -->
     <!-- ========================================== -->
     <div id="wishlist-modal" class="fixed inset-0 z-50 hidden bg-black/70 flex items-center justify-center p-4 overscroll-contain">
         <div class="bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden relative animate-fadeIn flex flex-col max-h-[85vh]" onclick="event.stopPropagation()">
@@ -1232,8 +1240,8 @@
                         <i class="fa-regular fa-heart text-base"></i>
                     </div>
                     <div>
-                        <h3 class="text-base font-extrabold text-gray-900">Danh Sách Tour Yêu Thích</h3>
-                        <p class="text-[11px] text-gray-500">Các tour du lịch bạn đã lưu để xem lại sau</p>
+                        <h3 class="text-base font-extrabold text-gray-900">Your Wishlist</h3>
+                        <p class="text-[11px] text-gray-500">Tours you have saved for later</p>
                     </div>
                 </div>
                 <button onclick="closeWishlistModal()" class="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300 text-gray-700 flex items-center justify-center text-xs transition">
@@ -1251,27 +1259,198 @@
                 <div class="w-16 h-16 rounded-full bg-gray-100 text-gray-400 flex items-center justify-center mx-auto mb-3 text-2xl">
                     <i class="fa-regular fa-heart"></i>
                 </div>
-                <h4 class="font-bold text-gray-800 text-sm mb-1">Chưa có tour nào được lưu</h4>
-                <p class="text-xs text-gray-500 mb-4">Nhấp vào biểu tượng trái tim trên các tour để lưu lại những chuyến đi yêu thích của bạn!</p>
+                <h4 class="font-bold text-gray-800 text-sm mb-1">No saved tours yet</h4>
+                <p class="text-xs text-gray-500 mb-4">Tap the heart icon on any tour to save your favorite trips!</p>
                 <a href="{{ route('home') }}#tours-section" onclick="closeWishlistModal()" class="inline-block bg-chestnut hover:bg-orange-600 text-white font-bold text-xs px-4 py-2 rounded-xl transition">
-                    Khám phá tour ngay
+                    Explore tours
                 </a>
             </div>
 
             <!-- Footer -->
             <div class="p-4 bg-gray-50 border-t border-gray-100 flex items-center justify-between text-xs">
                 <button onclick="clearAllWishlist()" class="text-gray-400 hover:text-gray-700 font-medium transition cursor-pointer">
-                    Xóa tất cả
+                    Clear all
                 </button>
                 <a href="{{ route('wishlist') }}" class="text-chestnut hover:underline font-bold">
-                    Xem toàn bộ danh sách &rarr;
+                    View full wishlist &rarr;
                 </a>
             </div>
         </div>
     </div>
 
+    <!-- TOAST NOTIFICATIONS CONTAINER -->
+    <div id="toast-container" class="fixed top-4 right-4 left-4 sm:left-auto z-[60] flex flex-col items-end gap-2 pointer-events-none" aria-live="polite"></div>
+
     <!-- JAVASCRIPT LOGIC FOR MODALS & BOOKINGS -->
     <script>
+        // -------------------------------------------------------------
+        // FORM FEEDBACK HELPERS (toasts, inline field errors, server responses)
+        // -------------------------------------------------------------
+        const TOAST_STYLES = {
+            error: { bg: 'bg-red-600', icon: 'fa-circle-exclamation' },
+            success: { bg: 'bg-emerald-600', icon: 'fa-circle-check' },
+            info: { bg: 'bg-sky-600', icon: 'fa-circle-info' },
+        };
+
+        function showToast(message, type = 'error', timeout = 5000) {
+            const container = document.getElementById('toast-container');
+            if (!container || !message) return;
+            const style = TOAST_STYLES[type] || TOAST_STYLES.error;
+            // Replace an identical toast instead of stacking duplicates on repeated clicks
+            container.querySelectorAll('[data-toast-message]').forEach(el => {
+                if (el.dataset.toastMessage === message) el.remove();
+            });
+            const toast = document.createElement('div');
+            toast.dataset.toastMessage = message;
+            toast.className = `${style.bg} text-white text-xs sm:text-sm px-4 py-3 rounded-xl shadow-2xl flex items-start gap-3 max-w-sm w-full sm:w-auto pointer-events-auto transition-all duration-300 opacity-0 translate-y-[-8px]`;
+            toast.setAttribute('role', type === 'error' ? 'alert' : 'status');
+            toast.innerHTML = `<i class="fa-solid ${style.icon} text-base mt-0.5 shrink-0"></i><span class="flex-1 leading-snug"></span><button type="button" class="text-white/80 hover:text-white shrink-0" aria-label="Close">✕</button>`;
+            toast.querySelector('span').textContent = message;
+            const remove = () => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            };
+            toast.querySelector('button').addEventListener('click', remove);
+            container.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.remove('opacity-0', 'translate-y-[-8px]'));
+            if (timeout) setTimeout(remove, timeout);
+        }
+
+        function fieldErrorAnchor(input) {
+            // Inputs wrapped with an icon sit inside a .relative div; show the error below that wrapper
+            const parent = input.parentElement;
+            return parent && parent.classList.contains('relative') ? parent : input;
+        }
+
+        function setFieldError(input, message) {
+            if (!input) return;
+            clearFieldError(input);
+            input.classList.add('!border-red-500', 'ring-1', 'ring-red-500');
+            input.setAttribute('aria-invalid', 'true');
+            const err = document.createElement('p');
+            err.className = 'field-error text-[11px] text-red-600 font-semibold mt-1 flex items-center gap-1';
+            err.innerHTML = '<i class="fa-solid fa-circle-exclamation text-[10px]"></i><span></span>';
+            err.querySelector('span').textContent = message;
+            fieldErrorAnchor(input).insertAdjacentElement('afterend', err);
+            if (!input.dataset.errorListener) {
+                input.dataset.errorListener = '1';
+                const clear = () => clearFieldError(input);
+                input.addEventListener('input', clear);
+                input.addEventListener('change', clear);
+            }
+        }
+
+        function clearFieldError(input) {
+            if (!input) return;
+            input.classList.remove('!border-red-500', 'ring-1', 'ring-red-500');
+            input.removeAttribute('aria-invalid');
+            const next = fieldErrorAnchor(input).nextElementSibling;
+            if (next && next.classList.contains('field-error')) next.remove();
+        }
+
+        function clearFieldErrors(container) {
+            if (!container) return;
+            container.querySelectorAll('input, select, textarea').forEach(clearFieldError);
+        }
+
+        function fieldLabel(input) {
+            if (input.dataset.label) return input.dataset.label;
+            const wrapper = input.closest('div');
+            const label = (input.id && document.querySelector(`label[for="${input.id}"]`)) || (wrapper && wrapper.querySelector('label')) || (wrapper && wrapper.parentElement && wrapper.parentElement.querySelector('label'));
+            const text = label ? label.textContent.replace(/\*/g, '').replace(/\(.*?\)/g, '').trim() : '';
+            return text ? text.charAt(0).toUpperCase() + text.slice(1).toLowerCase() : 'This field';
+        }
+
+        // Validates the visible rules of every field inside `container`; returns the first invalid input (or null)
+        function validateFields(container) {
+            if (!container) return null;
+            let firstInvalid = null;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+            container.querySelectorAll('input, select, textarea').forEach(input => {
+                if (input.type === 'hidden' || input.disabled || input.name === '_token') return;
+                clearFieldError(input);
+                const value = (input.value || '').trim();
+                let message = null;
+
+                if (input.required && !value) {
+                    message = input.dataset.requiredMessage || `${fieldLabel(input)} is required.`;
+                } else if (value && input.type === 'email' && !emailPattern.test(value)) {
+                    message = 'Please enter a valid email address (e.g. name@example.com).';
+                } else if (value && input.type === 'tel' && value.replace(/[^0-9]/g, '').length < 7) {
+                    message = 'Please enter a valid phone number (at least 7 digits).';
+                } else if (value && input.minLength > 0 && value.length < input.minLength) {
+                    message = `Must be at least ${input.minLength} characters.`;
+                } else if (value && input.type === 'number' && ((input.min !== '' && Number(value) < Number(input.min)) || (input.max !== '' && Number(value) > Number(input.max)))) {
+                    message = `Please enter a number between ${input.min || 0} and ${input.max || '∞'}.`;
+                } else if (value && input.type === 'date' && input.min && value < input.min) {
+                    message = 'Please choose a date from today onwards.';
+                } else if (input.dataset.match) {
+                    const other = container.querySelector(`[name="${input.dataset.match}"]`);
+                    if (other && other.value !== input.value) message = 'Passwords do not match.';
+                }
+
+                if (message) {
+                    setFieldError(input, message);
+                    if (!firstInvalid) firstInvalid = input;
+                }
+            });
+            return firstInvalid;
+        }
+
+        function focusField(input) {
+            if (!input) return;
+            input.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => input.focus({ preventScroll: true }), 250);
+        }
+
+        // Shows Laravel validation errors next to the matching inputs; returns the first matched input
+        function applyServerErrors(form, errors) {
+            let first = null;
+            if (!form || !errors) return first;
+            Object.entries(errors).forEach(([field, messages]) => {
+                const input = form.querySelector(`[name="${field}"]`) || form.querySelector(`[name="${field}[]"]`);
+                if (input && input.type !== 'hidden') {
+                    setFieldError(input, Array.isArray(messages) ? messages[0] : messages);
+                    if (!first) first = input;
+                }
+            });
+            return first;
+        }
+
+        function firstServerError(data) {
+            if (data && data.errors && typeof data.errors === 'object') {
+                const firstKey = Object.keys(data.errors)[0];
+                const msgs = firstKey ? data.errors[firstKey] : null;
+                if (Array.isArray(msgs) && msgs.length) return msgs[0];
+            }
+            return null;
+        }
+
+        // Reads a fetch response safely (non-JSON error pages included) and returns a friendly message
+        async function readJsonResponse(response) {
+            let data = {};
+            try {
+                data = await response.json();
+            } catch (e) {
+                data = {};
+            }
+            let message = firstServerError(data) || data.message || null;
+            if (!response.ok) {
+                if (response.status === 419) {
+                    message = 'Your session has expired. Please refresh the page and try again.';
+                } else if (response.status === 429) {
+                    message = 'Too many attempts. Please wait a minute and try again.';
+                } else if (response.status >= 500) {
+                    message = 'Something went wrong on our side. Please try again in a moment or contact our hotline {{ option("site_hotline", "+84 867 216 850") }}.';
+                } else if (response.status === 422 && data.errors) {
+                    message = message || 'Please check the highlighted fields.';
+                }
+            }
+            return { ok: response.ok && data.success !== false, status: response.status, data, message };
+        }
+
+        const NETWORK_ERROR_MESSAGE = 'Unable to connect. Please check your internet connection and try again.';
+
         // Helper to lock body scroll when modal is open
         function setBodyScrollLock(locked) {
             if (locked) {
@@ -1357,20 +1536,44 @@
                 errorDiv.classList.add('hidden');
             }
 
-            // 1. Loading UI State
+            const showError = (message) => {
+                if (errorDiv) {
+                    errorDiv.textContent = message;
+                    errorDiv.classList.remove('hidden');
+                }
+            };
+
+            const firstInvalid = validateFields(form);
+            if (firstInvalid) {
+                showError('Please fix the highlighted fields below.');
+                focusField(firstInvalid);
+                return;
+            }
+
+            // Collect form data BEFORE disabling inputs (disabled inputs are excluded from FormData)
+            const formData = new FormData(form);
+
+            const resetForm = () => {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
+                    submitBtn.innerHTML = originalBtnHtml;
+                }
+                inputs.forEach(el => el.disabled = false);
+            };
+
+            // Loading UI state
             if (submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.classList.add('opacity-80', 'cursor-not-allowed');
-                if (type === 'register') {
-                    submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-sm"></i> <span>Đang khởi tạo tài khoản & gửi email...</span>';
-                } else {
-                    submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin text-sm"></i> <span>Đang kiểm tra đăng nhập...</span>';
-                }
+                submitBtn.innerHTML = type === 'register'
+                    ? '<i class="fa-solid fa-circle-notch fa-spin text-sm"></i> <span>Creating your account...</span>'
+                    : '<i class="fa-solid fa-circle-notch fa-spin text-sm"></i> <span>Signing you in...</span>';
             }
             inputs.forEach(el => el.disabled = true);
 
+            let result;
             try {
-                const formData = new FormData(form);
                 const response = await fetch(url, {
                     method: 'POST',
                     headers: {
@@ -1379,90 +1582,108 @@
                     },
                     body: formData,
                 });
-
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    const tabSwitcher = document.getElementById('auth-modal-tabs');
-                    if (tabSwitcher) tabSwitcher.classList.add('hidden');
-
-                    if (type === 'register') {
-                        // 2. Register Success State
-                        const userName = (data.user && data.user.name) ? data.user.name : 'Quý khách';
-                        const userEmail = (data.user && data.user.email) ? data.user.email : '';
-                        
-                        form.classList.add('hidden');
-                        const regSuccessEl = document.getElementById('register-success');
-                        if (regSuccessEl) {
-                            const nameEl = document.getElementById('register-success-name');
-                            const emailEl = document.getElementById('register-success-email');
-                            if (nameEl) nameEl.textContent = userName;
-                            if (emailEl) emailEl.innerHTML = '<i class="fa-regular fa-envelope text-emerald-600"></i> ' + userEmail;
-                            regSuccessEl.classList.remove('hidden');
-                        }
-
-                        // Auto redirect / reload after 2.3 seconds
-                        setTimeout(() => {
-                            window.location.reload();
-                        }, 2300);
-                    } else {
-                        // 3. Login Success State
-                        const userName = (data.user && data.user.name) ? data.user.name : 'Quý khách';
-                        form.classList.add('hidden');
-                        const loginSuccessEl = document.getElementById('login-success');
-                        if (loginSuccessEl) {
-                            const nameEl = document.getElementById('login-success-name');
-                            if (nameEl) nameEl.textContent = userName;
-                            loginSuccessEl.classList.remove('hidden');
-                        }
-
-                        // Auto reload after 1.2 seconds
-                        setTimeout(() => {
-                            window.location.reload();
-                        }, 1200);
-                    }
-                } else {
-                    let errMsg = data.message || 'Đã có lỗi xảy ra, vui lòng thử lại.';
-                    if (data.errors && typeof data.errors === 'object') {
-                        const firstKey = Object.keys(data.errors)[0];
-                        if (firstKey && Array.isArray(data.errors[firstKey]) && data.errors[firstKey].length > 0) {
-                            errMsg = data.errors[firstKey][0];
-                        }
-                    }
-                    if (errorDiv) {
-                        errorDiv.textContent = errMsg;
-                        errorDiv.classList.remove('hidden');
-                    }
-                    // Reset button state
-                    if (submitBtn) {
-                        submitBtn.disabled = false;
-                        submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
-                        submitBtn.innerHTML = originalBtnHtml;
-                    }
-                    inputs.forEach(el => el.disabled = false);
-                }
+                result = await readJsonResponse(response);
             } catch (err) {
-                if (errorDiv) {
-                    errorDiv.textContent = 'Không thể kết nối máy chủ. Vui lòng kiểm tra lại đường truyền mạng.';
-                    errorDiv.classList.remove('hidden');
+                resetForm();
+                showError(NETWORK_ERROR_MESSAGE);
+                return;
+            }
+
+            const data = result.data;
+            if (!result.ok) {
+                resetForm();
+                applyServerErrors(form, data.errors);
+                showError(result.message || 'Something went wrong. Please try again.');
+                return;
+            }
+
+            const tabSwitcher = document.getElementById('auth-modal-tabs');
+            if (tabSwitcher) tabSwitcher.classList.add('hidden');
+            const userName = (data.user && data.user.name) ? data.user.name : 'traveler';
+            form.classList.add('hidden');
+
+            if (type === 'register') {
+                const userEmail = (data.user && data.user.email) ? data.user.email : '';
+                const regSuccessEl = document.getElementById('register-success');
+                if (regSuccessEl) {
+                    const nameEl = document.getElementById('register-success-name');
+                    const emailEl = document.getElementById('register-success-email');
+                    if (nameEl) nameEl.textContent = userName;
+                    if (emailEl) {
+                        emailEl.innerHTML = '<i class="fa-regular fa-envelope text-emerald-600"></i> ';
+                        emailEl.appendChild(document.createTextNode(userEmail));
+                    }
+                    regSuccessEl.classList.remove('hidden');
                 }
-                // Reset button state
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-80', 'cursor-not-allowed');
-                    submitBtn.innerHTML = originalBtnHtml;
+                setTimeout(() => window.location.reload(), 2300);
+            } else {
+                const loginSuccessEl = document.getElementById('login-success');
+                if (loginSuccessEl) {
+                    const nameEl = document.getElementById('login-success-name');
+                    if (nameEl) nameEl.textContent = userName;
+                    loginSuccessEl.classList.remove('hidden');
                 }
-                inputs.forEach(el => el.disabled = false);
+                setTimeout(() => window.location.reload(), 1200);
             }
         }
 
         // Global Advanced Tour Booking Engine Variables
         let currentTourPrice = 199;
-        let currentPackageName = 'Easy Rider (Có tài xế lái kèm)';
+        let currentPackageName = 'Easy Rider (With local driver)';
         let currentPaymentMethod = 'vietqr'; // 'vietqr' or 'pay_on_arrival'
         let currentBookingStep = 1;
 
+        // Which booking step each server-side field belongs to (used to jump back to the right step on errors)
+        const BOOKING_FIELD_STEPS = {
+            tour_id: 1, departure_date: 1, departure_time: 1, package_option: 1, package_price: 1,
+            adults: 2, children: 2, extra_services: 2,
+            customer_name: 3, customer_email: 3, customer_phone: 3, hotel_pickup: 3, special_requests: 3,
+            payment_method: 4, payment_type: 4,
+        };
+
+        function showBookingError(message) {
+            const errorDiv = document.getElementById('booking-error');
+            if (!errorDiv) return;
+            if (message) {
+                errorDiv.innerHTML = '<i class="fa-solid fa-circle-exclamation mr-1"></i>';
+                errorDiv.appendChild(document.createTextNode(message));
+                errorDiv.classList.remove('hidden');
+            } else {
+                errorDiv.classList.add('hidden');
+            }
+        }
+
+        // Validates steps [fromStep, toStep]; on failure shows that step with inline errors and returns false
+        function validateBookingSteps(fromStep, toStep) {
+            for (let i = fromStep; i <= toStep; i++) {
+                if (i === 1 && !document.getElementById('modal-tour-id')?.value) {
+                    renderBookingStep(1);
+                    showBookingError('Please select a tour before booking. Refresh the page and try again.');
+                    return false;
+                }
+                const invalid = validateFields(document.getElementById('step-content-' + i));
+                if (invalid) {
+                    renderBookingStep(i);
+                    showBookingError('Please complete the highlighted fields before continuing.');
+                    showToast('Please complete the required information to continue.', 'error');
+                    focusField(invalid);
+                    return false;
+                }
+            }
+            showBookingError(null);
+            return true;
+        }
+
         function switchBookingStep(step) {
+            // Moving forward requires every step in between to be valid
+            if (step > currentBookingStep && !validateBookingSteps(currentBookingStep, step - 1)) {
+                return;
+            }
+            if (step <= currentBookingStep) showBookingError(null);
+            renderBookingStep(step);
+        }
+
+        function renderBookingStep(step) {
             currentBookingStep = step;
             for (let i = 1; i <= 4; i++) {
                 const tab = document.getElementById('step-tab-' + i);
@@ -1569,8 +1790,8 @@
 
             const adultRateLabel = document.getElementById('modal-adult-rate-label');
             const childRateLabel = document.getElementById('modal-child-rate-label');
-            if (adultRateLabel) adultRateLabel.textContent = `$${Math.round(currentTourPrice)} / người`;
-            if (childRateLabel) childRateLabel.textContent = `$${childRate} / trẻ (Giảm 25%)`;
+            if (adultRateLabel) adultRateLabel.textContent = `$${Math.round(currentTourPrice)} / person`;
+            if (childRateLabel) childRateLabel.textContent = `$${childRate} / child (25% off)`;
 
             // Calculate Extra Services
             let extraTotal = 0;
@@ -1613,11 +1834,11 @@
             const btnText = document.getElementById('btn-submit-text');
 
             if (currentPaymentMethod === 'vietqr') {
-                if (payableLabel) payableLabel.textContent = 'THANH TOÁN VIETQR (100%):';
+                if (payableLabel) payableLabel.textContent = 'PAY BY VIETQR (100%):';
                 if (payableDisplay) payableDisplay.textContent = `$${grandTotal.toFixed(2)}`;
-                if (payableVndEl) payableVndEl.textContent = `~ ${Math.round(grandTotal * exchangeRate).toLocaleString('vi-VN')} VNĐ`;
+                if (payableVndEl) payableVndEl.textContent = `~ ${Math.round(grandTotal * exchangeRate).toLocaleString('en-US')} VND`;
                 if (remNotice) remNotice.classList.add('hidden');
-                if (btnText) btnText.textContent = `XÁC NHẬN ĐẶT TOUR & CHUYỂN KHOẢN`;
+                if (btnText) btnText.textContent = 'CONFIRM BOOKING & PAY BY TRANSFER';
 
                 // Update VietQR dynamic QR code with accurate amount in VND
                 const qrImg = document.getElementById('vietqr-modal-image');
@@ -1634,13 +1855,13 @@
                     }
                 }
             } else {
-                // pay_on_arrival (Thanh toán sau)
-                if (payableLabel) payableLabel.textContent = 'TRẢ TRƯỚC HÔM NAY:';
+                // pay_on_arrival (pay later)
+                if (payableLabel) payableLabel.textContent = 'DUE TODAY:';
                 if (payableDisplay) payableDisplay.textContent = '$0.00';
-                if (payableVndEl) payableVndEl.textContent = '~ 0 VNĐ';
+                if (payableVndEl) payableVndEl.textContent = '~ 0 VND';
                 if (remNotice) remNotice.classList.remove('hidden');
                 if (remDisplay) remDisplay.textContent = `$${grandTotal.toFixed(2)}`;
-                if (btnText) btnText.textContent = 'XÁC NHẬN GIỮ CHỖ (THANH TOÁN SAU)';
+                if (btnText) btnText.textContent = 'CONFIRM RESERVATION (PAY LATER)';
             }
         }
 
@@ -1657,7 +1878,7 @@
         // Quick Booking Modal Controls
         function openQuickBookingModal(tourId, tourTitle, tourPrice = 199, selectedPackage = '', departureDate = '', adults = 1, children = 0, customPackages = [], tourAddons = null) {
             document.getElementById('modal-tour-id').value = tourId || '';
-            document.getElementById('modal-tour-title').textContent = tourTitle || 'Đặt Tour Du Lịch';
+            document.getElementById('modal-tour-title').textContent = tourTitle || 'Book Your Tour';
             currentTourPrice = parseFloat(tourPrice) || 199;
             const pkgPrice = document.getElementById('modal-package-price');
             const pkgOpt = document.getElementById('modal-package-option');
@@ -1690,7 +1911,7 @@
                                 <span class="text-xs font-extrabold text-gray-900">${escapeHtml(pkg.option_name)}</span>
                                 <span class="text-xs font-black text-chestnut">$${Math.round(price)}</span>
                             </div>
-                            <p class="text-[11px] text-gray-500 mt-0.5">${escapeHtml(pkg.notes || 'Gói dịch vụ tiêu chuẩn của Chestnut Travel')}</p>
+                            <p class="text-[11px] text-gray-500 mt-0.5">${escapeHtml(pkg.notes || 'Chestnut Travel standard package')}</p>
                         </div>
                     `;
                     pkgContainer.appendChild(card);
@@ -1710,7 +1931,7 @@
                     addonList.innerHTML = `
                         <div class="p-3.5 bg-stone-50 border border-stone-200 rounded-2xl text-xs text-stone-500 italic flex items-center gap-2">
                             <i class="fa-solid fa-circle-check text-emerald-500"></i>
-                            Tour này đã bao gồm trọn gói dịch vụ tiêu chuẩn, không có phụ thu thêm.
+                            This tour already includes all standard services, with no extra charges.
                         </div>
                     `;
                 } else {
@@ -1762,8 +1983,10 @@
                 if (childInput) childInput.value = children;
             }
 
-            // Reset to step 1
-            switchBookingStep(1);
+            // Reset to step 1 with a clean error state
+            clearFieldErrors(document.getElementById('form-quick-booking'));
+            showBookingError(null);
+            renderBookingStep(1);
             calculateBookingTotal();
 
             document.getElementById('booking-modal').classList.remove('hidden');
@@ -1778,14 +2001,24 @@
         async function handleBookingSubmit(event) {
             event.preventDefault();
             const form = event.target;
-            const formData = new FormData(form);
             const submitBtn = document.getElementById('btn-submit-booking');
-            const errorDiv = document.getElementById('booking-error');
-            errorDiv.classList.add('hidden');
+
+            // Hidden steps cannot show native browser validation, so validate every step ourselves
+            if (!validateBookingSteps(1, 3)) {
+                return;
+            }
+
+            const formData = new FormData(form);
+            const originalBtnHtml = submitBtn.innerHTML;
+            const resetButton = () => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnHtml;
+            };
 
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang khởi tạo đơn & cổng thanh toán...';
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Creating your booking...';
 
+            let result;
             try {
                 const response = await fetch('{{ route("booking.store") }}', {
                     method: 'POST',
@@ -1795,33 +2028,32 @@
                     },
                     body: formData,
                 });
-
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    window.location.href = data.redirect_url || ('/booking/success/' + data.booking.code);
-                } else {
-                    let errMsg = data.message || 'Vui lòng kiểm tra lại thông tin đã nhập.';
-                    if (data.errors && typeof data.errors === 'object') {
-                        const firstKey = Object.keys(data.errors)[0];
-                        if (firstKey && Array.isArray(data.errors[firstKey]) && data.errors[firstKey].length > 0) {
-                            errMsg = data.errors[firstKey][0];
-                        }
-                    }
-                    errorDiv.textContent = errMsg;
-                    errorDiv.classList.remove('hidden');
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fa-solid fa-bolt"></i> <span id="btn-submit-text">THỬ LẠI</span>';
-                }
+                result = await readJsonResponse(response);
             } catch (err) {
-                errorDiv.textContent = 'Lỗi kết nối. Vui lòng liên hệ hotline {{ option("site_hotline", "+84 867 216 850") }} để được hỗ trợ.';
-                errorDiv.classList.remove('hidden');
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fa-solid fa-bolt"></i> <span id="btn-submit-text">THỬ LẠI</span>';
+                resetButton();
+                showBookingError(NETWORK_ERROR_MESSAGE + ' You can also contact our hotline {{ option("site_hotline", "+84 867 216 850") }}.');
+                showToast(NETWORK_ERROR_MESSAGE, 'error');
+                return;
             }
+
+            if (result.ok) {
+                showToast('Booking created! Redirecting to your confirmation...', 'success');
+                window.location.href = result.data.redirect_url || ('/booking/success/' + result.data.booking.code);
+                return;
+            }
+
+            resetButton();
+            const errors = result.data.errors || {};
+            const errorSteps = Object.keys(errors).map(f => BOOKING_FIELD_STEPS[f] || 4);
+            if (errorSteps.length) {
+                renderBookingStep(Math.min(...errorSteps));
+            }
+            const firstInput = applyServerErrors(form, errors);
+            const message = result.message || 'Please check the information you entered and try again.';
+            showBookingError(message);
+            showToast(message, 'error');
+            focusField(firstInput);
         }
-
-
 
         // Close modals on clicking background backdrop
         window.addEventListener('click', function(e) {
@@ -1866,7 +2098,7 @@
         }
 
         function clearAllWishlist() {
-            if (confirm('Bạn có chắc muốn xóa tất cả tour khỏi danh sách yêu thích?')) {
+            if (confirm('Are you sure you want to remove all tours from your wishlist?')) {
                 saveWishlist([]);
             }
         }
@@ -1894,7 +2126,7 @@
                 mobileCount.classList.toggle('hidden', count === 0);
             }
             if (pageCount) {
-                pageCount.textContent = count + ' tour';
+                pageCount.textContent = count + (count === 1 ? ' tour' : ' tours');
             }
 
             // Update heart icons on cards (Always 1-stroke outline, no red heart)
@@ -1907,11 +2139,11 @@
                     if (isFav) {
                         btn.classList.add('text-gray-900', 'bg-white', 'border', 'border-gray-800', 'shadow-md');
                         btn.classList.remove('text-gray-400', 'text-red-500');
-                        btn.setAttribute('title', 'Đã lưu trong yêu thích');
+                        btn.setAttribute('title', 'Saved to wishlist');
                     } else {
                         btn.classList.remove('text-gray-900', 'border-gray-800', 'text-red-500');
                         btn.classList.add('text-gray-400');
-                        btn.setAttribute('title', 'Lưu vào danh sách yêu thích');
+                        btn.setAttribute('title', 'Save to wishlist');
                     }
                 }
             });
@@ -1933,8 +2165,8 @@
                                 <span class="text-xs font-black text-chestnut block mt-0.5">$${Number(item.price).toLocaleString()}</span>
                             </div>
                             <div class="flex items-center gap-1.5 shrink-0">
-                                <a href="${item.url}" class="bg-chestnut hover:bg-orange-600 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg transition">Xem</a>
-                                <button onclick="removeWishlistItem(${item.id})" class="text-gray-400 hover:text-red-500 p-1.5 transition text-xs cursor-pointer" title="Xóa">
+                                <a href="${item.url}" class="bg-chestnut hover:bg-orange-600 text-white text-[11px] font-bold px-2.5 py-1.5 rounded-lg transition">View</a>
+                                <button onclick="removeWishlistItem(${item.id})" class="text-gray-400 hover:text-red-500 p-1.5 transition text-xs cursor-pointer" title="Remove">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
                             </div>
@@ -1960,9 +2192,9 @@
                                 <div class="text-sm font-extrabold text-chestnut mt-1">$${Number(item.price).toLocaleString()}</div>
                             </div>
                             <div class="flex flex-col gap-1.5 shrink-0">
-                                <a href="${item.url}" class="bg-chestnut hover:bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition text-center">Đặt ngay</a>
+                                <a href="${item.url}" class="bg-chestnut hover:bg-orange-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition text-center">Book now</a>
                                 <button onclick="removeWishlistItem(${item.id})" class="text-gray-400 hover:text-red-500 text-xs py-1 transition flex items-center justify-center gap-1 cursor-pointer">
-                                    <i class="fa-solid fa-trash-can text-[10px]"></i> <span>Xóa</span>
+                                    <i class="fa-solid fa-trash-can text-[10px]"></i> <span>Remove</span>
                                 </button>
                             </div>
                         </div>

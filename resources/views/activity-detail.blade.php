@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', $activity->name . ' - ' . option('site_name', 'Chestnut Travel'))
-@section('meta_description', 'Khám phá các tour trải nghiệm ' . $activity->name . ' độc đáo cùng Chestnut Travel. Cam kết giá tốt nhất và dịch vụ bản địa chất lượng cao.')
+@section('meta_description', 'Discover unique ' . $activity->name . ' tours with Chestnut Travel. Best price guaranteed and high-quality local service.')
 
 @section('content')
 <!-- ============================================================== -->
@@ -11,9 +11,9 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 text-xs text-gray-500 mb-4 overflow-x-auto whitespace-nowrap py-1">
-            <a href="{{ route('home') }}" class="hover:text-[#28B5A4] transition font-medium">Trang chủ</a>
+            <a href="{{ route('home') }}" class="hover:text-[#28B5A4] transition font-medium">Home</a>
             <span class="text-gray-300">/</span>
-            <a href="{{ route('home') }}#activities-section" class="hover:text-[#28B5A4] transition font-medium">Hoạt động</a>
+            <a href="{{ route('home') }}#activities-section" class="hover:text-[#28B5A4] transition font-medium">Activities</a>
             <span class="text-gray-300">/</span>
             <span class="text-gray-900 font-bold truncate">{{ $activity->name }}</span>
         </nav>
@@ -22,7 +22,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div>
                 <span class="inline-block bg-[#28B5A4]/10 text-[#28B5A4] border border-[#28B5A4]/20 font-extrabold text-[11px] uppercase tracking-wider px-3 py-1 rounded-full mb-2">
-                    Hoạt động trải nghiệm nổi bật
+                    Featured activity
                 </span>
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
                     {{ $activity->name }}
@@ -36,7 +36,7 @@
 
             <div class="flex items-center gap-2 text-xs font-semibold text-gray-500 bg-white border border-gray-200 px-4 py-2.5 rounded-2xl shadow-xs self-start sm:self-auto">
                 <i class="fa-solid fa-map-location-dot text-[#28B5A4]"></i>
-                <span>Tìm thấy <strong class="text-gray-900 font-bold">{{ $tours->total() }}</strong> chuyến đi</span>
+                <span>Found <strong class="text-gray-900 font-bold">{{ $tours->total() }}</strong> {{ Str::plural('trip', $tours->total()) }}</span>
             </div>
         </div>
     </div>
@@ -209,7 +209,7 @@
 
                     <button type="submit" 
                             class="w-full bg-[#28B5A4] hover:bg-[#209C8D] text-white text-xs font-bold py-3 rounded-xl shadow-sm transition active:scale-95 cursor-pointer">
-                        Áp dụng bộ lọc
+                        Apply filters
                     </button>
                 </form>
             </aside>
@@ -220,7 +220,7 @@
                 <!-- TOOLBAR (Search, Sort & View Mode) -->
                 <div class="bg-gray-50/80 border border-gray-200/90 rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div class="text-xs text-gray-600 font-medium">
-                        Hiển thị <strong class="text-gray-900 font-bold">{{ $tours->count() }}</strong> trong tổng số <strong class="text-gray-900 font-bold">{{ $tours->total() }}</strong> tour
+                        Showing <strong class="text-gray-900 font-bold">{{ $tours->count() }}</strong> of <strong class="text-gray-900 font-bold">{{ $tours->total() }}</strong> tours
                     </div>
 
                     <div class="flex items-center gap-4 self-end sm:self-auto">
@@ -340,7 +340,7 @@
                                         <!-- Price & View Details Action -->
                                         <div class="pt-4 border-t border-gray-100 flex items-center justify-between gap-4">
                                             <div>
-                                                <span class="text-[10px] text-gray-400 uppercase font-semibold block">Giá từ</span>
+                                                <span class="text-[10px] text-gray-400 uppercase font-semibold block">From</span>
                                                 <span class="text-xl font-black text-gray-900">${{ number_format($price, 0) }}</span>
                                             </div>
 
@@ -366,13 +366,13 @@
                         <div class="w-16 h-16 rounded-full bg-orange-100/60 text-[#28B5A4] flex items-center justify-center text-2xl mx-auto">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
-                        <h3 class="text-lg font-bold text-gray-900">Không tìm thấy chuyến đi nào</h3>
+                        <h3 class="text-lg font-bold text-gray-900">No trips found</h3>
                         <p class="text-xs text-gray-500 max-w-md mx-auto">
-                            Hiện chưa có tour nào phù hợp với bộ lọc đã chọn trong hoạt động {{ $activity->name }}. Vui lòng thử xóa bớt bộ lọc hoặc chọn hoạt động khác.
+                            There are no {{ $activity->name }} tours matching your filters. Please remove some filters or choose another activity.
                         </p>
                         <a href="{{ route('activities.show', $activity->slug) }}" 
                            class="inline-block bg-[#28B5A4] hover:bg-[#209C8D] text-white text-xs font-bold px-6 py-2.5 rounded-xl transition">
-                            Xóa bộ lọc
+                            Clear filters
                         </a>
                     </div>
                 @endif

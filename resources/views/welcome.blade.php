@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Chestnut Travel - Du Lịch Trải Nghiệm Bản Địa & Khám Phá Miền Bắc')
-@section('meta_description', 'Chestnut Travel chuyên tổ chức tour xe máy Hà Giang Loop, Sa Pa trekking bản địa, Du thuyền Vịnh Lan Hạ - Cát Bà, Ninh Bình và Combo trọn gói miền Bắc.')
+@section('title', 'Chestnut Travel - Authentic Local Travel & Northern Vietnam Adventures')
+@section('meta_description', 'Chestnut Travel specializes in Ha Giang Loop motorbike tours, Sa Pa local trekking, Lan Ha Bay - Cat Ba cruises, Ninh Binh and all-inclusive Northern Vietnam combos.')
 
 @section('content')
 
@@ -12,21 +12,21 @@
             [
                 'image' => 'banners/hero-1.jpg',
                 'image_url' => null,
-                'badge' => '#1 Du Lịch Trải Nghiệm Bản Địa Tại Miền Bắc',
-                'title' => 'Đồng hành trên mọi',
-                'title_highlight' => 'hành trình khám phá',
-                'subtitle' => 'Để Chestnut Travel là người bạn đồng hành tin cậy — Cùng bạn chinh phục mọi cung đường kỳ vĩ của Việt Nam.',
-                'button_text' => 'Khám phá ngay',
+                'badge' => '#1 Authentic Local Travel in Northern Vietnam',
+                'title' => 'Your companion on every',
+                'title_highlight' => 'journey of discovery',
+                'subtitle' => 'Let Chestnut Travel be your trusted travel companion — conquering every spectacular road in Vietnam with you.',
+                'button_text' => 'Explore now',
                 'button_link' => '#tours-section',
             ],
             [
                 'image' => 'banners/hero-2.jpg',
                 'image_url' => null,
-                'badge' => 'Cung Đường Huyền Thoại',
-                'title' => 'Khám phá kỳ quan',
-                'title_highlight' => 'Hà Giang & Sa Pa',
-                'subtitle' => 'Chinh phục Mã Pí Lèng, sông Nho Quế và những thửa ruộng bậc thang kỳ vĩ.',
-                'button_text' => 'Xem tour hot',
+                'badge' => 'Legendary Roads',
+                'title' => 'Discover the wonders of',
+                'title_highlight' => 'Ha Giang & Sa Pa',
+                'subtitle' => 'Conquer Ma Pi Leng Pass, the Nho Que River and breathtaking rice terraces.',
+                'button_text' => 'See hot tours',
                 'button_link' => '#tours-section',
             ],
         ];
@@ -60,7 +60,7 @@
         @endforeach
     </div>
 
-    <!-- Navigation Arrows ("Lướt 2 bên") -->
+    <!-- Navigation arrows -->
     @if(count($heroBanners) > 1)
         <button id="hero-prev-btn" 
                 type="button"
@@ -126,10 +126,10 @@
                 <div class="sm:col-span-1 lg:col-span-3 relative border-b sm:border-b-0 sm:border-r border-gray-200 pb-2 sm:pb-0 sm:pr-3">
                     <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                         <i class="fa-solid fa-location-dot text-chestnut"></i>
-                        <span>Điểm đến (Destination)</span>
+                        <span>Destination</span>
                     </label>
                     <select name="destination" class="w-full text-sm font-semibold text-gray-800 bg-transparent focus:outline-none cursor-pointer">
-                        <option value="">Tất cả điểm đến</option>
+                        <option value="">All destinations</option>
                         @foreach($destinations as $dest)
                             <option value="{{ $dest->slug }}" {{ request('destination') == $dest->slug ? 'selected' : '' }}>
                                 {{ $dest->name }} ({{ $dest->tours_count }})
@@ -142,10 +142,10 @@
                 <div class="sm:col-span-1 lg:col-span-3 relative border-b sm:border-b-0 lg:border-r border-gray-200 pb-2 sm:pb-0 sm:pr-3">
                     <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                         <i class="fa-solid fa-person-biking text-chestnut"></i>
-                        <span>Loại hoạt động</span>
+                        <span>Activity</span>
                     </label>
                     <select name="activity" class="w-full text-sm font-semibold text-gray-800 bg-transparent focus:outline-none cursor-pointer">
-                        <option value="">Tất cả hoạt động</option>
+                        <option value="">All activities</option>
                         @foreach($activities as $act)
                             <option value="{{ $act->slug }}" {{ request('activity') == $act->slug ? 'selected' : '' }}>
                                 {{ $act->name }}
@@ -158,14 +158,14 @@
                 <div class="sm:col-span-1 lg:col-span-3 relative border-b sm:border-b-0 sm:border-r border-gray-200 pb-2 sm:pb-0 sm:pr-3">
                     <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                         <i class="fa-solid fa-tags text-chestnut"></i>
-                        <span>Mức giá</span>
+                        <span>Price</span>
                     </label>
                     <select name="price_range" class="w-full text-sm font-semibold text-gray-800 bg-transparent focus:outline-none cursor-pointer">
-                        <option value="">Tất cả mức giá</option>
-                        <option value="0-100" {{ request('price_range') == '0-100' ? 'selected' : '' }}>Dưới $100 (Tiết kiệm)</option>
-                        <option value="100-200" {{ request('price_range') == '100-200' ? 'selected' : '' }}>$100 - $200 (Phổ biến)</option>
-                        <option value="200-300" {{ request('price_range') == '200-300' ? 'selected' : '' }}>$200 - $300 (Cao cấp)</option>
-                        <option value="300+" {{ request('price_range') == '300+' ? 'selected' : '' }}>Trên $300 (Dài ngày/VIP)</option>
+                        <option value="">Any price</option>
+                        <option value="0-100" {{ request('price_range') == '0-100' ? 'selected' : '' }}>Under $100 (Budget)</option>
+                        <option value="100-200" {{ request('price_range') == '100-200' ? 'selected' : '' }}>$100 - $200 (Popular)</option>
+                        <option value="200-300" {{ request('price_range') == '200-300' ? 'selected' : '' }}>$200 - $300 (Premium)</option>
+                        <option value="300+" {{ request('price_range') == '300+' ? 'selected' : '' }}>Over $300 (Long trips/VIP)</option>
                     </select>
                 </div>
 
@@ -174,19 +174,19 @@
                     <div class="flex-1 min-w-0">
                         <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
                             <i class="fa-solid fa-magnifying-glass text-chestnut"></i>
-                            <span>Từ khóa</span>
+                            <span>Keyword</span>
                         </label>
-                        <input type="text" name="s" value="{{ request('s') }}" placeholder="Tên tour, vị trí..." class="w-full text-xs font-semibold text-gray-800 bg-transparent focus:outline-none truncate">
+                        <input type="text" name="s" value="{{ request('s') }}" placeholder="Tour name, location..." class="w-full text-xs font-semibold text-gray-800 bg-transparent focus:outline-none truncate">
                     </div>
                     <button type="submit" class="bg-[#28B5A4] hover:bg-[#209C8D] text-white px-5 py-3 rounded-xl font-bold text-xs uppercase shadow-md shadow-[#28B5A4]/30 transition transform active:scale-95 flex items-center gap-1.5 whitespace-nowrap self-end shrink-0 cursor-pointer">
                         <i class="fa-solid fa-search"></i>
-                        <span>TÌM TOUR</span>
+                        <span>FIND TOURS</span>
                     </button>
                 </div>
             </form>
         </div>
 
-        <!-- Trust Badges Under Search (Notice removed "Đặt nhanh không cần đăng nhập") -->
+        <!-- Trust badges under search -->
         <div class="mt-8 flex flex-wrap justify-center items-center gap-6 text-xs text-gray-300">
             <div class="flex items-center gap-2">
                 <i class="fa-solid fa-star text-amber-400"></i>
@@ -194,13 +194,13 @@
                 <i class="fa-solid fa-star text-amber-400"></i>
                 <i class="fa-solid fa-star text-amber-400"></i>
                 <i class="fa-solid fa-star text-amber-400"></i>
-                <span class="font-bold text-white ml-1">5.0 / 5.0</span>
-                <span>(Hơn 500+ Đánh giá Tripadvisor 5 sao)</span>
+                <span class="font-bold text-white ml-1">{{ option('hero_trust_rating', '5.0 / 5.0') }}</span>
+                <span>{{ option('hero_trust_text_1', '(500+ five-star Tripadvisor reviews)') }}</span>
             </div>
             <div class="hidden sm:block text-gray-500">•</div>
             <div class="flex items-center gap-2">
                 <i class="fa-solid fa-shield-heart text-emerald-400"></i>
-                <span>Bảo hiểm & Hướng dẫn viên địa phương chu đáo</span>
+                <span>{{ option('hero_trust_text_2', 'Insurance & caring local guides') }}</span>
             </div>
         </div>
 
@@ -211,7 +211,7 @@
                     <button type="button" 
                             class="hero-dot h-2.5 rounded-full transition-all duration-300 {{ $idx === 0 ? 'w-8 bg-chestnut' : 'w-2.5 bg-white/40 hover:bg-white/70' }}" 
                             data-slide-target="{{ $idx }}" 
-                            aria-label="Chuyển banner {{ $idx + 1 }}">
+                            aria-label="Go to banner {{ $idx + 1 }}">
                     </button>
                 @endforeach
             </div>
@@ -224,18 +224,18 @@
 <!-- ============================================================== -->
 @php
     $awardBadgeImg = option_image('award_badge_image', option('award_badge_image_url', asset('storage/badges/tcbr-2025.webp')));
-    $awardBadgeTitle = option('award_badge_title', "Chứng nhận Travellers' Choice");
-    $awardBadgeText = option('award_badge_text', "Chestnut Travel tự hào được cộng đồng du khách quốc tế và trong nước bình chọn trao tặng giải thưởng Travellers' Choice 2025 từ Tripadvisor!");
+    $awardBadgeTitle = option('award_badge_title', "Travellers' Choice Award");
+    $awardBadgeText = option('award_badge_text', "Chestnut Travel is proud to have been voted a Tripadvisor Travellers' Choice 2025 winner by travelers from Vietnam and around the world!");
     $awardBadgeLink = option('award_badge_link', 'https://www.tripadvisor.com/Attraction_Review-g293924-d25178538-Reviews-Chestnut_Travel-Hanoi.html');
 
-    $feat1Title = option('feature_1_title', 'Chuyên Gia Bản Địa');
-    $feat1Desc = option('feature_1_desc', 'Đội ngũ chuyên nghiệp, am hiểu sâu sắc văn hóa địa phương luôn sẵn sàng tư vấn lịch trình hoàn hảo và độc đáo nhất dành riêng cho bạn.');
+    $feat1Title = option('feature_1_title', 'Local Travel Experts');
+    $feat1Desc = option('feature_1_desc', 'Our professional team knows the local culture inside out and is always ready to craft the perfect, most unique itinerary just for you.');
 
-    $feat2Title = option('feature_2_title', 'Cam Kết Giá Tốt Nhất');
-    $feat2Desc = option('feature_2_desc', 'Chính sách giá minh bạch, trọn gói và cam kết mức giá tối ưu nhất tương xứng với chất lượng dịch vụ chuẩn mực.');
+    $feat2Title = option('feature_2_title', 'Best Price Guaranteed');
+    $feat2Desc = option('feature_2_desc', 'Transparent, all-inclusive pricing and a commitment to the best possible price for consistently high-quality service.');
 
-    $feat3Title = option('feature_3_title', 'Hỗ Trợ Khách Hàng 24/7');
-    $feat3Desc = option('feature_3_desc', 'Đội ngũ chăm sóc khách hàng luôn túc trực 24/7 đồng hành và hỗ trợ giải quyết mọi thắc mắc trước, trong và sau chuyến đi.');
+    $feat3Title = option('feature_3_title', '24/7 Customer Support');
+    $feat3Desc = option('feature_3_desc', 'Our customer care team is on hand 24/7 to support you and answer any questions before, during and after your trip.');
 @endphp
 
 <section class="py-14 sm:py-20 bg-white border-b border-gray-100">
@@ -314,18 +314,18 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Section Header (Centered as requested) -->
         <div class="text-center max-w-3xl mx-auto mb-14">
-            <span class="text-chestnut font-extrabold text-xs uppercase tracking-widest block mb-2">{{ option('popular_trips_badge', 'Hành Trình Nổi Bật') }}</span>
-            <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">{{ option('popular_trips_title', 'Khám phá các tour được yêu thích nhất.') }}</h2>
+            <span class="text-chestnut font-extrabold text-xs uppercase tracking-widest block mb-2">{{ option('popular_trips_badge', 'Popular Trips') }}</span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">{{ option('popular_trips_title', 'Explore our most loved tours.') }}</h2>
             <p class="text-sm sm:text-base text-gray-600 mt-3 leading-relaxed">
-                {{ option('popular_trips_subtitle', 'Các chuyến đi được yêu thích nhất với lịch trình được tối ưu kỹ lưỡng và dịch vụ trọn gói chất lượng cao.') }}
+                {{ option('popular_trips_subtitle', 'Our most popular trips with carefully optimized itineraries and high-quality all-inclusive service.') }}
             </p>
             @php
                 $hasActiveFilters = request()->anyFilled(['destination', 'activity', 'price_range', 'min_price', 'max_price', 's', 'sort']);
                 $priceRangeLabel = match(request('price_range')) {
-                    '0-100' => 'Dưới $100',
+                    '0-100' => 'Under $100',
                     '100-200' => '$100 - $200',
                     '200-300' => '$200 - $300',
-                    '300+' => 'Trên $300',
+                    '300+' => 'Over $300',
                     default => null,
                 };
                 if (!$priceRangeLabel && (request()->filled('min_price') || request()->filled('max_price'))) {
@@ -335,7 +335,7 @@
 
             @if($hasActiveFilters)
                 <div class="mt-5 flex flex-wrap items-center justify-center gap-2">
-                    <span class="text-xs text-gray-500 font-medium">Đang lọc theo:</span>
+                    <span class="text-xs text-gray-500 font-medium">Filtered by:</span>
                     
                     @if(request()->filled('destination'))
                         @php $activeDest = $destinations->firstWhere('slug', request('destination')); @endphp
@@ -361,7 +361,7 @@
                         <a href="{{ route('home', request()->except(['price_range', 'min_price', 'max_price'])) }}#tours-section" 
                            class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-200 text-xs px-3 py-1 rounded-full font-semibold transition group">
                             <i class="fa-solid fa-tags text-[10px] text-emerald-600"></i>
-                            <span>Giá: {{ $priceRangeLabel }}</span>
+                            <span>Price: {{ $priceRangeLabel }}</span>
                             <i class="fa-solid fa-xmark text-[10px] text-emerald-400 group-hover:text-emerald-700"></i>
                         </a>
                     @endif
@@ -376,7 +376,7 @@
                     @endif
 
                     <a href="{{ route('home') }}#tours-section" class="text-xs bg-gray-200 hover:bg-gray-300 text-gray-800 px-3 py-1 rounded-full font-semibold transition flex items-center gap-1">
-                        <i class="fa-solid fa-rotate-left text-[10px]"></i> Xóa tất cả
+                        <i class="fa-solid fa-rotate-left text-[10px]"></i> Clear all
                     </a>
                 </div>
             @endif
@@ -387,15 +387,15 @@
             <!-- Price Range Quick Pills -->
             <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
                 <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mr-1 hidden sm:inline-flex items-center gap-1.5">
-                    <i class="fa-solid fa-tags text-[#28B5A4]"></i> Mức giá:
+                    <i class="fa-solid fa-tags text-[#28B5A4]"></i> Price:
                 </span>
                 <a href="{{ route('home', array_merge(request()->except(['price_range', 'min_price', 'max_price']), [])) }}#tours-section" 
                    class="px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold transition-all {{ !request()->filled('price_range') ? 'bg-[#28B5A4] text-white shadow-sm shadow-[#28B5A4]/20' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200' }}">
-                    Tất cả
+                    All
                 </a>
                 <a href="{{ route('home', array_merge(request()->except(['price_range', 'min_price', 'max_price']), ['price_range' => '0-100'])) }}#tours-section" 
                    class="px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold transition-all {{ request('price_range') == '0-100' ? 'bg-[#28B5A4] text-white shadow-sm shadow-[#28B5A4]/20' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200' }}">
-                    Dưới $100
+                    Under $100
                 </a>
                 <a href="{{ route('home', array_merge(request()->except(['price_range', 'min_price', 'max_price']), ['price_range' => '100-200'])) }}#tours-section" 
                    class="px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold transition-all {{ request('price_range') == '100-200' ? 'bg-[#28B5A4] text-white shadow-sm shadow-[#28B5A4]/20' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200' }}">
@@ -407,22 +407,22 @@
                 </a>
                 <a href="{{ route('home', array_merge(request()->except(['price_range', 'min_price', 'max_price']), ['price_range' => '300+'])) }}#tours-section" 
                    class="px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-bold transition-all {{ request('price_range') == '300+' ? 'bg-[#28B5A4] text-white shadow-sm shadow-[#28B5A4]/20' : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200' }}">
-                    Trên $300
+                    Over $300
                 </a>
             </div>
 
             <!-- Sort By Selector -->
             <div class="flex items-center gap-2 ml-auto">
-                <span class="text-xs text-gray-400 font-medium hidden md:inline">Sắp xếp:</span>
+                <span class="text-xs text-gray-400 font-medium hidden md:inline">Sort by:</span>
                 <form action="{{ route('home') }}#tours-section" method="GET" id="sort-form">
                     @foreach(request()->except('sort') as $k => $v)
                         <input type="hidden" name="{{ $k }}" value="{{ $v }}">
                     @endforeach
                     <select name="sort" onchange="document.getElementById('sort-form').submit()" class="text-xs font-bold text-gray-700 bg-white border border-gray-200 rounded-xl px-3 py-1.5 focus:outline-none focus:border-[#28B5A4] cursor-pointer shadow-xs">
-                        <option value="latest" {{ request('sort') == 'latest' ? 'selected' : '' }}>Mới nhất</option>
-                        <option value="price-asc" {{ request('sort') == 'price-asc' ? 'selected' : '' }}>Giá: Thấp đến cao</option>
-                        <option value="price-desc" {{ request('sort') == 'price-desc' ? 'selected' : '' }}>Giá: Cao đến thấp</option>
-                        <option value="rating" {{ request('sort') == 'rating' ? 'selected' : '' }}>Đánh giá cao nhất</option>
+                        <option value="latest" {{ request('sort') == 'latest' ? 'selected' : '' }}>Newest</option>
+                        <option value="price-asc" {{ request('sort') == 'price-asc' ? 'selected' : '' }}>Price: Low to high</option>
+                        <option value="price-desc" {{ request('sort') == 'price-desc' ? 'selected' : '' }}>Price: High to low</option>
+                        <option value="rating" {{ request('sort') == 'rating' ? 'selected' : '' }}>Top rated</option>
                     </select>
                 </form>
             </div>
@@ -436,9 +436,9 @@
         @if($allTours->isEmpty())
             <div class="col-span-3 text-center py-16 bg-white rounded-2xl border border-gray-200">
                 <i class="fa-solid fa-compass text-4xl text-gray-300 mb-3"></i>
-                <h4 class="text-base font-bold text-gray-700">Không tìm thấy tour phù hợp</h4>
-                <p class="text-xs text-gray-500 mt-1 mb-4">Hãy thử tìm với từ khóa hoặc điểm đến khác.</p>
-                <a href="{{ route('home') }}#tours-section" class="inline-block bg-chestnut text-white text-xs font-bold px-4 py-2 rounded-lg">Xem tất cả tour</a>
+                <h4 class="text-base font-bold text-gray-700">No matching tours found</h4>
+                <p class="text-xs text-gray-500 mt-1 mb-4">Try a different keyword or destination.</p>
+                <a href="{{ route('home') }}#tours-section" class="inline-block bg-chestnut text-white text-xs font-bold px-4 py-2 rounded-lg">View all tours</a>
             </div>
         @else
             <!-- Tours Slider Container (3 rows of 3 cols = 9 tours per page) -->
@@ -463,11 +463,11 @@
                     <!-- Page Indicator & Auto-slide timer note -->
                     <div class="flex items-center gap-3">
                         <span class="text-xs sm:text-sm font-black text-gray-900 bg-white px-3.5 py-1.5 rounded-xl border border-gray-200 shadow-sm">
-                            Trang <span id="popular-current-num">1</span> / {{ $totalPages }}
+                            Page <span id="popular-current-num">1</span> / {{ $totalPages }}
                         </span>
                         <!-- <span class="text-xs text-gray-500 font-medium hidden sm:inline-flex items-center gap-1.5 bg-orange-50/80 text-orange-700 px-3 py-1 rounded-lg border border-orange-100">
                             <i class="fa-solid fa-clock-rotate-left text-[10px]"></i>
-                            <span>Tự động sang trang mỗi 10s</span>
+                            <span>Auto-advances every 10s</span>
                         </span> -->
                     </div>
 
@@ -477,7 +477,7 @@
                             <button type="button" 
                                     onclick="goToPopularPage({{ $p }})" 
                                     class="popular-dot transition-all duration-300 rounded-full cursor-pointer {{ $p === 0 ? 'w-8 h-2.5 bg-[#28B5A4]' : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400' }}" 
-                                    aria-label="Trang {{ $p + 1 }}"></button>
+                                    aria-label="Page {{ $p + 1 }}"></button>
                         @endfor
                     </div>
 
@@ -487,17 +487,17 @@
                                 id="popular-prev-btn" 
                                 onclick="prevPopularPage()" 
                                 class="w-10 h-10 rounded-xl bg-white hover:bg-gray-100 text-gray-700 hover:text-gray-900 border border-gray-200 shadow-sm flex items-center justify-center transition active:scale-95 cursor-pointer" 
-                                aria-label="Trang trước" 
-                                title="Trang trước">
+                                aria-label="Previous page" 
+                                title="Previous page">
                             <i class="fa-solid fa-chevron-left text-xs"></i>
                         </button>
                         <button type="button" 
                                 id="popular-next-btn" 
                                 onclick="nextPopularPage()" 
                                 class="inline-flex items-center gap-2 bg-[#28B5A4] hover:bg-[#209C8D] text-white text-xs font-bold px-4 py-2.5 rounded-xl shadow-md shadow-[#28B5A4]/20 transition active:scale-95 cursor-pointer" 
-                                aria-label="Sang trang tiếp theo" 
-                                title="Sang trang tiếp theo">
-                            <!-- <span>Sang trang</span> -->
+                                aria-label="Next page" 
+                                title="Next page">
+                            <!-- <span>Next</span> -->
                             <i class="fa-solid fa-chevron-right text-xs"></i>
                         </button>
                     </div>
@@ -513,10 +513,10 @@
 <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-14">
-            <span class="text-chestnut font-extrabold text-xs uppercase tracking-widest block mb-2">Popular Destination</span>
-            <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Explore popular destination.</h2>
+            <span class="text-chestnut font-extrabold text-xs uppercase tracking-widest block mb-2">{{ option('destinations_badge', 'Popular Destination') }}</span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">{{ option('destinations_title', 'Explore popular destination.') }}</h2>
             <p class="text-sm text-gray-600 mt-2">
-                Từ những khúc cua huyền thoại Mã Pí Lèng tới biển đảo ngọc Vịnh Lan Hạ — Khám phá những vùng đất đẹp nhất Việt Nam.
+                {{ option('destinations_subtitle', 'From the legendary bends of Ma Pi Leng to the emerald islands of Lan Ha Bay — discover the most beautiful places in Vietnam.') }}
             </p>
         </div>
 
@@ -531,7 +531,7 @@
                     
                     <div class="absolute bottom-5 left-5 right-5 text-white">
                         <span class="text-[11px] font-bold text-amber-300 uppercase tracking-wider block mb-1">
-                            {{ $dest->tours_count }} Chuyến đi khám phá
+                            {{ $dest->tours_count }} {{ Str::plural('Trip', $dest->tours_count) }} to explore
                         </span>
                         <h3 class="text-xl font-extrabold group-hover:text-amber-300 transition">{{ $dest->name }}</h3>
                         <p class="text-xs text-gray-300 line-clamp-2 mt-1 font-light leading-relaxed">
@@ -556,13 +556,13 @@
         <!-- Section Header (Exact match to chestnuttravel.net) -->
         <div class="text-center max-w-2xl mx-auto mb-12">
             <span class="font-serif-display italic text-[#28B5A4] text-xl sm:text-2xl block mb-1 font-semibold">
-                Popular Activities
+                {{ option('activities_badge', 'Popular Activities') }}
             </span>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
-                Explore by activities.
+                {{ option('activities_title', 'Explore by activities.') }}
             </h2>
             <p class="text-sm sm:text-base text-gray-600 mt-2 font-medium">
-                Wide range of activities to involved in.
+                {{ option('activities_subtitle', 'Wide range of activities to involved in.') }}
             </p>
             <div class="flex justify-center mt-3">
                 <svg width="48" height="10" viewBox="0 0 48 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -613,23 +613,23 @@
         <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <div class="space-y-1">
                 <div class="text-3xl sm:text-5xl font-black text-chestnut tracking-tight counter-num"
-                     data-target="10000" data-suffix="+" data-comma="true">0+</div>
-                <div class="text-xs uppercase font-bold text-gray-700 tracking-wider">Khách du lịch hài lòng</div>
+                     data-target="{{ option('stat_1_number', '10000') }}" data-suffix="{{ option('stat_1_suffix', '+') }}" data-comma="{{ intval(option('stat_1_number', '10000')) >= 1000 ? 'true' : 'false' }}">0{{ option('stat_1_suffix', '+') }}</div>
+                <div class="text-xs uppercase font-bold text-gray-700 tracking-wider">{{ option('stat_1_label', 'Happy travelers') }}</div>
             </div>
             <div class="space-y-1">
                 <div class="text-3xl sm:text-5xl font-black text-chestnut tracking-tight counter-num"
-                     data-target="500" data-suffix="+" data-comma="false">0+</div>
-                <div class="text-xs uppercase font-bold text-gray-700 tracking-wider">Chuyến đi thành công</div>
+                     data-target="{{ option('stat_2_number', '500') }}" data-suffix="{{ option('stat_2_suffix', '+') }}" data-comma="{{ intval(option('stat_2_number', '500')) >= 1000 ? 'true' : 'false' }}">0{{ option('stat_2_suffix', '+') }}</div>
+                <div class="text-xs uppercase font-bold text-gray-700 tracking-wider">{{ option('stat_2_label', 'Successful trips') }}</div>
             </div>
             <div class="space-y-1">
                 <div class="text-3xl sm:text-5xl font-black text-chestnut tracking-tight counter-num"
-                     data-target="100" data-suffix="%" data-comma="false">0%</div>
-                <div class="text-xs uppercase font-bold text-gray-700 tracking-wider">Đánh giá 5 sao thực tế</div>
+                     data-target="{{ option('stat_3_number', '100') }}" data-suffix="{{ option('stat_3_suffix', '%') }}" data-comma="{{ intval(option('stat_3_number', '100')) >= 1000 ? 'true' : 'false' }}">0{{ option('stat_3_suffix', '%') }}</div>
+                <div class="text-xs uppercase font-bold text-gray-700 tracking-wider">{{ option('stat_3_label', 'Genuine 5-star reviews') }}</div>
             </div>
             <div class="space-y-1">
                 <div class="text-3xl sm:text-5xl font-black text-chestnut tracking-tight counter-num"
-                     data-target="24" data-suffix="/7" data-comma="false">0/7</div>
-                <div class="text-xs uppercase font-bold text-gray-700 tracking-wider">Hỗ trợ khách hàng tận tâm</div>
+                     data-target="{{ option('stat_4_number', '24') }}" data-suffix="{{ option('stat_4_suffix', '/7') }}" data-comma="{{ intval(option('stat_4_number', '24')) >= 1000 ? 'true' : 'false' }}">0{{ option('stat_4_suffix', '/7') }}</div>
+                <div class="text-xs uppercase font-bold text-gray-700 tracking-wider">{{ option('stat_4_label', 'Dedicated customer support') }}</div>
             </div>
         </div>
     </div>
@@ -643,13 +643,13 @@
         <!-- Section Header (Exact match to chestnuttravel.net) -->
         <div class="text-center max-w-3xl mx-auto mb-14">
             <span class="font-serif-display italic text-[#28B5A4] text-xl sm:text-2xl block mb-1 font-semibold">
-                Testimonials
+                {{ option('testimonials_badge', 'Testimonials') }}
             </span>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
-                Client testimonials
+                {{ option('testimonials_title', 'Client testimonials') }}
             </h2>
             <p class="text-sm sm:text-base text-gray-600 mt-2 font-medium">
-                Real travelers. Real stories. Real opinions to help you make the right choice.
+                {{ option('testimonials_subtitle', 'Real travelers. Real stories. Real opinions to help you make the right choice.') }}
             </p>
             <div class="flex justify-center mt-3">
                 <svg width="48" height="10" viewBox="0 0 48 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -693,21 +693,21 @@
                                 <div class="md:w-7/12 text-left space-y-4">
                                     <div class="text-[#28B5A4] text-4xl sm:text-5xl font-serif font-black leading-none select-none">“</div>
                                     <h3 class="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
-                                        {{ $testi->title ?? 'Trải nghiệm du lịch tuyệt vời' }}
+                                        {{ $testi->title ?? 'An amazing travel experience' }}
                                     </h3>
                                     <p class="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal">
                                         {{ $testi->comment }}
                                     </p>
                                     <div class="pt-2 border-t border-gray-100">
                                         <h5 class="font-extrabold text-sm sm:text-base text-gray-900">{{ $testi->author_name }}</h5>
-                                        <span class="text-xs text-gray-400 font-medium">{{ $testi->author_location ?? 'Du khách' }}</span>
+                                        <span class="text-xs text-gray-400 font-medium">{{ $testi->author_location ?? 'Traveler' }}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     @empty
                         <div class="w-full shrink-0 px-2 sm:px-6 text-center py-12">
-                            <p class="text-gray-400">Chưa có đánh giá nào được duyệt.</p>
+                            <p class="text-gray-400">No approved reviews yet.</p>
                         </div>
                     @endforelse
                 </div>
@@ -737,13 +737,13 @@
         <!-- Section Header (Exact match to chestnuttravel.net) -->
         <div class="text-center max-w-2xl mx-auto mb-14">
             <span class="font-serif-display italic text-[#28B5A4] text-xl sm:text-2xl block mb-1 font-semibold">
-                Blog &amp; Tips
+                {{ option('blog_badge', 'Blog & Tips') }}
             </span>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 tracking-tight">
-                Travel tips and blog
+                {{ option('blog_title', 'Travel tips and blog') }}
             </h2>
             <p class="text-sm sm:text-base text-gray-600 mt-2 font-medium">
-                Latest travel tips and blog covering all travel experiences.
+                {{ option('blog_subtitle', 'Latest travel tips and blog covering all travel experiences.') }}
             </p>
             <div class="flex justify-center mt-3">
                 <svg width="48" height="10" viewBox="0 0 48 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -813,7 +813,7 @@
                 </article>
             @empty
                 <div class="col-span-3 text-center py-12 text-gray-400">
-                    Chưa có bài viết nào được xuất bản.
+                    No articles have been published yet.
                 </div>
             @endforelse
         </div>
@@ -821,7 +821,7 @@
         <div class="text-center mt-12">
             <a href="{{ route('blog.index') }}" 
                class="inline-flex items-center gap-2 border-2 border-[#28B5A4] text-[#28B5A4] hover:bg-[#28B5A4] hover:text-white px-7 py-3 rounded-full text-xs font-bold transition-all duration-300 shadow-xs">
-                <span>Xem tất cả bài viết</span>
+                <span>View all articles</span>
                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
             </a>
         </div>
@@ -1100,7 +1100,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (totalPopularPages > 1 && !popularInterval) {
             popularInterval = setInterval(() => {
                 updatePopularPageUI(currentPopularPage + 1);
-            }, 10000); // Tự động sang trang mỗi 10s
+            }, 10000); // Auto-advance every 10s
         }
     }
 

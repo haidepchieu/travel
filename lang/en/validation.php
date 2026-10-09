@@ -195,6 +195,34 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'tour_id' => 'tour',
+        'departure_date' => 'departure date',
+        'departure_time' => 'departure time',
+        'package_option' => 'package',
+        'adults' => 'number of adults',
+        'children' => 'number of children',
+        'customer_name' => 'full name',
+        'customer_email' => 'email address',
+        'customer_phone' => 'phone number',
+        'hotel_pickup' => 'pickup hotel',
+        'special_requests' => 'special requests',
+        'payment_method' => 'payment method',
+        'enquiry_name' => 'name',
+        'enquiry_email' => 'email address',
+        'enquiry_contact' => 'contact number',
+        'enquiry_country' => 'country',
+        'enquiry_message' => 'message',
+        'nationality' => 'nationality',
+        'duration' => 'trip duration',
+        'budget' => 'budget',
+        'name' => 'full name',
+        'email' => 'email address',
+        'phone' => 'phone number',
+        'password' => 'password',
+        'current_password' => 'current password',
+        'new_password' => 'new password',
+        'booking_code' => 'booking code',
+    ],
 
 ];

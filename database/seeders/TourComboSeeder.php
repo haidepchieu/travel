@@ -40,7 +40,7 @@ class TourComboSeeder extends Seeder
         
         $combo = Tour::firstOrNew(['slug' => $comboSlug]);
         $combo->title = 'Cultural Trekking, Motor Riding and Sight-seeing: 6-Day Sapa, Ha Giang & Ninh Binh Ethnic Immersion';
-        $combo->tagline = 'Gói Combo khám phá trọn vẹn 3 kỳ quan miền Bắc: Sa Pa, Vòng cung Hà Giang và Tràng An Ninh Bình.';
+        $combo->tagline = 'A combo package covering three of Northern Vietnam\'s wonders: Sa Pa, the Ha Giang Loop and Trang An in Ninh Binh.';
         $combo->destination_id = $northDest?->id;
         $combo->duration_days = 6;
         $combo->duration_nights = 5;
@@ -49,35 +49,35 @@ class TourComboSeeder extends Seeder
         $combo->price = 459.00;
         $combo->sale_price = 399.00;
         $combo->is_combo = true;
-        $combo->combo_badge = 'TIẾT KIỆM $60';
+        $combo->combo_badge = 'SAVE $60';
         $combo->combo_saving_amount = 60.00;
         $combo->is_featured = true;
         $combo->is_active = true;
         $combo->rating = 5.0;
         $combo->review_count = 18;
         $combo->highlights = [
-            'Hành trình liên tỉnh xuyên suốt: Sa Pa - Hà Giang - Ninh Bình không lo tự đặt xe',
-            'Chinh phục đỉnh đèo Mã Pí Lèng hùng vĩ và Hẻm vực Tu Sản sông Nho Quế',
-            'Trekking bản làng người H\'Mông, Dao Đỏ tại Sa Pa và ngắm ruộng bậc thang',
-            'Du thuyền nan trên dòng sông Ngô Đồng Tam Cốc - Bích Động di sản thế giới',
-            'Toàn bộ xe trung chuyển limousine giường nằm cabin cao cấp đón trả tận nơi',
+            'Seamless inter-province journey: Sa Pa - Ha Giang - Ninh Binh with no need to book your own transport',
+            'Conquer the majestic Ma Pi Leng Pass and Tu San Canyon on the Nho Que River',
+            'Trek through H\'Mong and Red Dao villages in Sa Pa and admire the rice terraces',
+            'Sampan ride on the Ngo Dong River at the Tam Coc - Bich Dong World Heritage site',
+            'All transfers by premium cabin sleeper limousine with door-to-door pickup',
         ];
         $combo->inclusions = [
-            'Toàn bộ vé xe limousine giường nằm cabin cao cấp liên tỉnh',
-            'Xe máy đời mới kèm xăng và đồ bảo hộ phượt Hà Giang',
-            'Hướng dẫn viên bản địa tiếng Anh chuyên nghiệp suốt tuyến',
-            'Tất cả vé thắng cảnh, thuyền nan Tràng An / Tam Cốc',
-            '5 đêm lưu trú khách sạn & homestay bản làng đặc sắc',
-            'Các bữa ăn theo chương trình ẩm thực địa phương',
+            'All inter-province premium cabin sleeper limousine tickets',
+            'Modern motorbike with fuel and riding gear for Ha Giang',
+            'Professional English-speaking local guide throughout',
+            'All entrance tickets and Trang An / Tam Coc sampan rides',
+            '5 nights in hotels & characterful village homestays',
+            'Meals as per the program featuring local cuisine',
         ];
         $combo->exclusions = [
-            'Đồ uống có cồn ngoài chương trình',
-            'Tiền tip cho hướng dẫn viên và lái xe (tùy tâm)',
-            'Chi tiêu mua sắm quà lưu niệm cá nhân',
+            'Alcoholic drinks outside the program',
+            'Tips for guides and drivers (at your discretion)',
+            'Personal souvenir shopping',
         ];
-        $combo->overview = '<h2>Hành trình khám phá trọn vẹn miền Bắc Việt Nam (6 Ngày 5 Đêm)</h2>
-<p>Nếu bạn muốn tận hưởng trọn vẹn vẻ đẹp hoang sơ, hùng vĩ của vùng cao phía Bắc kết hợp với nét thanh bình non nước Tràng An mà không phải đau đầu lo việc mua vé xe, chuyển bến hay tự sắp xếp lịch trình, thì <strong>6-Day Sapa, Ha Giang & Ninh Binh Package Combo</strong> chính là lựa chọn hoàn hảo nhất.</p>
-<p>Chuyến đi được điều phối liền mạch bởi Chestnut Travel, đưa bạn từ những thửa ruộng bậc thang kỳ vĩ của Sa Pa, vượt qua cung đường phượt huyền thoại Mã Pí Lèng tại Hà Giang, cho đến trải nghiệm chèo thuyền giữa lòng di sản văn hóa và thiên nhiên thế giới Tràng An (Ninh Bình).</p>';
+        $combo->overview = '<h2>The complete Northern Vietnam discovery journey (6 Days 5 Nights)</h2>
+<p>If you want to fully enjoy the wild, majestic beauty of the northern highlands together with the peaceful landscapes of Trang An - without the hassle of buying bus tickets, changing stations or planning everything yourself - the <strong>6-Day Sapa, Ha Giang & Ninh Binh Package Combo</strong> is the perfect choice.</p>
+<p>Seamlessly coordinated by Chestnut Travel, the trip takes you from the spectacular rice terraces of Sa Pa, over the legendary Ma Pi Leng Pass in Ha Giang, to a boat ride through the cultural and natural World Heritage site of Trang An (Ninh Binh).</p>';
         
         if (!$combo->featured_image && $haGiangTour?->featured_image) {
             $combo->featured_image = $haGiangTour->featured_image;
@@ -94,9 +94,9 @@ class TourComboSeeder extends Seeder
                 'parent_tour_id' => $combo->id,
                 'child_tour_id' => $sapaTour->id,
                 'stage_order' => $order++,
-                'stage_title' => 'Chặng 1: Sa Pa - Trekking bản làng H\'Mông & Đỉnh Fansipan',
+                'stage_title' => 'Stage 1: Sa Pa - H\'Mong Village Trekking & Fansipan Peak',
                 'stage_days' => 2,
-                'transit_notes' => 'Xe cabin VIP cao cấp đón lúc 21h00 tại Sa Pa di chuyển xuyên đêm sang TP Hà Giang (nghỉ ngơi trên xe)',
+                'transit_notes' => 'Premium VIP cabin bus picks you up at 21:00 in Sa Pa and travels overnight to Ha Giang City (rest on board)',
             ]);
         }
 
@@ -105,9 +105,9 @@ class TourComboSeeder extends Seeder
                 'parent_tour_id' => $combo->id,
                 'child_tour_id' => $haGiangTour->id,
                 'stage_order' => $order++,
-                'stage_title' => 'Chặng 2: Hà Giang Loop - Đèo Mã Pí Lèng, Đồng Văn & Sông Nho Quế',
+                'stage_title' => 'Stage 2: Ha Giang Loop - Ma Pi Leng Pass, Dong Van & Nho Que River',
                 'stage_days' => 3,
-                'transit_notes' => 'Xe Limousine đón tại Hà Giang đưa về Ninh Bình hoặc Hà Nội lúc 16h00',
+                'transit_notes' => 'Limousine pickup in Ha Giang at 16:00 to Ninh Binh or Hanoi',
             ]);
         }
 
@@ -116,9 +116,9 @@ class TourComboSeeder extends Seeder
                 'parent_tour_id' => $combo->id,
                 'child_tour_id' => $ninhBinhTour->id,
                 'stage_order' => $order++,
-                'stage_title' => 'Chặng 3: Ninh Bình - Thuyền nan Tam Cốc, Hang Múa & Cố đô Hoa Lư',
+                'stage_title' => 'Stage 3: Ninh Binh - Tam Coc Sampan Ride, Mua Cave & Hoa Lu Ancient Capital',
                 'stage_days' => 1,
-                'transit_notes' => 'Xe limousine đưa đón trả về lại Phố cổ Hà Nội lúc 18h30 kết thúc chuyến đi',
+                'transit_notes' => 'Limousine drop-off back in Hanoi\'s Old Quarter at 18:30 - end of trip',
             ]);
         }
     }

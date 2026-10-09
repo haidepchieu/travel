@@ -34,6 +34,17 @@ class BookingController extends Controller
             'special_requests' => ['nullable', 'string', 'max:1000'],
             'payment_method' => ['nullable', 'string', 'in:vietqr,credit_card,pay_on_arrival'],
             'payment_type' => ['nullable', 'string', 'in:deposit,full,later'],
+        ], [
+            'tour_id.required' => 'Please select a tour before booking.',
+            'tour_id.exists' => 'This tour is no longer available. Please refresh the page and try again.',
+            'departure_date.required' => 'Please choose your departure date.',
+            'departure_date.after_or_equal' => 'The departure date cannot be in the past.',
+            'adults.min' => 'At least 1 adult is required for a booking.',
+            'customer_name.required' => 'Please enter your full name.',
+            'customer_email.required' => 'Please enter your email address so we can send your confirmation.',
+            'customer_email.email' => 'Please enter a valid email address (e.g. name@example.com).',
+            'customer_phone.required' => 'Please enter your phone / WhatsApp number.',
+            'payment_method.in' => 'Please choose a valid payment method.',
         ]);
 
         $tour = Tour::findOrFail($validated['tour_id']);
@@ -68,7 +79,7 @@ class BookingController extends Controller
                     if ($selected || $qty > 0) {
                         $qty = max(1, $qty);
                         $extraId = $extra['id'] ?? null;
-                        $extraName = $extra['name'] ?? 'Dịch vụ phụ trợ';
+                        $extraName = $extra['name'] ?? 'Extra service';
                         $unitPrice = 0.0;
 
                         // Securely look up verified price from database
@@ -115,7 +126,7 @@ class BookingController extends Controller
             $paymentType = 'full';
             $transactionId = 'VQR-' . strtoupper(substr(uniqid(), -8));
         } else {
-            // Thanh toán sau khi đón tour (pay_on_arrival / later)
+            // Pay later when the guide picks you up (pay_on_arrival / later)
             $paymentMethod = 'pay_on_arrival';
             $paymentType = 'later';
             $depositAmount = 0.00;
@@ -134,7 +145,7 @@ class BookingController extends Controller
         $booking = new TourBooking();
         $booking->tour_id = $tour->id;
         $booking->booking_type = 'standard';
-        $booking->package_option = $validated['package_option'] ?? ($tour->prices->first()->option_name ?? 'Gói Tiêu Chuẩn');
+        $booking->package_option = $validated['package_option'] ?? ($tour->prices->first()->option_name ?? 'Standard Package');
         $booking->departure_time = $validated['departure_time'] ?? null;
         $booking->user_id = $customer->id;
         $booking->customer_name = $validated['customer_name'];
@@ -153,15 +164,15 @@ class BookingController extends Controller
         $booking->remaining_amount = $remainingAmount;
         $booking->payment_transaction_id = $transactionId;
         $booking->payment_status = $paymentStatus;
-        $booking->booking_status = 'pending'; // Trạng thái chờ quản trị viên xác nhận
+        $booking->booking_status = 'pending'; // Waiting for admin confirmation
         $booking->save();
 
-        // Note: Email xác nhận đặt tour sẽ được gửi khi Quản trị viên duyệt đơn trong trang quản trị (Admin Panel)
+        // Note: the booking confirmation email is sent when an admin approves the booking in the Admin Panel
 
         if ($request->wantsJson() || $request->ajax()) {
             return response()->json([
                 'success' => true,
-                'message' => 'Đặt tour & thanh toán khởi tạo thành công!',
+                'message' => 'Your booking has been created successfully!',
                 'booking' => [
                     'code' => $booking->booking_code,
                     'tour_title' => $tour->title,
@@ -198,6 +209,11 @@ class BookingController extends Controller
             'enquiry_contact' => ['required', 'string', 'max:50'],
             'enquiry_country' => ['nullable', 'string', 'max:100'],
             'enquiry_message' => ['nullable', 'string', 'max:2000'],
+        ], [
+            'enquiry_name.required' => 'Please enter your name.',
+            'enquiry_email.required' => 'Please enter your email address.',
+            'enquiry_email.email' => 'Please enter a valid email address (e.g. name@example.com).',
+            'enquiry_contact.required' => 'Please enter your contact number or WhatsApp.',
         ]);
 
         $tour = Tour::findOrFail($validated['tour_id']);
@@ -228,12 +244,12 @@ class BookingController extends Controller
         if ($request->wantsJson() || $request->ajax()) {
             return response()->json([
                 'success' => true,
-                'message' => 'Cảm ơn bạn! Yêu cầu tư vấn của bạn đã được gửi thành công. Đội ngũ Chestnut Travel sẽ liên hệ trong ít phút.',
+                'message' => 'Thank you! Your enquiry has been sent successfully. The Chestnut Travel team will get back to you shortly.',
                 'booking_code' => $booking->booking_code,
             ]);
         }
 
-        return back()->with('enquiry_success', 'Cảm ơn bạn! Yêu cầu tư vấn đã được gửi thành công. Đội ngũ chuyên gia của chúng tôi sẽ liên hệ lại với bạn ngay!');
+        return back()->with('enquiry_success', 'Thank you! Your enquiry has been sent successfully. Our travel experts will contact you very soon!');
     }
 
     /**
@@ -253,8 +269,17 @@ class BookingController extends Controller
     {
         $booking = null;
         $searched = false;
+        $lookupError = null;
 
-        if ($request->filled('booking_code') && ($request->filled('email') || $request->filled('phone'))) {
+        if ($request->hasAny(['booking_code', 'email', 'phone'])) {
+            if (!$request->filled('booking_code')) {
+                $lookupError = 'Please enter your booking code (it starts with CNT-).';
+            } elseif (!$request->filled('email') && !$request->filled('phone')) {
+                $lookupError = 'Please enter the email or phone number you used when booking.';
+            }
+        }
+
+        if (!$lookupError && $request->filled('booking_code') && ($request->filled('email') || $request->filled('phone'))) {
             $searched = true;
             $query = TourBooking::with('tour')->where('booking_code', trim($request->booking_code));
 
@@ -268,7 +293,7 @@ class BookingController extends Controller
             $booking = $query->first();
         }
 
-        return view('booking-lookup', compact('booking', 'searched'));
+        return view('booking-lookup', compact('booking', 'searched', 'lookupError'));
     }
 
     /**
@@ -290,6 +315,14 @@ class BookingController extends Controller
             'activities' => ['nullable', 'array'],
             'budget' => ['nullable', 'string', 'max:100'],
             'special_requests' => ['nullable', 'string', 'max:3000'],
+        ], [
+            'customer_name.required' => 'Please enter your full name.',
+            'customer_email.required' => 'Please enter your email address so we can send you the itinerary.',
+            'customer_email.email' => 'Please enter a valid email address (e.g. name@example.com).',
+            'customer_phone.required' => 'Please enter your phone / WhatsApp number.',
+            'adults.required' => 'Please enter the number of adults.',
+            'adults.min' => 'At least 1 adult is required.',
+            'departure_date.date' => 'Please enter a valid departure date.',
         ]);
 
         // Auto find or create customer record in database
@@ -325,18 +358,18 @@ class BookingController extends Controller
         $booking->booking_status = 'pending';
         $booking->save();
 
-        // Note: Email thông báo xác nhận sẽ gửi khi Quản trị viên duyệt và báo giá trong Admin Panel
+        // Note: the confirmation email is sent once an admin reviews and quotes the request in the Admin Panel
 
         if ($request->wantsJson() || $request->ajax()) {
             return response()->json([
                 'success' => true,
-                'message' => 'Yêu cầu tùy chỉnh tour của bạn đã được gửi thành công!',
+                'message' => 'Your customized tour request has been sent successfully!',
                 'booking_code' => $booking->booking_code,
             ]);
         }
 
         return redirect()->route('booking.success', ['code' => $booking->booking_code])
-            ->with('custom_tour_message', 'Cảm ơn bạn! Yêu cầu tùy chỉnh tour của bạn đã được tiếp nhận. Đội ngũ Chestnut Travel sẽ liên hệ trong 30 phút để hoàn thiện lịch trình dành riêng cho bạn.');
+            ->with('custom_tour_message', 'Thank you! We have received your customized tour request. The Chestnut Travel team will contact you within 30 minutes to finalize your personal itinerary.');
     }
 
     /**

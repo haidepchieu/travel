@@ -42,7 +42,7 @@
                 </span>
                 @if($tour->calculated_saving > 0)
                     <span class="bg-emerald-600 text-white text-[9px] font-black uppercase px-2 py-0.5 rounded-full shadow-md">
-                        Tiết kiệm ${{ round($tour->calculated_saving) }}
+                        Save ${{ round($tour->calculated_saving) }}
                     </span>
                 @endif
             </div>
@@ -53,7 +53,7 @@
                 onclick="event.preventDefault(); event.stopPropagation(); toggleWishlist({{ $tour->id }}, '{{ addslashes($tour->title) }}', '{{ $tourImg }}', '{{ route('tour.show', $tour->slug) }}', {{ $tourPrice }})" 
                 data-wishlist-id="{{ $tour->id }}"
                 class="absolute top-3.5 right-3.5 w-9 h-9 rounded-full bg-black/35 hover:bg-black/55 backdrop-blur-xs text-white shadow-sm flex items-center justify-center transition active:scale-90 z-10 cursor-pointer" 
-                title="Lưu vào danh sách yêu thích">
+                title="Save to wishlist">
             <i class="fa-regular fa-heart text-base text-white"></i>
         </button>
 
@@ -86,9 +86,9 @@
             <div class="flex items-center gap-2 sm:gap-2.5">
                 <i class="fa-regular fa-calendar-days text-gray-400 text-lg sm:text-xl shrink-0"></i>
                 <div class="min-w-0">
-                    <span class="text-[10px] text-gray-400 font-medium block leading-tight">Thời gian</span>
+                    <span class="text-[10px] text-gray-400 font-medium block leading-tight">Duration</span>
                     <span class="font-bold text-xs sm:text-sm text-gray-900 block leading-tight truncate">
-                        {{ $tour->duration_days }} Ngày {{ $tour->duration_nights ? $tour->duration_nights . ' Đêm' : '' }}
+                        {{ $tour->duration_days }} {{ Str::plural('Day', $tour->duration_days) }} {{ $tour->duration_nights ? $tour->duration_nights . ' ' . Str::plural('Night', $tour->duration_nights) : '' }}
                     </span>
                 </div>
             </div>
@@ -97,9 +97,9 @@
             <div class="flex items-center gap-2 sm:gap-2.5">
                 <i class="fa-solid fa-gauge-high text-gray-400 text-lg sm:text-xl shrink-0"></i>
                 <div class="min-w-0">
-                    <span class="text-[10px] text-gray-400 font-medium block leading-tight">Độ khó</span>
+                    <span class="text-[10px] text-gray-400 font-medium block leading-tight">Difficulty</span>
                     <span class="font-bold text-xs sm:text-sm text-gray-900 block leading-tight truncate">
-                        {{ $tour->difficulty ?: 'Dễ' }}
+                        {{ $tour->difficulty ?: 'Easy' }}
                     </span>
                 </div>
             </div>
@@ -108,9 +108,9 @@
             <div class="flex items-center gap-2 sm:gap-2.5">
                 <i class="fa-solid fa-person-hiking text-gray-400 text-lg sm:text-xl shrink-0"></i>
                 <div class="min-w-0">
-                    <span class="text-[10px] text-gray-400 font-medium block leading-tight">Hoạt động</span>
+                    <span class="text-[10px] text-gray-400 font-medium block leading-tight">Activities</span>
                     <span class="font-bold text-xs sm:text-sm text-gray-900 block leading-tight truncate">
-                        {{ $actCount }} Trải nghiệm
+                        {{ $actCount }} {{ Str::plural('Experience', $actCount) }}
                     </span>
                 </div>
             </div>

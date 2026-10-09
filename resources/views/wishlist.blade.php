@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Wishlist - Danh Sách Yêu Thích | Chestnut Travel')
-@section('meta_description', 'Xem lại danh sách các tour du lịch yêu thích bạn đã lưu tại Chestnut Travel để dễ dàng so sánh và lên kế hoạch.')
+@section('title', 'My Wishlist | Chestnut Travel')
+@section('meta_description', 'Review the tours you have saved at Chestnut Travel to easily compare and plan your trip.')
 
 @section('content')
 <!-- ============================================================== -->
@@ -11,13 +11,13 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 text-xs text-gray-500 mb-3">
-            <a href="{{ route('home') }}" class="hover:text-chestnut transition">Trang chủ</a>
+            <a href="{{ route('home') }}" class="hover:text-chestnut transition">Home</a>
             <span class="text-gray-300">/</span>
-            <span class="text-gray-800 font-semibold">Danh sách yêu thích</span>
+            <span class="text-gray-800 font-semibold">Wishlist</span>
         </nav>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Danh Sách Yêu Thích</h1>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">My Wishlist</h1>
         <p class="text-xs sm:text-sm text-gray-500 mt-1.5">
-            Lưu lại những chuyến đi yêu thích của bạn để dễ dàng so sánh và lên kế hoạch bất cứ lúc nào.
+            Save your favorite trips to easily compare and plan them anytime.
         </p>
     </div>
 </section>
@@ -35,13 +35,13 @@
                 <div id="wishlist-toolbar" class="hidden items-center justify-between pb-4 mb-6 border-b border-gray-100">
                     <div class="flex items-center gap-2">
                         <i class="fa-regular fa-heart text-gray-700 text-sm"></i>
-                        <span id="wishlist-header-count" class="text-xs sm:text-sm font-bold text-gray-800">0 tour trong danh sách yêu thích</span>
+                        <span id="wishlist-header-count" class="text-xs sm:text-sm font-bold text-gray-800">0 tours in your wishlist</span>
                     </div>
                     <button type="button" 
                             onclick="clearAllWishlist()" 
                             class="text-xs text-gray-400 hover:text-gray-900 font-semibold transition flex items-center gap-1.5 cursor-pointer">
                         <i class="fa-regular fa-trash-can"></i>
-                        <span>Xóa tất cả</span>
+                        <span>Clear all</span>
                     </button>
                 </div>
 
@@ -51,15 +51,15 @@
                         <i class="fa-regular fa-heart"></i>
                     </div>
                     <h2 class="text-2xl font-black text-gray-900 tracking-tight mb-2">
-                        Danh Sách Yêu Thích Đang Trống
+                        Your Wishlist Is Empty
                     </h2>
                     <p class="text-sm text-gray-500 mb-8 max-w-md mx-auto leading-relaxed">
-                        Hãy khám phá những cung đường kỳ vĩ và lưu lại những chuyến đi bạn yêu thích nhất!
+                        Explore spectacular routes and save the trips you love most!
                     </p>
                     <a href="{{ route('home') }}#tours-section" 
                        class="inline-flex items-center gap-2 bg-[#28B5A4] hover:bg-[#209C8D] text-white font-extrabold text-xs px-6 py-3.5 rounded-full shadow-lg shadow-[#28B5A4]/25 transition transform active:scale-95">
                         <i class="fa-solid fa-compass"></i>
-                        <span>Khám phá các chuyến đi</span>
+                        <span>Explore trips</span>
                     </a>
                 </div>
 
@@ -75,12 +75,12 @@
                 <div class="bg-gray-50/80 rounded-3xl p-6 border border-gray-200/80">
                     <h3 class="text-xs font-black uppercase tracking-wider text-gray-900 mb-3.5 flex items-center gap-2">
                         <i class="fa-solid fa-magnifying-glass text-chestnut text-[11px]"></i>
-                        <span>Tìm kiếm tour</span>
+                        <span>Search tours</span>
                     </h3>
                     <form action="{{ route('home') }}#tours-section" method="GET" class="relative">
                         <input type="text" 
                                name="s" 
-                               placeholder="Tìm theo tên tour, điểm đến..." 
+                               placeholder="Search by tour name, destination..." 
                                class="w-full text-xs font-medium text-gray-800 bg-white border border-gray-200 rounded-xl px-4 py-3 pr-10 focus:outline-none focus:border-chestnut transition">
                         <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-chestnut transition">
                             <i class="fa-solid fa-arrow-right text-xs"></i>
@@ -93,7 +93,7 @@
                     <div class="bg-gray-50/80 rounded-3xl p-6 border border-gray-200/80">
                         <h3 class="text-xs font-black uppercase tracking-wider text-gray-900 mb-4 flex items-center gap-2">
                             <i class="fa-solid fa-location-dot text-chestnut text-[11px]"></i>
-                            <span>Điểm đến</span>
+                            <span>Destinations</span>
                         </h3>
                         <ul class="space-y-2 text-xs font-semibold text-gray-700">
                             @foreach($destinations as $dest)
@@ -115,7 +115,7 @@
                     <div class="bg-gray-50/80 rounded-3xl p-6 border border-gray-200/80">
                         <h3 class="text-xs font-black uppercase tracking-wider text-gray-900 mb-4 flex items-center gap-2">
                             <i class="fa-solid fa-person-biking text-chestnut text-[11px]"></i>
-                            <span>Hoạt động trải nghiệm</span>
+                            <span>Activities</span>
                         </h3>
                         <div class="flex flex-wrap gap-2">
                             @foreach($activities as $act)
@@ -132,7 +132,7 @@
                     <div class="bg-gray-50/80 rounded-3xl p-6 border border-gray-200/80">
                         <h3 class="text-xs font-black uppercase tracking-wider text-gray-900 mb-4 flex items-center gap-2">
                             <i class="fa-solid fa-fire text-chestnut text-[11px]"></i>
-                            <span>Tour gợi ý nổi bật</span>
+                            <span>Recommended tours</span>
                         </h3>
                         <div class="space-y-4">
                             @foreach($featuredTours as $ft)
@@ -144,7 +144,7 @@
                                     </a>
                                     <div class="flex-1 min-w-0">
                                         <span class="text-[10px] text-gray-400 font-semibold block">
-                                            {{ $ft->duration_days }}N / {{ $ft->duration_nights }}Đ
+                                            {{ $ft->duration_days }}D / {{ $ft->duration_nights }}N
                                         </span>
                                         <a href="{{ route('tour.show', $ft->slug) }}" class="text-xs font-bold text-gray-900 group-hover:text-chestnut transition line-clamp-1 block leading-tight mt-0.5">
                                             {{ $ft->title }}
@@ -164,9 +164,9 @@
                     <div class="w-11 h-11 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-3 text-lg text-amber-400">
                         <i class="fa-solid fa-headset"></i>
                     </div>
-                    <h4 class="font-extrabold text-sm text-white mb-1">Cần hỗ trợ tư vấn?</h4>
+                    <h4 class="font-extrabold text-sm text-white mb-1">Need travel advice?</h4>
                     <p class="text-xs text-gray-300 mb-4 leading-relaxed">
-                        Đội ngũ chuyên gia bản địa của Chestnut Travel luôn sẵn sàng 24/7 để đồng hành cùng bạn.
+                        Chestnut Travel's local experts are available 24/7 to help you.
                     </p>
                     <a href="tel:{{ preg_replace('/[^0-9+]/', '', option('site_hotline', '+84867216850')) }}" class="inline-block w-full bg-chestnut hover:bg-orange-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition">
                         <i class="fa-solid fa-phone mr-1.5 text-[10px]"></i>
@@ -204,7 +204,7 @@
             emptyBox.classList.add('hidden');
             toolbar.classList.remove('hidden');
             toolbar.classList.add('flex');
-            countLabel.innerText = `${list.length} chuyến đi đã được lưu`;
+            countLabel.innerText = `${list.length} saved ${list.length === 1 ? 'trip' : 'trips'}`;
 
             grid.innerHTML = list.map(item => `
                 <div class="bg-white rounded-3xl overflow-hidden border border-gray-200/90 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col group relative">
@@ -218,7 +218,7 @@
                         <button type="button" 
                                 onclick="removeWishlistItemAndRefresh(${item.id})" 
                                 class="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 hover:bg-white text-gray-600 hover:text-gray-900 shadow-md flex items-center justify-center transition active:scale-90 z-10 cursor-pointer" 
-                                title="Xóa khỏi danh sách yêu thích">
+                                title="Remove from wishlist">
                             <i class="fa-solid fa-xmark text-xs"></i>
                         </button>
                     </div>
@@ -239,11 +239,11 @@
                         <!-- Card Footer -->
                         <div class="pt-4 border-t border-gray-100 flex items-center justify-between mt-auto">
                             <div>
-                                <span class="text-[10px] text-gray-400 uppercase font-semibold block">Giá từ</span>
+                                <span class="text-[10px] text-gray-400 uppercase font-semibold block">From</span>
                                 <span class="text-lg font-black text-chestnut">$${Number(item.price).toLocaleString()}</span>
                             </div>
                             <a href="${item.url}" class="inline-flex items-center gap-1.5 bg-[#28B5A4] hover:bg-[#209C8D] text-white text-xs font-bold px-4 py-2 rounded-xl shadow-sm hover:shadow transition transform active:scale-95">
-                                <span>Xem chi tiết</span>
+                                <span>View details</span>
                                 <i class="fa-solid fa-arrow-right text-[10px]"></i>
                             </a>
                         </div>
@@ -261,7 +261,7 @@
     // Override clearAllWishlist to refresh page grid too
     const originalClearAll = window.clearAllWishlist;
     window.clearAllWishlist = function() {
-        if (confirm('Bạn có chắc muốn xóa tất cả tour trong danh sách yêu thích?')) {
+        if (confirm('Are you sure you want to remove all tours from your wishlist?')) {
             saveWishlist([]);
             renderWishlistPage();
         }
