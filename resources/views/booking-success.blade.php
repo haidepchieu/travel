@@ -4,6 +4,7 @@
 
 @section('content')
 @php
+    $isCustomQuote = $booking->booking_type === 'customized_tour' && (float) $booking->total_price <= 0;
     $exchangeRate = 25400; // 1 USD = 25,400 VND
     $payableUsd = $booking->deposit_amount > 0 ? (float)$booking->deposit_amount : (float)$booking->total_price;
     $payableVnd = round($payableUsd * $exchangeRate);
@@ -44,6 +45,13 @@
                     </div>
                 </div>
 
+                @if($isCustomQuote)
+                <div class="text-center sm:text-right shrink-0">
+                    <div class="text-[11px] font-bold uppercase text-gray-400">Price</div>
+                    <div class="text-lg sm:text-xl font-black text-chestnut">Quote coming soon</div>
+                    <div class="text-xs font-semibold text-gray-500">Tailored to your request</div>
+                </div>
+                @else
                 <div class="text-center sm:text-right shrink-0">
                     <div class="text-[11px] font-bold uppercase text-gray-400">
                         {{ $booking->payment_method === 'vietqr' ? 'Amount to transfer (100%)' : 'Amount payable on pickup' }}
@@ -51,6 +59,7 @@
                     <div class="text-2xl sm:text-3xl font-black text-chestnut">${{ number_format($booking->total_price, 2) }}</div>
                     <div class="text-xs font-semibold text-emerald-600">~ {{ number_format($payableVnd) }} VND</div>
                 </div>
+                @endif
             </div>
 
             <!-- Notice based on payment status / method -->
@@ -60,6 +69,8 @@
                     <span>
                         @if($booking->booking_status === 'confirmed')
                             Your booking has been confirmed by our team. Your tour ticket email has been sent to <strong>{{ $booking->customer_email }}</strong>.
+                        @elseif($isCustomQuote)
+                            We have received your request. Our travel experts will contact you shortly with a personal itinerary and quote - <strong>no payment is needed yet</strong>.
                         @else
                             Your booking is awaiting confirmation by our team. Once it is confirmed, you will receive a <strong>booking confirmation email</strong>.
                         @endif
@@ -81,7 +92,26 @@
             <!-- LEFT COLUMN: PAYMENT INSTRUCTIONS (7 Cols) -->
             <div class="lg:col-span-7 space-y-6">
 
-                @if($booking->payment_method === 'vietqr')
+                @if($isCustomQuote)
+                    <!-- CUSTOMIZED TOUR: REQUEST RECEIVED (NO PAYMENT YET) -->
+                    <div class="bg-white rounded-3xl shadow-sm border-2 border-teal-200 p-6 sm:p-7">
+                        <div class="flex items-center gap-3 pb-4 border-b border-stone-100">
+                            <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-700 flex items-center justify-center text-xl shrink-0">
+                                <i class="fa-solid fa-route"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-base font-black text-gray-900">Your customized tour request is in</h2>
+                                <p class="text-xs text-gray-500 mt-0.5">No payment is required at this stage.</p>
+                            </div>
+                        </div>
+                        <ol class="mt-4 space-y-3 text-sm text-gray-700">
+                            <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-teal-600 text-white text-xs font-black flex items-center justify-center shrink-0">1</span><span>Our travel experts review your request and contact you within <strong>30 minutes</strong> (07:30 - 22:00 daily).</span></li>
+                            <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-teal-600 text-white text-xs font-black flex items-center justify-center shrink-0">2</span><span>We send you a personal itinerary and a price quote by email / WhatsApp.</span></li>
+                            <li class="flex gap-3"><span class="w-6 h-6 rounded-full bg-teal-600 text-white text-xs font-black flex items-center justify-center shrink-0">3</span><span>Once you are happy with the plan, we confirm the booking and share the payment details.</span></li>
+                        </ol>
+                    </div>
+
+                @elseif($booking->payment_method === 'vietqr')
                     <!-- VIETQR PAYMENT CARD -->
                     <div class="bg-white rounded-3xl shadow-sm border-2 border-orange-200 p-6 sm:p-7 relative overflow-hidden">
                         <div class="flex items-center justify-between pb-4 border-b border-stone-100">
@@ -351,6 +381,12 @@
                         </div>
 
                         <!-- Price Breakdown -->
+                        @if($isCustomQuote)
+                        <div class="pt-3 border-t border-stone-200 flex justify-between text-xs">
+                            <span class="text-gray-600">Price:</span>
+                            <span class="font-bold text-chestnut">To be quoted</span>
+                        </div>
+                        @else
                         <div class="pt-3 border-t border-stone-200 space-y-2 text-xs">
                             <div class="flex justify-between text-gray-600">
                                 <span>Package total:</span>
@@ -373,6 +409,7 @@
                                 </div>
                             @endif
                         </div>
+                        @endif
 
                     </div>
                 </div>
