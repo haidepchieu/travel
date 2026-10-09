@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'My Account | Chestnut Travel')
+@section('title', 'My Account | ' . option('site_name', 'Chestnut Travel'))
 
 @section('content')
 <div class="py-12 bg-gray-50 min-h-[75vh]">

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $tour->title . ' | Chestnut Travel')
+@section('title', $tour->title . ' | ' . option('site_name', 'Chestnut Travel'))
 @section('meta_description', Str::limit(strip_tags($tour->overview), 160))
 
 @section('content')

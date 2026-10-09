@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Find My Booking | Chestnut Travel')
+@section('title', 'Find My Booking | ' . option('site_name', 'Chestnut Travel'))
 @section('meta_description', 'Check your booking status and trip details with Chestnut Travel.')
 
 @section('content')

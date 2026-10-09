@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Chestnut Travel - Authentic Local Travel & Northern Vietnam Adventures')
+@section('title', option('site_name', 'Chestnut Travel') . ' - Authentic Local Travel & Northern Vietnam Adventures')
 @section('meta_description', 'Chestnut Travel specializes in Ha Giang Loop motorbike tours, Sa Pa local trekking, Lan Ha Bay - Cat Ba cruises, Ninh Binh and all-inclusive Northern Vietnam combos.')
 
 @section('content')

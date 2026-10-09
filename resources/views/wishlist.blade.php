@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'My Wishlist | Chestnut Travel')
+@section('title', 'My Wishlist | ' . option('site_name', 'Chestnut Travel'))
 @section('meta_description', 'Review the tours you have saved at Chestnut Travel to easily compare and plan your trip.')
 
 @section('content')

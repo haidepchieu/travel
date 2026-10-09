@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Northern Vietnam Combo Tours - Chestnut Travel')
+@section('title', 'Northern Vietnam Combo Tours - ' . option('site_name', 'Chestnut Travel'))
 @section('meta_description', 'Discover all-inclusive combo packages in Northern Vietnam: Ha Giang, Sa Pa, Ninh Binh and Ha Long Bay with seamless transfers and maximum savings.')
 
 @section('content')

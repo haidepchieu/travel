@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Booking Confirmation & Payment - ' . $booking->booking_code . ' | Chestnut Travel')
+@section('title', 'Booking Confirmation & Payment - ' . $booking->booking_code . ' | ' . option('site_name', 'Chestnut Travel'))
 
 @section('content')
 @php
